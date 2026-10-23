@@ -7605,48 +7605,75 @@ bool isPluginVoiceSkin(Object? value) =>
     value is String &&
     RegExp(r'^plugin:[a-z][a-z0-9_-]{0,63}$').hasMatch(value);
 
+const _voiceSkins = [
+  'kiosk-satellite',
+  'default',
+  'google-home',
+  'home-assistant',
+  'alexa',
+  'siri',
+  'retro-terminal',
+  'waveform',
+  'lens-flares',
+  'ink-blobs',
+  'jarvis',
+  'kitt',
+  'hal-9000',
+  'voice-only',
+];
+
+const _voiceSkinLabels = {
+  'kiosk-satellite': 'Kiosk Satellite',
+  'default': 'Default',
+  'google-home': 'Google Home',
+  'home-assistant': 'Home Assistant',
+  'alexa': 'Alexa',
+  'siri': 'Siri',
+  'retro-terminal': 'Retro Terminal',
+  'waveform': 'Waveform',
+  'lens-flares': 'Lens Flares',
+  'ink-blobs': 'Ink Blobs',
+  'jarvis': 'Jarvis',
+  'kitt': 'KITT',
+  'hal-9000': 'HAL 9000',
+  'voice-only': 'Voice Only',
+};
+
 const voiceSkin = SettingDef<String>(
   key: 'voice.skin',
   type: SettingType.select,
   defaultValue: 'kiosk-satellite',
-  title: 'Skin',
-  description: 'The look of the voice assistant overlay.',
+  title: 'Assistant 1 skin',
+  description: 'The look of the overlay when Assistant 1 answers.',
   category: 'Voice Satellite',
   subpage: 'Appearance',
-  options: [
-    'kiosk-satellite',
-    'default',
-    'google-home',
-    'home-assistant',
-    'alexa',
-    'siri',
-    'retro-terminal',
-    'waveform',
-    'lens-flares',
-    'ink-blobs',
-    'jarvis',
-    'kitt',
-    'hal-9000',
-    'voice-only',
-  ],
-  optionLabels: {
-    'kiosk-satellite': 'Kiosk Satellite',
-    'default': 'Default',
-    'google-home': 'Google Home',
-    'home-assistant': 'Home Assistant',
-    'alexa': 'Alexa',
-    'siri': 'Siri',
-    'retro-terminal': 'Retro Terminal',
-    'waveform': 'Waveform',
-    'lens-flares': 'Lens Flares',
-    'ink-blobs': 'Ink Blobs',
-    'jarvis': 'Jarvis',
-    'kitt': 'KITT',
-    'hal-9000': 'HAL 9000',
-    'voice-only': 'Voice Only',
-  },
+  options: _voiceSkins,
+  optionLabels: _voiceSkinLabels,
   dependsOn: 'voice.enabled',
 );
+
+/// The skin of a turn Assistant 2 answers: one that wake word 2 starts,
+/// or a vs_show on pipeline 2. Every other turn wears [voiceSkin].
+const voiceSkin2 = SettingDef<String>(
+  key: 'voice.skin_2',
+  type: SettingType.select,
+  defaultValue: 'kiosk-satellite',
+  title: 'Assistant 2 skin',
+  description: 'The look of the overlay when Assistant 2 answers.',
+  category: 'Voice Satellite',
+  subpage: 'Appearance',
+  options: _voiceSkins,
+  optionLabels: _voiceSkinLabels,
+  dependsOn: 'voice.enabled',
+);
+
+/// The Skin setting of [assistant], 1 or 2.
+SettingDef<String> voiceSkinOf(int assistant) =>
+    assistant == 2 ? voiceSkin2 : voiceSkin;
+
+/// Whether [key] is a Skin setting, which also takes plugin skins.
+bool isVoiceSkinSetting(String key) =>
+    key == voiceSkin.key || key == voiceSkin2.key;
 
 const voiceTheme = SettingDef<String>(
   key: 'voice.theme',
@@ -13235,6 +13262,7 @@ const List<SettingDef<Object>> allSettings = [
   voiceWakeArbitrationWindowMs,
   voiceWakeArbitrationOffsetDb,
   voiceSkin,
+  voiceSkin2,
   voiceTheme,
   voiceOverlayMode,
   voiceDockPosition,

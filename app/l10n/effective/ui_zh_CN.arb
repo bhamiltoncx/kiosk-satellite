@@ -50073,6 +50073,58 @@
       ]
     }
   },
+  "voiceSkin1": "助手 1 的皮肤",
+  "@voiceSkin1": {
+    "context": "Settings > Voice Satellite > Appearance",
+    "description": "Translate the visible label or help. Keep model names and technical identifiers unchanged.",
+    "x-locations": {
+      "device": [
+        "Settings > Voice Satellite > Appearance"
+      ],
+      "remoteAdmin": [
+        "Voice Satellite > Appearance"
+      ]
+    }
+  },
+  "voiceSkin1Help": "助手 1 回答时浮层的外观。",
+  "@voiceSkin1Help": {
+    "context": "Settings > Voice Satellite > Appearance",
+    "description": "Translate the visible label or help. Keep model names and technical identifiers unchanged.",
+    "x-locations": {
+      "device": [
+        "Settings > Voice Satellite > Appearance"
+      ],
+      "remoteAdmin": [
+        "Voice Satellite > Appearance"
+      ]
+    }
+  },
+  "voiceSkin2": "助手 2 的皮肤",
+  "@voiceSkin2": {
+    "context": "Settings > Voice Satellite > Appearance",
+    "description": "Translate the visible label or help. Keep model names and technical identifiers unchanged.",
+    "x-locations": {
+      "device": [
+        "Settings > Voice Satellite > Appearance"
+      ],
+      "remoteAdmin": [
+        "Voice Satellite > Appearance"
+      ]
+    }
+  },
+  "voiceSkin2Help": "助手 2 回答时浮层的外观。",
+  "@voiceSkin2Help": {
+    "context": "Settings > Voice Satellite > Appearance",
+    "description": "Translate the visible label or help. Keep model names and technical identifiers unchanged.",
+    "x-locations": {
+      "device": [
+        "Settings > Voice Satellite > Appearance"
+      ],
+      "remoteAdmin": [
+        "Voice Satellite > Appearance"
+      ]
+    }
+  },
   "voiceTheme": "主题模式",
   "@voiceTheme": {
     "context": "Settings > Voice Satellite > Appearance",

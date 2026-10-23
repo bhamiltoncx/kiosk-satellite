@@ -1829,8 +1829,12 @@ const settingMessageIds = <String, Map<String, String>>{
     "description": "settingVoiceWakeArbitrationOffsetDescription",
   },
   "voice.skin": {
-    "title": "voiceSkin",
-    "description": "voiceSkinHelp",
+    "title": "voiceSkin1",
+    "description": "voiceSkin1Help",
+  },
+  "voice.skin_2": {
+    "title": "voiceSkin2",
+    "description": "voiceSkin2Help",
   },
   "voice.theme": {
     "title": "settingVoiceThemeTitle",

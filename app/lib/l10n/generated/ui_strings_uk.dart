@@ -13431,6 +13431,18 @@ class UiStringsUk extends UiStrings {
   String get voiceSkinHelp => 'Вигляд накладення голосового асистента.';
 
   @override
+  String get voiceSkin1 => 'Оформлення Асистента 1';
+
+  @override
+  String get voiceSkin1Help => 'Вигляд накладення, коли відповідає Асистент 1.';
+
+  @override
+  String get voiceSkin2 => 'Оформлення Асистента 2';
+
+  @override
+  String get voiceSkin2Help => 'Вигляд накладення, коли відповідає Асистент 2.';
+
+  @override
   String get voiceTheme => 'Тема';
 
   @override

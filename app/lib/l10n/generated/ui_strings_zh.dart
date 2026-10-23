@@ -12608,6 +12608,18 @@ class UiStringsZh extends UiStrings {
   String get voiceSkinHelp => '语音助手浮层的外观。';
 
   @override
+  String get voiceSkin1 => '助手 1 的皮肤';
+
+  @override
+  String get voiceSkin1Help => '助手 1 回答时浮层的外观。';
+
+  @override
+  String get voiceSkin2 => '助手 2 的皮肤';
+
+  @override
+  String get voiceSkin2Help => '助手 2 回答时浮层的外观。';
+
+  @override
   String get voiceTheme => '主题模式';
 
   @override
@@ -27297,6 +27309,18 @@ class UiStringsZhCn extends UiStringsZh {
 
   @override
   String get voiceSkinHelp => '语音助手浮层的外观。';
+
+  @override
+  String get voiceSkin1 => '助手 1 的皮肤';
+
+  @override
+  String get voiceSkin1Help => '助手 1 回答时浮层的外观。';
+
+  @override
+  String get voiceSkin2 => '助手 2 的皮肤';
+
+  @override
+  String get voiceSkin2Help => '助手 2 回答时浮层的外观。';
 
   @override
   String get voiceTheme => '主题模式';

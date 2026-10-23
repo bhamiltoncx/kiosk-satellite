@@ -13581,6 +13581,20 @@ class UiStringsDe extends UiStrings {
       'Das Erscheinungsbild des Sprachassistenten auf dem Bildschirm.';
 
   @override
+  String get voiceSkin1 => 'Design für Assistent 1';
+
+  @override
+  String get voiceSkin1Help =>
+      'Das Erscheinungsbild des Sprachassistenten auf dem Bildschirm, wenn Assistent 1 antwortet.';
+
+  @override
+  String get voiceSkin2 => 'Design für Assistent 2';
+
+  @override
+  String get voiceSkin2Help =>
+      'Das Erscheinungsbild des Sprachassistenten auf dem Bildschirm, wenn Assistent 2 antwortet.';
+
+  @override
   String get voiceTheme => 'Designmodus';
 
   @override

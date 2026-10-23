@@ -13550,6 +13550,20 @@ class UiStringsEs extends UiStrings {
   String get voiceSkinHelp => 'La apariencia del asistente de voz en pantalla.';
 
   @override
+  String get voiceSkin1 => 'Estilo del Asistente 1';
+
+  @override
+  String get voiceSkin1Help =>
+      'La apariencia del asistente de voz en pantalla cuando responde el Asistente 1.';
+
+  @override
+  String get voiceSkin2 => 'Estilo del Asistente 2';
+
+  @override
+  String get voiceSkin2Help =>
+      'La apariencia del asistente de voz en pantalla cuando responde el Asistente 2.';
+
+  @override
   String get voiceTheme => 'Modo del tema';
 
   @override

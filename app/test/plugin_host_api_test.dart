@@ -1608,6 +1608,41 @@ void main() {
       expect((sent.single['payload'] as Map)['selected'], false);
     });
 
+    test('a skin picked for Assistant 2 draws only its turns', () async {
+      register(
+        'voiceStatus',
+        (_) async => const CommandResult.ok({'enabled': true, 'state': 'idle'}),
+      );
+      subscribe('voice.skin');
+      subscribe('voice.overlay');
+      await settings.set(defs.voiceSkin2, 'plugin:example');
+      await settle();
+      // Nothing shows: picked for either assistant reads as selected.
+      expect((sent.single['payload'] as Map)['selected'], true);
+      sent.clear();
+
+      view.value = const AssistView(phase: AssistPhase.listening);
+      await settle();
+      expect(sent.map((e) => e['event']), ['voice.skin', 'voice.overlay']);
+      expect((sent.first['payload'] as Map)['selected'], false);
+      expect(
+        ((await read('getVoiceState'))['data'] as Map)['skinSelected'],
+        false,
+      );
+      view.value = AssistView.hidden;
+      await settle();
+      sent.clear();
+
+      // Assistant 2's turn: selected before the overlay shows.
+      view.value = const AssistView(phase: AssistPhase.listening, assistant: 2);
+      await settle();
+      expect(sent.map((e) => e['event']), ['voice.overlay']);
+      expect(
+        ((await read('getVoiceState'))['data'] as Map)['skinSelected'],
+        true,
+      );
+    });
+
     test('a skin follows the Appearance settings', () async {
       expect((await read('getVoiceAppearance'))['data'], {
         'theme': 'auto',

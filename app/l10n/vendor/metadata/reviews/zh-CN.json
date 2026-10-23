@@ -27615,5 +27615,29 @@
     "translation": "905dc321468cb354ddcdcfb9da1511fe61ae59233aa8ebc247f5c7f52ee480ee",
     "author": "Xavier Larrea",
     "ownerAuthored": true
+  },
+  "voiceSkin2Help": {
+    "source": "a4c28d423bc52ed3dff1d1284ec416bdaa2220f494d6e5f92f3f016453a7d106",
+    "translation": "111c5021170e47237258a36500f1136de6dcefe7ad3565ebf45cfaca28843a57",
+    "author": "Xavier Larrea",
+    "ownerAuthored": true
+  },
+  "voiceSkin2": {
+    "source": "5f7e186f1bd8940e293b2debfca66ece3554e21022b0a6f2f1cf12de5a29a815",
+    "translation": "6dfa759ea4faa7ba5ea57158ac67c3fb12af8c965b88809c3c824fe2ea0c79d7",
+    "author": "Xavier Larrea",
+    "ownerAuthored": true
+  },
+  "voiceSkin1": {
+    "source": "4d187f9b2b0309f17e9bb0b52eaf5b61c138dcb6a74ccb48c0d059e305f3cf91",
+    "translation": "8f9b699503ac68f97f0742cad7b4e19616920a0c574f17c649743cf9eadb8bc6",
+    "author": "Xavier Larrea",
+    "ownerAuthored": true
+  },
+  "voiceSkin1Help": {
+    "source": "362fafe03d7a1728023213e634d88197642e78559b2fc38a292c412ca40efb12",
+    "translation": "b122579f6433c2ce22017d0e2f318c28bb4884f7f727a35c5fd0959e4300b92f",
+    "author": "Xavier Larrea",
+    "ownerAuthored": true
   }
 }

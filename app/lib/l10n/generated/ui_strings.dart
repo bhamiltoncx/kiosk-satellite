@@ -23168,6 +23168,30 @@ abstract class UiStrings {
   /// Translate the visible label or help. Keep model names and technical identifiers unchanged.
   ///
   /// In en, this message translates to:
+  /// **'Assistant 1 skin'**
+  String get voiceSkin1;
+
+  /// Translate the visible label or help. Keep model names and technical identifiers unchanged.
+  ///
+  /// In en, this message translates to:
+  /// **'The look of the overlay when Assistant 1 answers.'**
+  String get voiceSkin1Help;
+
+  /// Translate the visible label or help. Keep model names and technical identifiers unchanged.
+  ///
+  /// In en, this message translates to:
+  /// **'Assistant 2 skin'**
+  String get voiceSkin2;
+
+  /// Translate the visible label or help. Keep model names and technical identifiers unchanged.
+  ///
+  /// In en, this message translates to:
+  /// **'The look of the overlay when Assistant 2 answers.'**
+  String get voiceSkin2Help;
+
+  /// Translate the visible label or help. Keep model names and technical identifiers unchanged.
+  ///
+  /// In en, this message translates to:
   /// **'Theme mode'**
   String get voiceTheme;
 

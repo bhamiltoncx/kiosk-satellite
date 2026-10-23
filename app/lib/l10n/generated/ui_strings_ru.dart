@@ -13377,6 +13377,18 @@ class UiStringsRu extends UiStrings {
   String get voiceSkinHelp => 'Вид наложения голосового ассистента.';
 
   @override
+  String get voiceSkin1 => 'Облик Ассистента 1';
+
+  @override
+  String get voiceSkin1Help => 'Вид наложения, когда отвечает Ассистент 1.';
+
+  @override
+  String get voiceSkin2 => 'Облик Ассистента 2';
+
+  @override
+  String get voiceSkin2Help => 'Вид наложения, когда отвечает Ассистент 2.';
+
+  @override
   String get voiceTheme => 'Режим темы';
 
   @override

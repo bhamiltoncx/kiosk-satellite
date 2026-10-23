@@ -4044,6 +4044,11 @@ class _CategoryContentState extends State<_CategoryContent> {
                 container: container,
                 onChanged: changed,
               ),
+              voiceSkin2.key: VoiceSkinRow(
+                container: container,
+                onChanged: changed,
+                def: voiceSkin2,
+              ),
               voiceBackgroundOpacity.key: VoiceBackgroundRow(
                 container: container,
                 onChanged: changed,

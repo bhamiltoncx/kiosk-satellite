@@ -5,6 +5,7 @@ All notable changes to Kiosk Satellite are documented here. Full release notes f
 ## Unreleased
 
 ### Added
+- **A skin for each assistant.** **Skin** under **Voice Satellite > Appearance** is now **Assistant 1 skin**, and a new **Assistant 2 skin** sits below it. Turns that wake word 2 starts and `vs_show` actions on pipeline 2 use Assistant 2's, so you can tell at a glance which assistant heard you. Announcements and conversations Home Assistant starts use Assistant 1's, because Home Assistant runs them on Assistant 1. After the update, Assistant 2 keeps the skin it had. Plugin skins work for either setting, and a plugin's `voice.skin` event now follows the assistant answering (#1121).
 - **Plugins can open launcher apps.** A plugin with `host.control` can open an app with `launchApp`, and a plugin with `host.read` can list the apps it may open with `getLauncherApps`. Plugins can only open the apps added under **App Launcher > Apps**. While Kiosk Mode is on, only the apps under **Kiosk Mode > Allowed Actions > Allowed Apps** open, and none open when the **Apps** action is not allowed. Plugins open no apps while the App Launcher is off or Lockdown Mode is on (#1122).
 
 ### Changed

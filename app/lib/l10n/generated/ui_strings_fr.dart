@@ -13549,6 +13549,20 @@ class UiStringsFr extends UiStrings {
       'L\'apparence de la superposition de l\'assistant vocal.';
 
   @override
+  String get voiceSkin1 => 'Habillage de l\'Assistant 1';
+
+  @override
+  String get voiceSkin1Help =>
+      'L\'apparence de la superposition quand l\'Assistant 1 répond.';
+
+  @override
+  String get voiceSkin2 => 'Habillage de l\'Assistant 2';
+
+  @override
+  String get voiceSkin2Help =>
+      'L\'apparence de la superposition quand l\'Assistant 2 répond.';
+
+  @override
   String get voiceTheme => 'Mode du thème';
 
   @override

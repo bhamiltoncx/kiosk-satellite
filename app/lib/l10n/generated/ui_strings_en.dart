@@ -13290,6 +13290,20 @@ class UiStringsEn extends UiStrings {
   String get voiceSkinHelp => 'The look of the voice assistant overlay.';
 
   @override
+  String get voiceSkin1 => 'Assistant 1 skin';
+
+  @override
+  String get voiceSkin1Help =>
+      'The look of the overlay when Assistant 1 answers.';
+
+  @override
+  String get voiceSkin2 => 'Assistant 2 skin';
+
+  @override
+  String get voiceSkin2Help =>
+      'The look of the overlay when Assistant 2 answers.';
+
+  @override
   String get voiceTheme => 'Theme mode';
 
   @override

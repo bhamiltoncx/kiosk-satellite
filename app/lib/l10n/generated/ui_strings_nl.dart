@@ -13441,6 +13441,20 @@ class UiStringsNl extends UiStrings {
   String get voiceSkinHelp => 'Het uiterlijk van de spraakassistent-overlay.';
 
   @override
+  String get voiceSkin1 => 'Vormgeving van Assistent 1';
+
+  @override
+  String get voiceSkin1Help =>
+      'Het uiterlijk van de overlay wanneer Assistent 1 antwoordt.';
+
+  @override
+  String get voiceSkin2 => 'Vormgeving van Assistent 2';
+
+  @override
+  String get voiceSkin2Help =>
+      'Het uiterlijk van de overlay wanneer Assistent 2 antwoordt.';
+
+  @override
   String get voiceTheme => 'Themamodus';
 
   @override
