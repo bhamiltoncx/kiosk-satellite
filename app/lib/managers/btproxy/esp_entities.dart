@@ -155,6 +155,10 @@ class EspEntitySurface {
   bool get rebootButtonListed => _rebootListed;
   bool _rebootListed = false;
 
+  /// Whether the LED Control idle light and its effect are in this run's
+  /// catalog.
+  bool _ledIdleListed = false;
+
   /// Coalesces the burst of wake-word state changes one voice turn makes
   /// into a single read of the page's engine state.
   Timer? _vsNudge;
@@ -331,6 +335,12 @@ class EspEntitySurface {
           'Intercom answer mode',
           'mdi:phone-ring-outline',
           defs.intercomAnswerMode,
+        ),
+        // Catalog-gated below with the LED Control Idle light.
+        'led_idle_effect': (
+          'LED Control Idle Effect',
+          'mdi:led-on',
+          defs.ledIdleStyle,
         ),
         'vs_wake_word_engine': (
           'VS Wake word engine',
@@ -555,6 +565,11 @@ class EspEntitySurface {
         reboot.ok &&
         reboot.data is Map &&
         (reboot.data as Map)['supported'] == true;
+    // The LED Control idle entities exist where the LED Control page works:
+    // on a device with lights, which is the only place the LED manager
+    // registers ledStatus, and with Enable LED Control on.
+    final leds = await commands.execute('ledStatus', const {});
+    _ledIdleListed = leds.ok && _settings.get(defs.ledEnabled);
     await _refreshCameraViews();
     await _refreshDashboardViews();
 
@@ -598,6 +613,17 @@ class EspEntitySurface {
         'name': 'Screen',
         'icon': 'mdi:tablet',
       },
+      // The LED Control Idle group: its switch, brightness and color. A
+      // configuration entity, beside the effect select.
+      if (_ledIdleListed)
+        {
+          'type': 'light',
+          'objectId': 'led_idle',
+          'name': 'LED Control Idle',
+          'icon': 'mdi:led-on',
+          'colorCapable': true,
+          'category': 1,
+        },
       {
         'type': 'switch',
         'objectId': 'screensaver_active',
@@ -1039,6 +1065,7 @@ class EspEntitySurface {
       for (final e in _settingSelects.entries)
         if ((e.key != 'camera_device' || (cameraPresent && bothFacings)) &&
             (e.key != 'intercom_answer_mode' || intercomOn) &&
+            (e.key != 'led_idle_effect' || _ledIdleListed) &&
             (!e.key.startsWith('vs_') || _voiceNative))
           {
             'type': 'select',
@@ -2194,6 +2221,37 @@ class EspEntitySurface {
             'level': brightness.clamp(0.0, 1.0),
           });
         }
+      case 'led_idle':
+        final map = value is Map ? value : const {};
+        final on = map['on'];
+        if (on is bool) {
+          await _settings.set(defs.ledIdleEnabled, on, source: 'esphome');
+        }
+        final brightness = map['brightness'];
+        if (brightness is num) {
+          // The setting moves in 5% steps from 5%, so a light dimmed all
+          // the way down still shows.
+          final def = defs.ledIdleBrightness;
+          final step = def.step ?? 1;
+          await _settings.set(
+            def,
+            ((brightness * 100 / step).round() * step).clamp(
+              def.min ?? 0,
+              def.max ?? 100,
+            ),
+            source: 'esphome',
+          );
+        }
+        final rgb = [map['red'], map['green'], map['blue']];
+        if (rgb.every((c) => c is num)) {
+          await _settings.set(
+            defs.ledIdleLightColor,
+            rgb.map((c) => ((c as num) * 255).round().clamp(0, 255)).join(','),
+            source: 'esphome',
+          );
+        }
+        // A command that changed nothing gets its answer too.
+        await _sendLedIdle();
       case 'screensaver_active':
         await commands.execute(
           value == true ? 'startScreensaver' : 'stopScreensaver',
@@ -2418,6 +2476,12 @@ class EspEntitySurface {
       unawaited(_followCustomPages());
       return;
     }
+    if (e.key == defs.ledIdleEnabled.key ||
+        e.key == defs.ledIdleBrightness.key ||
+        e.key == defs.ledIdleLightColor.key) {
+      unawaited(_sendLedIdle());
+      return;
+    }
     for (final entry in _settingSwitches.entries) {
       if (entry.value.$3.key == e.key) {
         _send(entry.key, e.value == true);
@@ -2509,6 +2573,7 @@ class EspEntitySurface {
           : null,
     );
     await _sendScreen();
+    await _sendLedIdle();
     await _sendPanelBrightness();
     await _sendVolume();
     await _sendUpdateState();
@@ -2695,6 +2760,28 @@ class EspEntitySurface {
     await _send('screen', {
       'on': on.ok ? on.data == true : true,
       if (level != null) 'brightness': level.clamp(0.0, 1.0),
+    });
+  }
+
+  /// The Idle group's switch, brightness and "r,g,b" color as the LED
+  /// Control Idle light.
+  Future<void> _sendLedIdle() async {
+    if (!_ledIdleListed) return;
+    final color = _settings.get(defs.ledIdleLightColor).split(',');
+    final channels = [
+      for (final c in color) (int.tryParse(c.trim()) ?? 255).clamp(0, 255),
+    ];
+    await _send('led_idle', {
+      'on': _settings.get(defs.ledIdleEnabled),
+      'brightness': (_settings.get(defs.ledIdleBrightness) / 100).clamp(
+        0.0,
+        1.0,
+      ),
+      if (channels.length == 3) ...{
+        'red': channels[0] / 255,
+        'green': channels[1] / 255,
+        'blue': channels[2] / 255,
+      },
     });
   }
 

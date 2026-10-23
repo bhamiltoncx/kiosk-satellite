@@ -379,6 +379,12 @@ class AppContainer {
     dlna,
     // After sendspin: the surfaces it drives follow an AirPlay session.
     airplay,
+    // Before btProxy, whose first catalog lists the LED Control Idle
+    // entities only once ledStatus says there are lights, and before the
+    // remote admin's first request reads its hidden settings. It follows
+    // the other managers through the bus, so starting before them costs
+    // nothing.
+    leds,
     btProxy,
     files,
     glance,
@@ -411,9 +417,6 @@ class AppContainer {
     musicLibrary,
     // After intercom and alarms: it runs their commands.
     voiceRequests,
-    // Before the remote admin's first request reads its hidden settings,
-    // which is not until every manager is up.
-    leds,
     // Last: it reads the state every manager above keeps.
     pageState,
   ];

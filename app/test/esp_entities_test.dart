@@ -1371,6 +1371,90 @@ void main() {
     expect(executed.map((e) => e.$1).toList(), ['rebootDevice']);
   });
 
+  group('the LED Control Idle entities', () {
+    void lights() => commands.register(
+      Command(
+        name: 'ledStatus',
+        description: 'ledStatus',
+        handler: (_) async => CommandResult.ok({'scene': null}),
+      ),
+    );
+
+    test('are listed only with lights and LED Control on', () async {
+      var ids = [for (final d in await surface.build()) '${d['objectId']}'];
+      expect(ids, isNot(contains('led_idle')));
+      expect(ids, isNot(contains('led_idle_effect')));
+
+      lights();
+      final catalog = await surface.build();
+      ids = [for (final d in catalog) '${d['objectId']}'];
+      expect(ids, containsAll(['led_idle', 'led_idle_effect']));
+      final light = catalog.firstWhere((d) => d['objectId'] == 'led_idle');
+      expect(light['type'], 'light');
+      expect(light['name'], 'LED Control Idle');
+      expect(light['colorCapable'], true);
+      expect(light['category'], 1);
+      final effect = catalog.firstWhere(
+        (d) => d['objectId'] == 'led_idle_effect',
+      );
+      expect(effect['name'], 'LED Control Idle Effect');
+      expect(effect['options'], ['Solid', 'Breathing']);
+
+      await settings.set(defs.ledEnabled, false);
+      ids = [for (final d in await surface.build()) '${d['objectId']}'];
+      expect(ids, isNot(contains('led_idle')));
+      expect(ids, isNot(contains('led_idle_effect')));
+    });
+
+    test('the light drives the Idle group and reports it back', () async {
+      lights();
+      await surface.build();
+      await attach();
+      Object? led() => pushed.lastWhere((p) => p.$1 == 'led_idle').$2;
+      expect(led(), {
+        'on': false,
+        'brightness': 0.1,
+        'red': 1.0,
+        'green': 1.0,
+        'blue': 1.0,
+      });
+
+      await surface.handleCommand('led_idle', {
+        'on': true,
+        'brightness': 0.52,
+        'red': 1.0,
+        'green': 0.5,
+        'blue': 0.0,
+      });
+      expect(settings.get(defs.ledIdleEnabled), isTrue);
+      expect(settings.get(defs.ledIdleBrightness), 50);
+      expect(settings.get(defs.ledIdleLightColor), '255,128,0');
+      expect(led(), {
+        'on': true,
+        'brightness': 0.5,
+        'red': 1.0,
+        'green': 128 / 255,
+        'blue': 0.0,
+      });
+
+      // Dimmed all the way down, the lights still show at the lowest step.
+      await surface.handleCommand('led_idle', {'brightness': 0.0});
+      expect(settings.get(defs.ledIdleBrightness), 5);
+
+      await surface.handleCommand('led_idle', {'on': false});
+      expect(settings.get(defs.ledIdleEnabled), isFalse);
+    });
+
+    test('the effect select speaks in labels, stores the value', () async {
+      lights();
+      await surface.build();
+      await surface.handleCommand('led_idle_effect', 'Breathing');
+      expect(settings.get(defs.ledIdleStyle), 'breathe');
+      await surface.handleCommand('led_idle_effect', 'solid');
+      expect(settings.get(defs.ledIdleStyle), 'solid');
+    });
+  });
+
   test('IPv6 leads with the routable address, without its scope id', () async {
     ips = {
       'ipv4': {
