@@ -27642,5 +27642,47 @@
     "translation": "959c73c2adcb846e367720450018dd9a01d7562aa62a245fed11c6218bee8df5",
     "author": "Xavier Larrea",
     "ownerAuthored": true
+  },
+  "aboutSystemInstallHelp": {
+    "source": "14f67e21368885b28e1043b57e5b14b7566b8467d94693cb244fd7927e998258",
+    "translation": "4fa138dd5b24971f0399e27584b9497f14bc4ffc9a0eeb66f5ca2e042aa10a58",
+    "author": "Xavier Larrea",
+    "ownerAuthored": true
+  },
+  "aboutSystemInstalling": {
+    "source": "658851ce3f43636a0ce9008ae793a31cf2f227b4e3cf4a419b1038fdbfcd96f4",
+    "translation": "79fecacd6d0d55bdbf727d19cc19fabd9c411fd629f222ebde8a072855fba872",
+    "author": "Xavier Larrea",
+    "ownerAuthored": true
+  },
+  "aboutSystemVersion": {
+    "source": "a5a9feadc654aebcb9f7e03d58be95de34015dc772b0c7be9fe322ee2d90087c",
+    "translation": "9c22bf9a29c35c4abec38b1d8253556838380e9cb9b12cb76d75f20d00ec7c04",
+    "author": "Xavier Larrea",
+    "ownerAuthored": true
+  },
+  "aboutSystem": {
+    "source": "1dc0fc67d36dae39e81376cf86919c2c51f6d94b8a703638ff871f558c6a0e4b",
+    "translation": "1abaf88d08a505e4695bfa847093dfb3403c306fd85d861f8b36f08f605f2893",
+    "author": "Xavier Larrea",
+    "ownerAuthored": true
+  },
+  "overviewSystemUpdate": {
+    "source": "9a98dce648bfacbd5128150f065425e6fb9c56a1188ac7bed8dc915c8bf7a6c3",
+    "translation": "ef77714e458c407c0bdde4e6316702ed98020a6fddd62d5c3a6827c861241c1e",
+    "author": "Xavier Larrea",
+    "ownerAuthored": true
+  },
+  "aboutSystemVerifying": {
+    "source": "d42d3ce7646f8b96d81b4262f7bd51099de0419c988cc1384ba7a3accedd0310",
+    "translation": "c7984dcce6f3c35b733b4a73b63fd80ca912037678474ee593324edfc18e6fd3",
+    "author": "Xavier Larrea",
+    "ownerAuthored": true
+  },
+  "overviewSystemUpdateHelp": {
+    "source": "51b1030cecc3f9ed3a3b67094c5f35fc6781f7256bcc9e08374f015f1b811d58",
+    "translation": "6d1265740f4ea3ce515fed693bd5a94f3ec236986732755e5457edbd2253dd15",
+    "author": "Xavier Larrea",
+    "ownerAuthored": true
   }
 }

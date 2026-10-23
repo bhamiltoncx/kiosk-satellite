@@ -77,6 +77,21 @@ class UiStringsZh extends UiStrings {
   String get aboutInstallHelp => '更新会在平板上下载，安装时请在平板上确认。';
 
   @override
+  String get aboutSystem => '系统';
+
+  @override
+  String get aboutSystemVersion => 'ROM 版本';
+
+  @override
+  String get aboutSystemVerifying => '正在验证…';
+
+  @override
+  String get aboutSystemInstalling => '正在安装…';
+
+  @override
+  String get aboutSystemInstallHelp => 'Dot 会重启两次以安装更新，每次离线约一分半钟。';
+
+  @override
   String get alarmsTitle => '闹钟';
 
   @override
@@ -4132,6 +4147,14 @@ class UiStringsZh extends UiStrings {
   @override
   String overviewPermissionMissing(String permission) {
     return '缺少权限：$permission';
+  }
+
+  @override
+  String get overviewSystemUpdate => '有可用的系统更新';
+
+  @override
+  String overviewSystemUpdateHelp(String version) {
+    return 'Echo Dot 镜像 $version 版已可安装。安装时 Dot 会重启两次。';
   }
 
   @override
@@ -14745,6 +14768,21 @@ class UiStringsZhCn extends UiStringsZh {
   String get aboutInstallHelp => '更新会在平板上下载，安装时请在平板上确认。';
 
   @override
+  String get aboutSystem => '系统';
+
+  @override
+  String get aboutSystemVersion => 'ROM 版本';
+
+  @override
+  String get aboutSystemVerifying => '正在验证…';
+
+  @override
+  String get aboutSystemInstalling => '正在安装…';
+
+  @override
+  String get aboutSystemInstallHelp => 'Dot 会重启两次以安装更新，每次离线约一分半钟。';
+
+  @override
   String get alarmsTitle => '闹钟';
 
   @override
@@ -18800,6 +18838,14 @@ class UiStringsZhCn extends UiStringsZh {
   @override
   String overviewPermissionMissing(String permission) {
     return '缺少权限：$permission';
+  }
+
+  @override
+  String get overviewSystemUpdate => '有可用的系统更新';
+
+  @override
+  String overviewSystemUpdateHelp(String version) {
+    return 'Echo Dot 镜像 $version 版已可安装。安装时 Dot 会重启两次。';
   }
 
   @override

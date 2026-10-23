@@ -6,6 +6,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:kiosk_satellite/core/command_registry.dart';
 import 'package:kiosk_satellite/core/event_bus.dart';
 import 'package:kiosk_satellite/core/events.dart';
+import 'package:kiosk_satellite/core/headless.dart';
 import 'package:kiosk_satellite/core/logging.dart';
 import 'package:kiosk_satellite/managers/btproxy/esp_entities.dart';
 import 'package:kiosk_satellite/managers/settings/definitions.dart' as defs;
@@ -1646,6 +1647,116 @@ void main() {
         pushed.lastWhere((p) => p.$1 == 'update').$2 as Map<String, Object?>;
     expect(state['inProgress'], true);
     expect(state['progress'], closeTo(42, 1e-9));
+  });
+
+  group('Firmware entity', () {
+    var systemStatus = <String, Object?>{};
+
+    setUp(() {
+      systemStatus = {
+        'supported': true,
+        'currentVersion': '2026.10.4',
+        'availableVersion': '2026.10.5',
+        'availableNotes': '# Version 2026.10.5\n\n- **A fix.** Details.',
+        'releaseUrl':
+            'https://github.com/jxlarrea/lineageos-biscuit-kiosk-satellite/releases/tag/2026.10.5',
+        'state': 'idle',
+        'progress': null,
+      };
+      commands.register(
+        Command(
+          name: 'getSystemUpdateStatus',
+          description: 'stub',
+          handler: (_) async => CommandResult.ok(systemStatus),
+        ),
+      );
+      for (final name in ['installSystemUpdate', 'checkSystemUpdateNow']) {
+        commands.register(
+          Command(
+            name: name,
+            description: 'stub',
+            handler: (p) async {
+              executed.add((name, Map<String, Object?>.from(p)));
+              return const CommandResult.ok(null);
+            },
+          ),
+        );
+      }
+    });
+
+    tearDown(() {
+      Headless.debugActive = false;
+      Headless.debugSystemUpdate = false;
+    });
+
+    Future<Map<String, Object?>> firmwareState() async {
+      await surface.build();
+      await attach();
+      pushed.clear();
+      bus.publish(const SystemUpdateStateChanged());
+      await Future<void>.delayed(const Duration(milliseconds: 20));
+      return pushed.lastWhere((p) => p.$1 == 'firmware').$2
+          as Map<String, Object?>;
+    }
+
+    test('is listed only on the Echo Dot image', () async {
+      var ids = (await surface.build()).map((e) => e['objectId']);
+      expect(ids, isNot(contains('firmware')));
+      Headless.debugActive = true;
+      Headless.debugSystemUpdate = true;
+      final catalog = await surface.build();
+      final firmware = catalog.singleWhere((e) => e['objectId'] == 'firmware');
+      expect(firmware['type'], 'update');
+      expect(firmware['name'], 'Firmware');
+      expect(firmware['deviceClass'], 'firmware');
+      ids = catalog.map((e) => e['objectId']);
+      expect(ids, contains('update'));
+    });
+
+    test('install and check reach the system update commands', () async {
+      Headless.debugActive = true;
+      Headless.debugSystemUpdate = true;
+      await surface.build();
+      await attach();
+      executed.clear();
+      await surface.handleCommand('firmware', 'install');
+      await surface.handleCommand('firmware', 'check');
+      expect(executed.map((e) => e.$1).toList(), [
+        'installSystemUpdate',
+        'checkSystemUpdateNow',
+      ]);
+    });
+
+    test('carries the versions, the notes and the release page', () async {
+      Headless.debugActive = true;
+      Headless.debugSystemUpdate = true;
+      final state = await firmwareState();
+      expect(state['current'], '2026.10.4');
+      expect(state['latest'], '2026.10.5');
+      expect(state['summary'], '# Version 2026.10.5\n\n- **A fix.** Details.');
+      expect(state['url'], systemStatus['releaseUrl']);
+      expect(state['inProgress'], false);
+      expect(state.containsKey('progress'), isFalse);
+    });
+
+    test('a download carries a percentage, the install none', () async {
+      Headless.debugActive = true;
+      Headless.debugSystemUpdate = true;
+      systemStatus['state'] = 'downloading';
+      systemStatus['progress'] = 0.42;
+      var state = await firmwareState();
+      expect(state['inProgress'], true);
+      expect(state['progress'], closeTo(42, 1e-9));
+      systemStatus['state'] = 'installing';
+      systemStatus['progress'] = null;
+      bus.publish(const SystemUpdateStateChanged());
+      await Future<void>.delayed(const Duration(milliseconds: 20));
+      state =
+          pushed.lastWhere((p) => p.$1 == 'firmware').$2
+              as Map<String, Object?>;
+      expect(state['inProgress'], true);
+      expect(state.containsKey('progress'), isFalse);
+    });
   });
 
   // Issue #819: Home Assistant shows the summary as the full release

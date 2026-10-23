@@ -82,6 +82,22 @@ class UiStringsDe extends UiStrings {
       'Der Download erfolgt auf dem Tablet. Die Installation muss auf dem Tablet bestätigt werden.';
 
   @override
+  String get aboutSystem => 'System';
+
+  @override
+  String get aboutSystemVersion => 'ROM-Version';
+
+  @override
+  String get aboutSystemVerifying => 'Wird geprüft ...';
+
+  @override
+  String get aboutSystemInstalling => 'Wird installiert ...';
+
+  @override
+  String get aboutSystemInstallHelp =>
+      'Der Dot startet zur Installation des Updates zweimal neu und ist dabei jedes Mal etwa anderthalb Minuten offline.';
+
+  @override
   String get alarmsTitle => 'Wecker';
 
   @override
@@ -4352,6 +4368,14 @@ class UiStringsDe extends UiStrings {
   @override
   String overviewPermissionMissing(String permission) {
     return 'Berechtigung fehlt: $permission';
+  }
+
+  @override
+  String get overviewSystemUpdate => 'Systemupdate verfügbar';
+
+  @override
+  String overviewSystemUpdateHelp(String version) {
+    return 'Version $version des Echo-Dot-Images ist bereit zur Installation. Der Dot startet dafür zweimal neu.';
   }
 
   @override

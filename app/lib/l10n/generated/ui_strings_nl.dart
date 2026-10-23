@@ -81,6 +81,22 @@ class UiStringsNl extends UiStrings {
       'De download draait op de tablet; de installatie moet op het tabletscherm worden bevestigd.';
 
   @override
+  String get aboutSystem => 'Systeem';
+
+  @override
+  String get aboutSystemVersion => 'ROM-versie';
+
+  @override
+  String get aboutSystemVerifying => 'Verifiëren…';
+
+  @override
+  String get aboutSystemInstalling => 'Installeren…';
+
+  @override
+  String get aboutSystemInstallHelp =>
+      'De Dot start twee keer opnieuw op om de update te installeren en is elke keer ongeveer anderhalve minuut offline.';
+
+  @override
   String get alarmsTitle => 'Alarmen';
 
   @override
@@ -4309,6 +4325,14 @@ class UiStringsNl extends UiStrings {
   @override
   String overviewPermissionMissing(String permission) {
     return 'Toestemming ontbreekt: $permission';
+  }
+
+  @override
+  String get overviewSystemUpdate => 'Systeemupdate beschikbaar';
+
+  @override
+  String overviewSystemUpdateHelp(String version) {
+    return 'Versie $version van de Echo Dot-image staat klaar om te installeren. De Dot start daarvoor twee keer opnieuw op.';
   }
 
   @override

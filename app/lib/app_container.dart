@@ -64,6 +64,7 @@ import 'managers/sound/sound_manager.dart';
 import 'managers/settings/headless_settings.dart';
 import 'managers/settings/provisioning.dart';
 import 'managers/settings/settings_manager.dart';
+import 'managers/update/system_update_manager.dart';
 import 'managers/update/update_manager.dart';
 import 'managers/voice/voice_manager.dart';
 import 'managers/voice/voice_requests_manager.dart';
@@ -189,6 +190,7 @@ class AppContainer {
           ? settings.get(updateSourceUrl).trim()
           : null,
     );
+    systemUpdate = SystemUpdateManager(bus, commands, log);
     // After homeAssistant: it reads states through it for the fallback.
     glance = GlanceManager(bus, commands, log, settings, homeAssistant);
     shizuku = ShizukuManager(bus, commands, log);
@@ -308,6 +310,7 @@ class AppContainer {
   late final VoiceManager voice;
   late final NotificationManager notifications;
   late final UpdateManager update;
+  late final SystemUpdateManager systemUpdate;
   late final ShizukuManager shizuku;
   late final PluginManager plugins;
   late final RemoteManager remote;
@@ -387,6 +390,7 @@ class AppContainer {
     voice,
     notifications,
     update,
+    systemUpdate,
     shizuku,
     plugins,
     remote,

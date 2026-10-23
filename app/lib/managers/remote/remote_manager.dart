@@ -1404,7 +1404,7 @@ class RemoteManager extends Manager {
       FleetChanged() => {'fleet'},
       FleetSyncChanged() => {'fleetsync'},
       IntercomStateChanged() => {'intercom'},
-      UpdateStateChanged() => {'update'},
+      UpdateStateChanged() || SystemUpdateStateChanged() => {'update'},
       BluetoothLinksChanged() => {'bluetooth'},
       AudioDevicesChanged() => {'audio'},
       ActivityAttached() || AmbientDisplayChanged() => {'service'},

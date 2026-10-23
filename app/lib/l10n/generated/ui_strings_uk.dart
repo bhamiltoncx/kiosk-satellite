@@ -81,6 +81,22 @@ class UiStringsUk extends UiStrings {
       'Завантаження виконується на планшеті; встановлення має бути підтверджено на екрані планшета.';
 
   @override
+  String get aboutSystem => 'Система';
+
+  @override
+  String get aboutSystemVersion => 'Версія ROM';
+
+  @override
+  String get aboutSystemVerifying => 'Перевірка…';
+
+  @override
+  String get aboutSystemInstalling => 'Встановлення…';
+
+  @override
+  String get aboutSystemInstallHelp =>
+      'Dot двічі перезапускається, щоб встановити оновлення, і щоразу приблизно півтори хвилини не в мережі.';
+
+  @override
   String get alarmsTitle => 'Будильники';
 
   @override
@@ -4291,6 +4307,14 @@ class UiStringsUk extends UiStrings {
   @override
   String overviewPermissionMissing(String permission) {
     return 'Відсутній дозвіл: $permission';
+  }
+
+  @override
+  String get overviewSystemUpdate => 'Доступне оновлення системи';
+
+  @override
+  String overviewSystemUpdateHelp(String version) {
+    return 'Версія $version образу Echo Dot готова до встановлення. Для цього Dot двічі перезапуститься.';
   }
 
   @override

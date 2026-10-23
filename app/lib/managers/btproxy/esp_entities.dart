@@ -794,6 +794,14 @@ class EspEntitySurface {
         'name': 'Update',
         'deviceClass': 'firmware',
       },
+      // The Echo Dot image's own releases, installed through TWRP.
+      if (Headless.systemUpdate)
+        {
+          'type': 'update',
+          'objectId': 'firmware',
+          'name': 'Firmware',
+          'deviceClass': 'firmware',
+        },
       // The display as a still camera, on every device: what the remote
       // admin's preview shows, fed by the Take screenshot button and by a
       // fetch from Home Assistant.
@@ -1963,6 +1971,9 @@ class EspEntitySurface {
       }),
     );
     _subs.add(bus.on<UpdateStateChanged>().listen((_) => _sendUpdateState()));
+    _subs.add(
+      bus.on<SystemUpdateStateChanged>().listen((_) => _sendFirmwareState()),
+    );
     _subs.add(bus.on<NextAlarmChanged>().listen((_) => _sendNextAlarm()));
     _subs.add(bus.on<AlarmStateChanged>().listen((e) => _sendAlarm(e.status)));
     _subs.add(
@@ -2296,6 +2307,15 @@ class EspEntitySurface {
         } else if ('$value' == 'check') {
           await commands.execute('checkUpdateNow', const {});
         }
+      case 'firmware':
+        // The same two commands for the image. A check waits for GitHub
+        // and a change republishes the entity through
+        // SystemUpdateStateChanged.
+        if ('$value' == 'install') {
+          await commands.execute('installSystemUpdate', const {});
+        } else if ('$value' == 'check') {
+          await commands.execute('checkSystemUpdateNow', const {});
+        }
       case 'clock_background':
         // Through the validator (issue #464): the 255 character cap and
         // the URL shape. A rejected write echoes the stored value so the
@@ -2492,6 +2512,7 @@ class EspEntitySurface {
     await _sendPanelBrightness();
     await _sendVolume();
     await _sendUpdateState();
+    await _sendFirmwareState();
     await _sendNextAlarm();
     final alarm = await commands.execute('alarmsStatus', const {});
     if (alarm.ok && alarm.data is Map) {
@@ -2702,6 +2723,33 @@ class EspEntitySurface {
       if (progress != null)
         'progress': progress.toDouble().clamp(0.0, 1.0) * 100,
       'inProgress': progress != null,
+    });
+  }
+
+  /// The Echo Dot image on the Firmware entity, the twin of
+  /// [_sendUpdateState]. Progress covers the whole update, both slots.
+  Future<void> _sendFirmwareState() async {
+    if (!Headless.systemUpdate) return;
+    final result = await commands.execute('getSystemUpdateStatus', const {});
+    final data = result.data;
+    if (!result.ok || data is! Map) return;
+    final current = data['currentVersion'] as String?;
+    if (current == null || current.isEmpty) return;
+    final progress = data['progress'] as num?;
+    final busy = const {
+      'downloading',
+      'verifying',
+      'installing',
+    }.contains(data['state']);
+    final notes = (data['availableNotes'] as String? ?? '').trim();
+    await _send('firmware', {
+      'current': current,
+      'latest': data['availableVersion'] as String? ?? current,
+      'title': 'LineageOS for the Echo Dot',
+      'summary': _fitNotes(notes),
+      'url': data['releaseUrl'] is String ? data['releaseUrl'] : '',
+      if (progress != null) 'progress': progress.toDouble() * 100,
+      'inProgress': busy,
     });
   }
 

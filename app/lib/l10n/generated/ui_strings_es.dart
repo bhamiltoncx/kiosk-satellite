@@ -81,6 +81,22 @@ class UiStringsEs extends UiStrings {
       'La descarga se realiza en la tablet. Debes confirmar la instalación en su pantalla.';
 
   @override
+  String get aboutSystem => 'Sistema';
+
+  @override
+  String get aboutSystemVersion => 'Versión de la ROM';
+
+  @override
+  String get aboutSystemVerifying => 'Verificando…';
+
+  @override
+  String get aboutSystemInstalling => 'Instalando…';
+
+  @override
+  String get aboutSystemInstallHelp =>
+      'El Dot se reinicia dos veces para instalar la actualización y queda sin conexión aproximadamente un minuto y medio cada vez.';
+
+  @override
   String get alarmsTitle => 'Alarmas';
 
   @override
@@ -4324,6 +4340,14 @@ class UiStringsEs extends UiStrings {
   @override
   String overviewPermissionMissing(String permission) {
     return 'Falta el permiso: $permission';
+  }
+
+  @override
+  String get overviewSystemUpdate => 'Actualización del sistema disponible';
+
+  @override
+  String overviewSystemUpdateHelp(String version) {
+    return 'La versión $version de la imagen del Echo Dot está lista para instalarse. El Dot se reinicia dos veces para instalarla.';
   }
 
   @override

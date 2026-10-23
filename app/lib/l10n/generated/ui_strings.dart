@@ -236,6 +236,36 @@ abstract class UiStrings {
   /// **'The download runs on the tablet; the installation must be confirmed on the tablet screen.'**
   String get aboutInstallHelp;
 
+  /// Title of the group about the Echo Dot's system image, shown above the App group.
+  ///
+  /// In en, this message translates to:
+  /// **'System'**
+  String get aboutSystem;
+
+  /// Row with the installed release of the Echo Dot's ROM, the system image. Clicking the number checks for updates. Keep ROM as is.
+  ///
+  /// In en, this message translates to:
+  /// **'ROM version'**
+  String get aboutSystemVersion;
+
+  /// Installation button label while the signature of the downloaded system update is checked.
+  ///
+  /// In en, this message translates to:
+  /// **'Verifying…'**
+  String get aboutSystemVerifying;
+
+  /// Installation button label while the system update installs. The device restarts twice meanwhile.
+  ///
+  /// In en, this message translates to:
+  /// **'Installing…'**
+  String get aboutSystemInstalling;
+
+  /// Guidance below the release notes before a system update installs. The Dot is the Echo Dot smart speaker.
+  ///
+  /// In en, this message translates to:
+  /// **'The Dot restarts twice to install the update and is offline for about a minute and a half each time.'**
+  String get aboutSystemInstallHelp;
+
   /// Name of the alarms feature: the kiosk menu entry, the alarm list eyebrow and section headings.
   ///
   /// In en, this message translates to:
@@ -7551,6 +7581,18 @@ abstract class UiStrings {
   /// In en, this message translates to:
   /// **'Permission missing: {permission}'**
   String overviewPermissionMissing(String permission);
+
+  /// A newer release of the Echo Dot's system image can be installed.
+  ///
+  /// In en, this message translates to:
+  /// **'System update available'**
+  String get overviewSystemUpdate;
+
+  /// Translate the interface text. Keep external names, versions and technical details unchanged.
+  ///
+  /// In en, this message translates to:
+  /// **'Version {version} of the Echo Dot image is ready to install. The Dot restarts twice to install it.'**
+  String overviewSystemUpdateHelp(String version);
 
   /// Translate the interface text. Keep external names, versions and technical details unchanged.
   ///
