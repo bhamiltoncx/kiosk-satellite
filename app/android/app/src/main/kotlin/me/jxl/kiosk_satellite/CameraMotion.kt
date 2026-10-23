@@ -618,11 +618,16 @@ class CameraMotion(
         }
         setRtspAudio(false)
         val generation = ++rtspGeneration
-        listenerSession = CameraDiagnostics.session("rtsp")
+        // Dart resends the configuration to every new Activity and at
+        // startup. With streaming off and no listener, that changes
+        // nothing and is not worth a log line.
+        if (config["enabled"] == true || existing != null) {
+            listenerSession = CameraDiagnostics.session("rtsp")
+            CameraDiagnostics.record(listenerSession, "configure", "enabled=${config["enabled"]}, port=${config["port"]}, " +
+                "video=${config["width"]}x${config["height"]}, fps=${config["fps"]}, bitrate=${config["bitrate"]}, " +
+                "authentication=${config["auth"]}")
+        }
         val listenerId = listenerSession
-        CameraDiagnostics.record(listenerId, "configure", "enabled=${config["enabled"]}, port=${config["port"]}, " +
-            "video=${config["width"]}x${config["height"]}, fps=${config["fps"]}, bitrate=${config["bitrate"]}, " +
-            "authentication=${config["auth"]}")
         stopOnvifDiscovery()
         rtsp?.close()
         rtsp = null
