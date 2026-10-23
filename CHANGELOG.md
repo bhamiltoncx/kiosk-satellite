@@ -2,7 +2,7 @@
 
 All notable changes to Kiosk Satellite are documented here. Full release notes for each version are available on the [releases page](https://github.com/jxlarrea/kiosk-satellite/releases).
 
-## Unreleased
+## v2026.10.38 - 2026-10-23
 
 ### Added
 - **Control the idle lights from Home Assistant.** On devices with lights Kiosk Satellite can drive, such as the Echo Dot, ESPHome now has a **LED Control Idle** light and a **LED Control Idle Effect** select. The light turns **Light up when idle** on or off and sets its brightness and color. The select picks **Solid** or **Breathing**. Both are listed while **Enable LED Control** is on. See [Home Assistant](https://github.com/jxlarrea/kiosk-satellite/blob/main/docs/led-control.md#home-assistant).
