@@ -177,5 +177,12 @@ class KioskApplication : Application(), CameraXConfig.Provider {
         // Headless, no Activity ever arms the keep-alive service, so the
         // process does it as it starts, however it was started.
         if (headless) KioskSatelliteService.ensureRunning(this)
+        // A device without a screen can never be the home app: the
+        // Activity finishes as it starts, and Android starts HOME again
+        // at once, many times a second, until the device runs out of
+        // memory (issue #1108). The role can be left over from a settings
+        // import, and a data wipe keeps both the alias and the device
+        // owner's preferred entry, so give it back on every start.
+        if (headless && HomeRole.aliasEnabled(this)) HomeRole.release(this, null)
     }
 }
