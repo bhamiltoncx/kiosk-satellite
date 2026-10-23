@@ -4,6 +4,9 @@ All notable changes to Kiosk Satellite are documented here. Full release notes f
 
 ## Unreleased
 
+### Added
+- **Plugins can open launcher apps.** A plugin with `host.control` can open an app with `launchApp`, and a plugin with `host.read` can list the apps it may open with `getLauncherApps`. Plugins can only open the apps added under **App Launcher > Apps**. While Kiosk Mode is on, only the apps under **Kiosk Mode > Allowed Actions > Allowed Apps** open, and none open when the **Apps** action is not allowed. Plugins open no apps while the App Launcher is off or Lockdown Mode is on (#1122).
+
 ### Changed
 - **The administrator token comes first in the voice guides.** The guides for the calendar, alarms, calls and music by voice now say before the blueprint steps that the Home Assistant token on the kiosk must belong to an administrator, for every request the script handles. The calendar guide also has a troubleshooting entry for a request that waits 20 seconds and ends with no kiosk answering (#1123).
 

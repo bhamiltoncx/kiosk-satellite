@@ -118,6 +118,7 @@ class PluginHostApi {
     'getCameraViews',
     'getDashboards',
     'getSendspinPlayer',
+    'getLauncherApps',
   ];
   static const controlNames = [
     'startScreensaver',
@@ -137,6 +138,7 @@ class PluginHostApi {
     'setWakeWordMuted',
     'showAppLauncher',
     'hideAppLauncher',
+    'launchApp',
     'showOverlayPage',
     'showLinkPage',
     'hideOverlayPage',
@@ -278,6 +280,12 @@ class PluginHostApi {
         return keys({'dashboard'}) && path('dashboard');
       case 'setScreensaverMode':
         return params.length == 1 && text('mode');
+      case 'launchApp':
+        return params.length == 1 &&
+            text('package') &&
+            RegExp(
+              r'^[a-zA-Z][a-zA-Z0-9_]*(?:\.[a-zA-Z][a-zA-Z0-9_]*)+$',
+            ).hasMatch(params['package'] as String);
       case 'haNavigate':
         return keys({'path'}) && viewPath('path');
       default:
@@ -611,13 +619,15 @@ class PluginHostApi {
           : CommandResult.ok(text).toJson();
     }
     try {
-      if (name == 'getCameraViews' || name == 'getDashboards') {
+      if (name == 'getCameraViews' ||
+          name == 'getDashboards' ||
+          name == 'getLauncherApps') {
         final scoped = commands.as('plugin:${session.id}');
-        final data =
-            await (name == 'getCameraViews'
-                    ? _cameraViews(scoped)
-                    : _dashboards(scoped))
-                .timeout(const Duration(seconds: 8));
+        final data = await (switch (name) {
+          'getCameraViews' => _cameraViews(scoped),
+          'getDashboards' => _dashboards(scoped),
+          _ => _launcherApps(scoped),
+        }).timeout(const Duration(seconds: 8));
         if (_session(args) != session) {
           return const CommandResult.fail(
             'Plugin session is no longer active',
@@ -643,6 +653,7 @@ class PluginHostApi {
               'getVoiceState' => 'voiceStatus',
               'getIntercomState' => 'intercomSensors',
               'getSendspinPlayer' => 'sendspinPlayer',
+              'launchApp' => 'pluginLaunchApp',
               _ => name,
             },
             name == 'screenOff'
@@ -945,6 +956,18 @@ class PluginHostApi {
           'name': '${view['name'] ?? ''}',
           'cameraCount': (view['cameraIds'] as List?)?.length ?? 0,
         },
+    ];
+  }
+
+  /// The launcher apps this kiosk lets a plugin open, for launchApp.
+  static Future<List<Map<String, Object?>>?> _launcherApps(
+    CommandRegistry commands,
+  ) async {
+    final result = await commands.execute('pluginLauncherApps', const {});
+    if (!result.ok || result.data is! List) return null;
+    return [
+      for (final app in (result.data as List).whereType<Map>())
+        {'package': '${app['package']}', 'label': '${app['label']}'},
     ];
   }
 

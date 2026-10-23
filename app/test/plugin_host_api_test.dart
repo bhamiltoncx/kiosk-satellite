@@ -128,9 +128,12 @@ void main() {
         'openCalendar': {'view': 'week', 'date': '2026-10-22'},
         'loadDashboard': {'dashboard': 'lovelace'},
         'haNavigate': {'path': 'lovelace/home'},
+        'launchApp': {'package': 'com.example.music'},
       };
+      String target(String name) =>
+          name == 'launchApp' ? 'pluginLaunchApp' : name;
       for (final name in PluginHostApi.controlNames) {
-        register(name, (p) async {
+        register(target(name), (p) async {
           expect(
             p,
             name == 'screenOff' ? {'prompt': false} : arguments[name] ?? {},
@@ -141,7 +144,7 @@ void main() {
         expect(result['ok'], true, reason: name);
         expect(result.toString(), isNot(contains('secret')));
       }
-      expect(executed, PluginHostApi.controlNames);
+      expect(executed, PluginHostApi.controlNames.map(target));
       api.close(session);
       expect((await read('stopScreensaver'))['ok'], false);
     },
@@ -210,6 +213,13 @@ void main() {
         'haNavigate': [
           {'path': '../config'},
           {'path': 'https://evil.test'},
+        ],
+        'launchApp': [
+          {},
+          {'package': ''},
+          {'package': 'music'},
+          {'package': 'com.example/.Main'},
+          {'package': 'com.example', 'activity': 'Main'},
         ],
         'showLinkPage': [
           {'url': 'javascript:alert(1)'},
@@ -525,6 +535,42 @@ void main() {
     ]);
     configured = false;
     expect((await read('getDashboards'))['ok'], false);
+  });
+
+  test('launcher apps list and open only through the launcher', () async {
+    api.open({
+      ...session,
+      'capabilities': ['host.read', 'host.control'],
+    });
+    register(
+      'pluginLauncherApps',
+      (_) async => const CommandResult.ok([
+        {'package': 'com.example.music', 'label': 'Music', 'icon': 'x'},
+      ]),
+    );
+    expect((await read('getLauncherApps'))['data'], [
+      {'package': 'com.example.music', 'label': 'Music'},
+    ]);
+    register('installedApps', (_) async => const CommandResult.ok([]));
+    expect((await read('installedApps'))['ok'], false);
+    register('launchApp', (_) async => const CommandResult.ok());
+    register(
+      'pluginLaunchApp',
+      (p) async => p['package'] == 'com.example.music'
+          ? const CommandResult.ok()
+          : const CommandResult.fail('the app is not one the launcher offers'),
+    );
+    final opened = await read(
+      'launchApp',
+      params: {'package': 'com.example.music'},
+    );
+    expect(opened, {'ok': true});
+    final refused = await read(
+      'launchApp',
+      params: {'package': 'com.example.other'},
+    );
+    expect(refused['ok'], false);
+    expect(executed, isNot(contains('launchApp')));
   });
 
   test('haNavigate takes queries and reports arriving on the view', () async {
