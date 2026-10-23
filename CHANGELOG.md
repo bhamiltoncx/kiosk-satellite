@@ -2,6 +2,11 @@
 
 All notable changes to Kiosk Satellite are documented here. Full release notes for each version are available on the [releases page](https://github.com/jxlarrea/kiosk-satellite/releases).
 
+## Unreleased
+
+### Fixed
+- **Camera entities come back right after a reconnect.** Each time Home Assistant reconnected to the kiosk, the **Screenshot** and **Camera** entities stayed unavailable for up to 5 minutes, until Home Assistant's next camera refresh. The kiosk now sends a frame for each camera as Home Assistant reconnects, so both are available again with the other entities (#1118).
+
 ## v2026.10.38 - 2026-10-23
 
 ### Added
