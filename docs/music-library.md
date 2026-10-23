@@ -61,6 +61,8 @@ The built-in **Home Assistant** conversation agent does not work for this. It on
 
 If you set up Music Assistant's own voice support for an LLM agent, delete the script you created from its blueprint or stop exposing it to Assist first. With both exposed the agent has two tools for the same request and picks either one.
 
+> **Info:** The long-lived token under **Settings, Home Assistant** must belong to a Home Assistant administrator. This applies to every request the script handles, including questions such as "What's playing?". Playing music from the Music Library on the kiosk works with any user's token. The kiosk listens for the script over its own Home Assistant connection. Home Assistant only lets administrators fire and follow the events the script runs on.
+
 1. Import the blueprint:
 
     [![Open your Home Assistant instance and show the blueprint import dialog with a specific blueprint pre-filled.](https://my.home-assistant.io/badges/blueprint_import.svg)](https://my.home-assistant.io/redirect/blueprint_import/?blueprint_url=https%3A%2F%2Fgithub.com%2Fjxlarrea%2Fkiosk-satellite%2Fblob%2Fmain%2Fblueprints%2Fscript%2Fkiosk_satellite_music.yaml)
@@ -95,8 +97,6 @@ Music in your library or among your favorites comes before the same name found o
 [Realtime conversations](voice-satellite.md#realtime-conversations) play music the same way: with **Tools** on **Home Assistant**, the model sees the exposed script and calls it while the conversation runs.
 
 A request typed into Home Assistant's own chat reaches no kiosk until it names one, as in "play jazz on the kitchen kiosk", which matches the kiosk's device name or ESPHome name.
-
-The kiosk listens for the script over its own Home Assistant connection, so the long-lived token under **Settings, Home Assistant** has to belong to an administrator, the same as [voice alarms](alarms.md#setting-alarms-by-voice) and [the calendar by voice](calendar.md#managing-the-calendar-by-voice). With any other token the kiosk does not listen for the script and the agent says that no kiosk answered.
 
 ## Screen sizes
 

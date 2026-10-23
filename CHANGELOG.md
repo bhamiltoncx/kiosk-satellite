@@ -4,6 +4,9 @@ All notable changes to Kiosk Satellite are documented here. Full release notes f
 
 ## Unreleased
 
+### Changed
+- **The administrator token comes first in the voice guides.** The guides for the calendar, alarms, calls and music by voice now say before the blueprint steps that the Home Assistant token on the kiosk must belong to an administrator, for every request the script handles. The calendar guide also has a troubleshooting entry for a request that waits 20 seconds and ends with no kiosk answering (#1123).
+
 ### Fixed
 - **Camera entities come back right after a reconnect.** Each time Home Assistant reconnected to the kiosk, the **Screenshot** and **Camera** entities stayed unavailable for up to 5 minutes, until Home Assistant's next camera refresh. The kiosk now sends a frame for each camera as Home Assistant reconnects, so both are available again with the other entities (#1118).
 
