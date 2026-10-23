@@ -3138,6 +3138,16 @@ class UiStringsRu extends UiStrings {
   String get libraryQueueFailed => 'Не удалось изменить очередь';
 
   @override
+  String get libraryVoiceSection => 'Голосовое управление';
+
+  @override
+  String get libraryVoiceManage => 'Управление музыкой через Voice Satellite';
+
+  @override
+  String get libraryVoiceHint =>
+      'Требуются Blueprint музыки Kiosk Satellite и диалоговый LLM-агент в Home Assistant.';
+
+  @override
   String get offlineDashboard => 'Панель недоступна';
 
   @override

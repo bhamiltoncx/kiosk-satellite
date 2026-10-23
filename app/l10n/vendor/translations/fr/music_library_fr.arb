@@ -89,5 +89,8 @@
   "libraryClearQueueMessage": "La musique s’arrête et tous les titres quittent la file d’attente.",
   "libraryRemoveFromQueue": "Retirer de la file d’attente",
   "libraryReorder": "Faites glisser pour réorganiser",
-  "libraryQueueFailed": "Impossible de modifier la file d’attente"
+  "libraryQueueFailed": "Impossible de modifier la file d’attente",
+  "libraryVoiceSection": "Commande vocale",
+  "libraryVoiceManage": "Gérer la musique avec Voice Satellite",
+  "libraryVoiceHint": "Nécessite le blueprint de musique de Kiosk Satellite et un agent de conversation LLM dans Home Assistant."
 }

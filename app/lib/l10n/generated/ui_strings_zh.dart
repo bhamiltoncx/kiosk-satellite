@@ -3053,6 +3053,16 @@ class UiStringsZh extends UiStrings {
   String get libraryQueueFailed => '无法更改队列';
 
   @override
+  String get libraryVoiceSection => '语音控制';
+
+  @override
+  String get libraryVoiceManage => '通过 Voice Satellite 管理音乐';
+
+  @override
+  String get libraryVoiceHint =>
+      '需要在 Home Assistant 中配置 Kiosk Satellite 音乐蓝图（脚本模板）和大语言模型（LLM）对话代理。';
+
+  @override
   String get offlineDashboard => '仪表盘不可用';
 
   @override
@@ -17709,6 +17719,16 @@ class UiStringsZhCn extends UiStringsZh {
 
   @override
   String get libraryQueueFailed => '无法更改队列';
+
+  @override
+  String get libraryVoiceSection => '语音控制';
+
+  @override
+  String get libraryVoiceManage => '通过 Voice Satellite 管理音乐';
+
+  @override
+  String get libraryVoiceHint =>
+      '需要在 Home Assistant 中配置 Kiosk Satellite 音乐蓝图（脚本模板）和大语言模型（LLM）对话代理。';
 
   @override
   String get offlineDashboard => '仪表盘不可用';

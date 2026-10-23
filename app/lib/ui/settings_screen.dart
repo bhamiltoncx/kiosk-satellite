@@ -217,6 +217,8 @@ const _voiceAlarmsDocsUrl =
     'https://kiosksatellite.com/docs/alarms/#setting-alarms-by-voice';
 const _voiceCalendarDocsUrl =
     'https://kiosksatellite.com/docs/calendar/#managing-the-calendar-by-voice';
+const _voiceMusicDocsUrl =
+    'https://kiosksatellite.com/docs/music-library/#playing-music-by-voice';
 
 // The Updates page closes with a link to the custom repository guide: the
 // folder layout, the releases file and the APK names live in the docs, not
@@ -4159,6 +4161,36 @@ class _CategoryContentState extends State<_CategoryContent> {
             child: SettingsCard(
               children: [_SonosSpeakersCard(container: container)],
             ),
+          ),
+        ];
+      case 'Music Library' when widget.category == 'Sendspin':
+        // Voice music lives in Home Assistant (the blueprint), so this
+        // group only points at the guide. Last on the page, mirrored in
+        // updateMusicLibraryPage (panels.js).
+        return [
+          ...sectioned([
+            for (final def in _defsFor(widget.category))
+              if (def.subpage == subpage) def,
+          ]),
+          SectionHeading(l10n(context).libraryVoiceSection),
+          SettingsCard(
+            children: [
+              SearchLandingTarget(
+                id: 'x:library_voice',
+                child: SettingsRow(
+                  leading: const Icon(Icons.record_voice_over_outlined),
+                  title: Text(l10n(context).libraryVoiceManage),
+                  subtitle: Text(l10n(context).libraryVoiceHint),
+                  trailing: const Icon(Icons.open_in_new),
+                  onTap: () {
+                    Navigator.of(context).popUntil((route) => route.isFirst);
+                    container.commands.execute('showLinkPage', {
+                      'url': _voiceMusicDocsUrl,
+                    });
+                  },
+                ),
+              ),
+            ],
           ),
         ];
       default:

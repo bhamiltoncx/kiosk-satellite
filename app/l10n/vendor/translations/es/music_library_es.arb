@@ -89,5 +89,8 @@
   "libraryClearQueueMessage": "La música se detiene y todas las canciones salen de la cola.",
   "libraryRemoveFromQueue": "Quitar de la cola",
   "libraryReorder": "Arrastra para reordenar",
-  "libraryQueueFailed": "No se pudo cambiar la cola"
+  "libraryQueueFailed": "No se pudo cambiar la cola",
+  "libraryVoiceSection": "Control por voz",
+  "libraryVoiceManage": "Gestionar la música con Voice Satellite",
+  "libraryVoiceHint": "Requiere el blueprint de música de Kiosk Satellite y un agente de conversación LLM en Home Assistant."
 }

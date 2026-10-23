@@ -112,11 +112,40 @@ class _MusicLibraryScreenState extends State<MusicLibraryScreen> {
     c.musicLibrary.visible.addListener(_closeRoutes);
     c.screensaver.activeView.addListener(_closeRoutes);
     c.musicLibrary.source.addListener(_sourceChanged);
-    c.musicLibrary.reopened.addListener(_armIdle);
+    c.musicLibrary.reopened.addListener(_reopen);
     c.musicLibrary.pick.addListener(_pickChanged);
     c.musicLibrary.backHandler = _onBack;
     _sourceChanged();
+    _takeOpening();
     _armIdle();
+  }
+
+  void _reopen() {
+    _armIdle();
+    setState(_takeOpening);
+  }
+
+  /// Land where an open asked to: a search for a voice request's words,
+  /// or one of the source's lists.
+  void _takeOpening() {
+    final opening = c.musicLibrary.opening;
+    c.musicLibrary.opening = null;
+    final source = _source;
+    if (opening == null || source == null) return;
+    _stack.clear();
+    _queueOpen = false;
+    final query = opening.query;
+    if (query != null && source.hasSearch) {
+      _query.text = query;
+      _searched = query;
+      _searchKind = null;
+      _place = _Place('search');
+      return;
+    }
+    final category = source.categories
+        .where((c) => c.key == opening.category)
+        .firstOrNull;
+    if (category != null) _place = _Place('library', category: category);
   }
 
   @override
@@ -124,7 +153,7 @@ class _MusicLibraryScreenState extends State<MusicLibraryScreen> {
     c.musicLibrary.visible.removeListener(_closeRoutes);
     c.screensaver.activeView.removeListener(_closeRoutes);
     c.musicLibrary.source.removeListener(_sourceChanged);
-    c.musicLibrary.reopened.removeListener(_armIdle);
+    c.musicLibrary.reopened.removeListener(_reopen);
     c.musicLibrary.pick.removeListener(_pickChanged);
     if (c.musicLibrary.backHandler == _onBack) {
       c.musicLibrary.backHandler = null;

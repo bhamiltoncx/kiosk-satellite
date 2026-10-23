@@ -39,6 +39,7 @@ import {
   updateImmichValidateRow,
   updatePlayerRow,
   updateSonosPage,
+  updateMusicLibraryPage,
   updateMaValidateRow,
 } from './panels.js';
 import { applyManagedBanners, renderFleetPage } from './fleetsync.js';
@@ -1671,6 +1672,7 @@ kioskText('Lockdown Mode makes the dashboard non-interactive, arms every ' +
   updateMaValidateRow();
   updatePlayerRow();
   updateSonosPage();
+  updateMusicLibraryPage();
   // The Fleet Management tab, hand-built from the fleetStatus command.
   await renderFleetPage();
   // The Intercom tab: the definition rows the generic renderer drew,

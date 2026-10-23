@@ -29,6 +29,7 @@ class LibraryItem {
     this.expandable = false,
     this.durationMs,
     this.favorite = false,
+    this.inLibrary = false,
     this.raw,
   });
 
@@ -53,6 +54,10 @@ class LibraryItem {
 
   final int? durationMs;
   final bool favorite;
+
+  /// In the user's own library, not just found on a service: what a
+  /// spoken name most likely means.
+  final bool inLibrary;
 
   /// The source's own record, kept for playing and opening it.
   final Object? raw;

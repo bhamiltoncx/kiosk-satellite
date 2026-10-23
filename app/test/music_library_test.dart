@@ -4,6 +4,7 @@ import 'package:kiosk_satellite/app_container.dart';
 import 'package:kiosk_satellite/managers/music_library/ha_library_source.dart';
 import 'package:kiosk_satellite/managers/music_library/library_model.dart';
 import 'package:kiosk_satellite/managers/music_library/ma_library_source.dart';
+import 'package:kiosk_satellite/managers/music_library/music_requests.dart';
 import 'package:kiosk_satellite/managers/music_library/sonos_library_source.dart';
 import 'package:kiosk_satellite/managers/sendspin/music_assistant_api.dart';
 import 'package:kiosk_satellite/ui/music_library_overlay.dart';
@@ -258,6 +259,175 @@ void main() {
       );
       // A shortcut has nothing to play.
       expect(items.last.playable, isFalse);
+    });
+  });
+
+  group('music by voice', () {
+    LibraryItem item(String title, LibraryKind kind, [String by = '']) =>
+        LibraryItem(id: title, kind: kind, title: title, subtitle: by);
+
+    test('an exact title wins, an artist over a track of that name', () {
+      final best = MusicRequests.bestMatch([
+        LibraryShelf(
+          key: 'tracks',
+          items: [
+            item('Punisher', LibraryKind.track, 'Phoebe Bridgers'),
+            item('Punisher (Live)', LibraryKind.track, 'Phoebe Bridgers'),
+          ],
+        ),
+        LibraryShelf(
+          key: 'albums',
+          items: [item('Punisher', LibraryKind.album, 'Phoebe Bridgers')],
+        ),
+      ], query: 'punisher')!;
+      expect(best.item.kind, LibraryKind.album);
+      expect(best.others.single.kind, LibraryKind.track);
+    });
+
+    test('with an artist named, other bands of that name stay out', () {
+      final best = MusicRequests.bestMatch(
+        [
+          LibraryShelf(
+            key: 'artists',
+            items: [
+              item('Punisher', LibraryKind.artist),
+              item('Punisher', LibraryKind.artist),
+            ],
+          ),
+          LibraryShelf(
+            key: 'albums',
+            items: [item('Punisher', LibraryKind.album, 'Phoebe Bridgers')],
+          ),
+          LibraryShelf(
+            key: 'tracks',
+            items: [item('Punisher', LibraryKind.track, 'Phoebe Bridgers')],
+          ),
+        ],
+        query: 'Punisher',
+        artist: 'Phoebe Bridgers',
+      )!;
+      expect(best.item.kind, LibraryKind.album);
+      expect(best.others.map((o) => o.kind), [LibraryKind.track]);
+    });
+
+    test('a track in the library wins over a stranger of that name', () {
+      final best = MusicRequests.bestMatch([
+        LibraryShelf(key: 'artists', items: [item('Sola', LibraryKind.artist)]),
+        LibraryShelf(
+          key: 'tracks',
+          items: [
+            LibraryItem(
+              id: 'library://track/9',
+              kind: LibraryKind.track,
+              title: 'Sola',
+              subtitle: 'Hillkidd',
+              inLibrary: true,
+            ),
+          ],
+        ),
+      ], query: 'Sola')!;
+      expect(best.item.kind, LibraryKind.track);
+      expect(best.item.inLibrary, isTrue);
+    });
+
+    test('a name heard as one word finds it written as two', () {
+      final best = MusicRequests.bestMatch([
+        LibraryShelf(
+          key: 'artists',
+          items: [item('Nightshift', LibraryKind.artist)],
+        ),
+        LibraryShelf(
+          key: 'tracks',
+          items: [
+            LibraryItem(
+              id: 'library://track/3',
+              kind: LibraryKind.track,
+              title: 'Night Shift',
+              subtitle: 'Lucy Dacus',
+              inLibrary: true,
+            ),
+          ],
+        ),
+      ], query: 'Nightshift')!;
+      expect(best.item.title, 'Night Shift');
+    });
+
+    test('the kind and the artist narrow it down', () {
+      final shelves = [
+        LibraryShelf(
+          key: 'tracks',
+          items: [
+            item('Blouse', LibraryKind.track, 'Someone Else'),
+            item('Blouse', LibraryKind.track, 'Clairo'),
+          ],
+        ),
+        LibraryShelf(
+          key: 'albums',
+          items: [item('Blouse', LibraryKind.album, 'Clairo')],
+        ),
+      ];
+      final track = MusicRequests.bestMatch(
+        shelves,
+        query: 'Blouse',
+        kind: 'track',
+        artist: 'clairo',
+      )!;
+      expect(track.item.kind, LibraryKind.track);
+      expect(track.item.subtitle, 'Clairo');
+      expect(
+        MusicRequests.bestMatch(shelves, query: 'x', kind: 'radio'),
+        isNull,
+      );
+    });
+
+    test('a genre with no title match takes the first track', () {
+      final best = MusicRequests.bestMatch([
+        LibraryShelf(
+          key: 'playlists',
+          items: [item('Chill Mix', LibraryKind.playlist)],
+        ),
+        LibraryShelf(
+          key: 'tracks',
+          items: [item('Lanterns', LibraryKind.track)],
+        ),
+      ], query: 'jazz')!;
+      expect(best.item.title, 'Lanterns');
+    });
+
+    test('play lands on the speaker this kiosk follows', () async {
+      SharedPreferences.setMockInitialValues({
+        'ks.ha.url': '',
+        'ks.ha.token': '',
+        'ks.sendspin.ma_url': 'ma.local:8095',
+        'ks.sendspin.ma_token': 'token',
+        'ks.sendspin.client_id': 'tablet',
+        'ks.sendspin.player_source': 'ma',
+        'ks.sendspin.player': 'ma:kitchen',
+        'ks.sendspin.player_name': 'Kitchen',
+      });
+      final c = AppContainer();
+      await c.settings.init();
+      final source = _VoiceSource();
+      c.musicLibrary.sourceFactory = (_) => source;
+      await c.musicLibrary.init();
+      final r = await c.musicLibrary.requests.handle({
+        'action': 'play',
+        'query': 'Punisher',
+        'artist': 'Phoebe Bridgers',
+        'mode': 'next',
+      });
+      expect(r['ok'], isTrue, reason: '$r');
+      expect(r['result'], 'playing_next');
+      expect(r['title'], 'Punisher');
+      expect(r['speaker'], 'Kitchen');
+      expect(source.played.single, ('Punisher', PlayMode.next, 'ma:kitchen'));
+      final none = await c.musicLibrary.requests.handle({
+        'action': 'play',
+        'query': 'Nothing like it',
+        'kind': 'radio',
+      });
+      expect(none['ok'], isFalse);
+      expect(none['error'], 'nothing_found');
     });
   });
 
@@ -561,4 +731,44 @@ class _FakeSource extends LibrarySource {
     required String pick,
     LibraryItem? within,
   }) async => null;
+}
+
+class _VoiceSource extends LibrarySource {
+  final played = <(String, PlayMode, String)>[];
+
+  @override
+  String get key => 'ma';
+
+  @override
+  bool get hasSearch => true;
+
+  @override
+  Future<List<LibraryShelf>> search(String query) async => [
+    LibraryShelf(
+      key: 'tracks',
+      items: [
+        LibraryItem(
+          id: 'library://track/1',
+          kind: LibraryKind.track,
+          title: 'Punisher',
+          subtitle: 'Phoebe Bridgers',
+        ),
+      ],
+    ),
+  ];
+
+  @override
+  Future<LibraryDetail> open(LibraryItem item) async =>
+      LibraryDetail(item: item);
+
+  @override
+  Future<String?> play(
+    LibraryItem item,
+    PlayMode mode, {
+    required String pick,
+    LibraryItem? within,
+  }) async {
+    played.add((item.title, mode, pick));
+    return null;
+  }
 }

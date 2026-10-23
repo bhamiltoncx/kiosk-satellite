@@ -53,6 +53,51 @@ The queue button on the player bar opens the queue of the speaker the library pl
 
 Music Assistant players, this device's own player and Sonos speakers have a queue to manage. A Home Assistant speaker has none, so the queue button does not show for it.
 
+## Playing music by voice
+
+Kiosk Satellite ships a blueprint for an LLM conversation agent (Qwen, Gemma, Gemini, Claude, OpenAI or any other agent that can control Home Assistant) that plays music on the speaker the kiosk you are talking to plays on. The agent understands the request in any language it speaks.
+
+The built-in **Home Assistant** conversation agent does not work for this. It only matches sentences against Home Assistant's own intents and cannot fill in the script's title, artist or speaker. An LLM agent with **Prefer handling commands locally** turned on works fine.
+
+If you set up Music Assistant's own voice support for an LLM agent, delete the script you created from its blueprint or stop exposing it to Assist first. With both exposed the agent has two tools for the same request and picks either one.
+
+1. Import the blueprint:
+
+    [![Open your Home Assistant instance and show the blueprint import dialog with a specific blueprint pre-filled.](https://my.home-assistant.io/badges/blueprint_import.svg)](https://my.home-assistant.io/redirect/blueprint_import/?blueprint_url=https%3A%2F%2Fgithub.com%2Fjxlarrea%2Fkiosk-satellite%2Fblob%2Fmain%2Fblueprints%2Fscript%2Fkiosk_satellite_music.yaml)
+
+2. Create a script from it.
+3. Expose the script to Assist under **Settings, Voice assistants, Expose**.
+
+Then ask the kiosk:
+
+| Ask | What happens |
+| --- | --- |
+| "Play Punisher by Phoebe Bridgers" | Plays on the speaker this kiosk's Now Playing follows, replacing the queue. |
+| "Play some jazz" | Plays what the source's search finds first for it, tracks before the rest. |
+| "Play Lucy Dacus in the kitchen" | Plays on the Kitchen speaker, which becomes the one Now Playing follows. |
+| "Play this album next" or "Add Thumbs to the queue" | Plays after the current track, or at the end of the queue. |
+| "Start a radio from Clairo" | Plays and keeps going with similar music. Music Assistant only. |
+| "Show me albums by Phoebe Bridgers" or "Open my playlists" | The Music Library opens on the kiosk, on a search or on that list. |
+| "What's playing?" | The agent says the track, the artist and the speaker. |
+| "Pause", "Skip this song" or "Go back" | Steers the music on the speaker this kiosk follows. |
+| "Turn the music up" or "Set the music volume to 30" | Steps the volume by 10, or sets it. |
+| "What's next in the queue?" or "Clear the queue" | Reads the playing track and the next ones, or empties the queue. |
+| "Which speakers can you play on?" | Lists the speakers of the library's source. |
+
+The kiosk searches the source of the speaker it plays on, so where the music comes from follows the speaker:
+
+- **Music Assistant** searches every music provider it has, so any title, artist, album, playlist or station works.
+- A **Home Assistant** speaker can be searched only when its integration supports search.
+- A **Sonos** speaker has no search, so the request has to name one of its favorites.
+
+Music in your library or among your favorites comes before the same name found on a music service, so "play Sola" plays the Sola in your library rather than an artist of that name on Spotify. When a title is both an album and a song, the album, playlist or artist plays and the agent can mention the other. Say "the song" or "the album" to pick one. Music that takes a while to start, such as a whole artist from a service, gets its answer after a few seconds while it keeps starting.
+
+[Realtime conversations](voice-satellite.md#realtime-conversations) play music the same way: with **Tools** on **Home Assistant**, the model sees the exposed script and calls it while the conversation runs.
+
+A request typed into Home Assistant's own chat reaches no kiosk until it names one, as in "play jazz on the kitchen kiosk", which matches the kiosk's device name or ESPHome name.
+
+The kiosk listens for the script over its own Home Assistant connection, so the long-lived token under **Settings, Home Assistant** has to belong to an administrator, the same as [voice alarms](alarms.md#setting-alarms-by-voice) and [the calendar by voice](calendar.md#managing-the-calendar-by-voice). With any other token the kiosk does not listen for the script and the agent says that no kiosk answered.
+
 ## Screen sizes
 
 | Screen | Layout |
@@ -73,3 +118,5 @@ Under **Settings > Media Player > Music Library**:
 | Show in the kiosk menu | Adds the Music Library entry to the kiosk menu. On by default. |
 | Show on Now Playing | Adds the library button next to the close button on the Now Playing view. On by default. |
 | Close when idle | Returns to the dashboard after no touch for this long. Two minutes by default. The screensaver waits while the library is open. |
+
+The **Voice Control** group below them opens the guide to [playing music by voice](#playing-music-by-voice).

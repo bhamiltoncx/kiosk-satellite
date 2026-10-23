@@ -354,6 +354,7 @@ class MaLibrarySource extends LibrarySource {
           ? (duration * 1000).round()
           : null,
       favorite: m['favorite'] == true,
+      inLibrary: '${m['provider'] ?? ''}' == 'library',
       raw: m,
     );
   }

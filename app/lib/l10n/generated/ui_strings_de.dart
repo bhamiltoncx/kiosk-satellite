@@ -3171,6 +3171,16 @@ class UiStringsDe extends UiStrings {
       'Die Warteschlange konnte nicht geändert werden';
 
   @override
+  String get libraryVoiceSection => 'Sprachsteuerung';
+
+  @override
+  String get libraryVoiceManage => 'Musik mit Voice Satellite verwalten';
+
+  @override
+  String get libraryVoiceHint =>
+      'Benötigt den Kiosk Satellite Musik-Blueprint und einen LLM-Konversationsagenten in Home Assistant.';
+
+  @override
   String get offlineDashboard => 'Dashboard nicht verfügbar';
 
   @override

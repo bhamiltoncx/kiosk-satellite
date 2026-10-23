@@ -89,5 +89,8 @@
   "libraryClearQueueMessage": "Музыка остановится, а все треки будут удалены из очереди.",
   "libraryRemoveFromQueue": "Удалить из очереди",
   "libraryReorder": "Перетащите, чтобы изменить порядок",
-  "libraryQueueFailed": "Не удалось изменить очередь"
+  "libraryQueueFailed": "Не удалось изменить очередь",
+  "libraryVoiceSection": "Голосовое управление",
+  "libraryVoiceManage": "Управление музыкой через Voice Satellite",
+  "libraryVoiceHint": "Требуются Blueprint музыки Kiosk Satellite и диалоговый LLM-агент в Home Assistant."
 }

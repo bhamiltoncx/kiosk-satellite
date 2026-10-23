@@ -5595,6 +5595,24 @@ abstract class UiStrings {
   /// **'The queue could not be changed'**
   String get libraryQueueFailed;
 
+  /// Heading of the group about playing music by voice.
+  ///
+  /// In en, this message translates to:
+  /// **'Voice Control'**
+  String get libraryVoiceSection;
+
+  /// Row that opens the guide to playing music by voice. Keep Voice Satellite unchanged.
+  ///
+  /// In en, this message translates to:
+  /// **'Manage music using Voice Satellite'**
+  String get libraryVoiceManage;
+
+  /// Description under that row. Keep Kiosk Satellite and Home Assistant unchanged. A blueprint is a Home Assistant template for a script.
+  ///
+  /// In en, this message translates to:
+  /// **'Needs the Kiosk Satellite music blueprint and an LLM conversation agent in Home Assistant.'**
+  String get libraryVoiceHint;
+
   /// Heading when the device has a network but the dashboard failed to load.
   ///
   /// In en, this message translates to:

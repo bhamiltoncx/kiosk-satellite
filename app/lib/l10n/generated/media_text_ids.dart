@@ -263,5 +263,8 @@ const mediaTextMessageIds = <String, String>{
   "Without this Android lists no media sessions, so Now Playing cannot follow the apps playing on this device. The grant screen appears on the tablet.": "mediaNotificationAccessRemote",
   "Local Media Session": "mediaLocalMediaSession",
   "Music Library": "libraryTitle",
-  "Browse music and play it on a speaker": "libraryPageHint"
+  "Browse music and play it on a speaker": "libraryPageHint",
+  "Voice Control": "libraryVoiceSection",
+  "Manage music using Voice Satellite": "libraryVoiceManage",
+  "Needs the Kiosk Satellite music blueprint and an LLM conversation agent in Home Assistant.": "libraryVoiceHint"
 };

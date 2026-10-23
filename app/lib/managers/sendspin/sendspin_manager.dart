@@ -1540,6 +1540,73 @@ class SendspinManager extends Manager {
 
     commands.register(
       Command(
+        name: 'mediaQueue',
+        description:
+            'The followed player\'s queue: list answers the playing track '
+            'and the next ones, clear empties it.',
+        params: const {
+          'action': 'list | clear',
+          'limit': 'up next, default 10',
+        },
+        handler: (p) async {
+          if (!queueAvailable) {
+            return const CommandResult.fail('the player has no queue');
+          }
+          if (p['action'] == 'clear') {
+            return await clearQueue()
+                ? const CommandResult.ok()
+                : const CommandResult.fail('the queue could not be cleared');
+          }
+          await refreshQueue();
+          final rows = queueItems.value;
+          final at = rows.indexWhere((r) => r['current'] == true);
+          final limit = (p['limit'] as num?)?.toInt() ?? 10;
+          Map<String, Object?> brief(Map<String, Object?> r) => {
+            'title': r['title'],
+            if ('${r['artist'] ?? ''}'.isNotEmpty) 'artist': r['artist'],
+          };
+          final next = rows.sublist(at + 1);
+          return CommandResult.ok({
+            if (at >= 0) 'current': brief(rows[at]),
+            'upNext': [for (final r in next.take(limit)) brief(r)],
+            'upNextCount': next.length,
+          });
+        },
+      ),
+    );
+
+    commands.register(
+      Command(
+        name: 'mediaVolume',
+        description:
+            'Set the followed player\'s volume to level (0 to 100), or move '
+            'it by delta.',
+        params: const {'level': '0 to 100', 'delta': 'a step up or down'},
+        handler: (p) async {
+          if (!volumeAvailable) {
+            return const CommandResult.fail('the player takes no volume');
+          }
+          final level = p['level'];
+          final delta = p['delta'];
+          final base = volumeLevel;
+          final target = level is num
+              ? level.round()
+              : delta is num && base != null
+              ? base + delta.round()
+              : null;
+          if (target == null) {
+            return const CommandResult.fail('level or delta is required');
+          }
+          final clamped = target.clamp(0, 100);
+          return await setVolume(clamped)
+              ? CommandResult.ok({'volume': clamped})
+              : const CommandResult.fail('the volume could not be set');
+        },
+      ),
+    );
+
+    commands.register(
+      Command(
         name: 'sendspinDiscover',
         description:
             'Scan the network for Sendspin servers (mDNS). Returns name, '

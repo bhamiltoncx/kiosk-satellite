@@ -19,6 +19,7 @@ import '../voice/ha_socket.dart';
 import 'ha_library_source.dart';
 import 'library_model.dart';
 import 'ma_library_source.dart';
+import 'music_requests.dart';
 import 'sonos_library_source.dart';
 
 /// A speaker the library can play on: a row of the Speakers sheet.
@@ -82,6 +83,9 @@ class MusicLibraryManager extends Manager {
 
   /// The source on screen; its sources come and go with their settings.
   final source = ValueNotifier<LibrarySource?>(null);
+
+  /// Requests from the Kiosk Satellite music script.
+  late final requests = MusicRequests(_settings, this, commands);
 
   /// Set by the open library: steps back out of an opened album or
   /// folder and answers true, or answers false at the top, where back
@@ -266,6 +270,21 @@ class MusicLibraryManager extends Manager {
       };
 
   Future<void> setSource(String key) => _settings.set(defs.librarySource, key);
+
+  /// The source [key] names, built if need be, without changing the one
+  /// on screen. Null when it is not set up.
+  LibrarySource? sourceFor(String key) => available.contains(key)
+      ? _sources.putIfAbsent(key, () => _build(key))
+      : null;
+
+  /// Where the next open lands: a search, or one of the source's lists.
+  /// The screen takes it as it opens.
+  ({String? query, String? category})? opening;
+
+  Future<void> openAt({String? query, String? category}) async {
+    opening = (query: query, category: category);
+    await open();
+  }
 
   /// The queue of this device's own Sendspin player in Music Assistant.
   Future<String> _ownQueueId() async {
@@ -455,6 +474,31 @@ class MusicLibraryManager extends Manager {
             await open();
             return const CommandResult.ok();
           },
+        ),
+      )
+      ..register(
+        Command(
+          name: 'musicLibraryVoiceRequest',
+          description:
+              'What the Kiosk Satellite music script asks for, answered in '
+              'the shape the script hands back to the LLM.',
+          params: const {
+            'action':
+                'play, show, now_playing, pause, resume, next, previous, '
+                'volume, volume_up, volume_down, queue, clear_queue or '
+                'speakers',
+            'query': 'What to play or search for',
+            'kind':
+                'track, album, artist, playlist, radio, podcast or '
+                'audiobook',
+            'artist': 'Whose, when the user says',
+            'mode': 'replace, next, add or radio',
+            'speaker': 'A speaker the user names',
+            'level': 'Volume, 0 to 100',
+          },
+          // The voice requests manager logs each one with its outcome.
+          quiet: true,
+          handler: (p) async => CommandResult.ok(await requests.handle(p)),
         ),
       )
       ..register(

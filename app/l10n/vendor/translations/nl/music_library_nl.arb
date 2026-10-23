@@ -89,5 +89,8 @@
   "libraryClearQueueMessage": "De muziek stopt en alle nummers verdwijnen uit de wachtrij.",
   "libraryRemoveFromQueue": "Uit wachtrij verwijderen",
   "libraryReorder": "Sleep om de volgorde te wijzigen",
-  "libraryQueueFailed": "De wachtrij kon niet worden gewijzigd"
+  "libraryQueueFailed": "De wachtrij kon niet worden gewijzigd",
+  "libraryVoiceSection": "Spraakbediening",
+  "libraryVoiceManage": "Muziek beheren met Voice Satellite",
+  "libraryVoiceHint": "Vereist de muziekblauwdruk van Kiosk Satellite en een LLM-gespreksagent in Home Assistant."
 }

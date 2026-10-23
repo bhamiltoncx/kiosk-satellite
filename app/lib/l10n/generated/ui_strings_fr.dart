@@ -3154,6 +3154,16 @@ class UiStringsFr extends UiStrings {
   String get libraryQueueFailed => 'Impossible de modifier la file d’attente';
 
   @override
+  String get libraryVoiceSection => 'Commande vocale';
+
+  @override
+  String get libraryVoiceManage => 'Gérer la musique avec Voice Satellite';
+
+  @override
+  String get libraryVoiceHint =>
+      'Nécessite le blueprint de musique de Kiosk Satellite et un agent de conversation LLM dans Home Assistant.';
+
+  @override
   String get offlineDashboard => 'Tableau de bord indisponible';
 
   @override

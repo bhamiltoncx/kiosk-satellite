@@ -89,5 +89,8 @@
   "libraryClearQueueMessage": "Die Musik stoppt und alle Titel werden aus der Warteschlange entfernt.",
   "libraryRemoveFromQueue": "Aus der Warteschlange entfernen",
   "libraryReorder": "Zum Umsortieren ziehen",
-  "libraryQueueFailed": "Die Warteschlange konnte nicht geändert werden"
+  "libraryQueueFailed": "Die Warteschlange konnte nicht geändert werden",
+  "libraryVoiceSection": "Sprachsteuerung",
+  "libraryVoiceManage": "Musik mit Voice Satellite verwalten",
+  "libraryVoiceHint": "Benötigt den Kiosk Satellite Musik-Blueprint und einen LLM-Konversationsagenten in Home Assistant."
 }

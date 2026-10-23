@@ -3153,6 +3153,16 @@ class UiStringsEs extends UiStrings {
   String get libraryQueueFailed => 'No se pudo cambiar la cola';
 
   @override
+  String get libraryVoiceSection => 'Control por voz';
+
+  @override
+  String get libraryVoiceManage => 'Gestionar la música con Voice Satellite';
+
+  @override
+  String get libraryVoiceHint =>
+      'Requiere el blueprint de música de Kiosk Satellite y un agente de conversación LLM en Home Assistant.';
+
+  @override
   String get offlineDashboard => 'Panel de control no disponible';
 
   @override

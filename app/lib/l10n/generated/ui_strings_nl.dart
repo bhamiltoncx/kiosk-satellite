@@ -3146,6 +3146,16 @@ class UiStringsNl extends UiStrings {
   String get libraryQueueFailed => 'De wachtrij kon niet worden gewijzigd';
 
   @override
+  String get libraryVoiceSection => 'Spraakbediening';
+
+  @override
+  String get libraryVoiceManage => 'Muziek beheren met Voice Satellite';
+
+  @override
+  String get libraryVoiceHint =>
+      'Vereist de muziekblauwdruk van Kiosk Satellite en een LLM-gespreksagent in Home Assistant.';
+
+  @override
   String get offlineDashboard => 'Dashboard is niet beschikbaar';
 
   @override

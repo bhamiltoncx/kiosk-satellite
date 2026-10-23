@@ -3124,6 +3124,16 @@ class UiStringsEn extends UiStrings {
   String get libraryQueueFailed => 'The queue could not be changed';
 
   @override
+  String get libraryVoiceSection => 'Voice Control';
+
+  @override
+  String get libraryVoiceManage => 'Manage music using Voice Satellite';
+
+  @override
+  String get libraryVoiceHint =>
+      'Needs the Kiosk Satellite music blueprint and an LLM conversation agent in Home Assistant.';
+
+  @override
   String get offlineDashboard => 'Dashboard unavailable';
 
   @override
