@@ -163,6 +163,7 @@ void main() {
       defs.voiceWakeWordEngine.key,
       defs.voiceAmazonLocale.key,
       defs.voiceWakeWordSensitivity.key,
+      defs.voiceWakeWordFineTune.key,
       defs.voiceNoiseGate.key,
       defs.voiceStopWord.key,
       defs.voiceWakeArbitration.key,

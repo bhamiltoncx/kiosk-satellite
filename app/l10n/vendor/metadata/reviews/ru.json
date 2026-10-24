@@ -28221,5 +28221,17 @@
     "translation": "a090249e2c471be674eb96a33c1860028495c2253304abb6d36e73ae873149c1",
     "author": "Xavier Larrea",
     "ownerAuthored": true
+  },
+  "settingVoiceWakeWordFineTuneTitle": {
+    "source": "076c264bdc22a12e3fc861264361d7e2c0ee09d6c3869a8324759c22e2079de2",
+    "translation": "62f9ad43f462c23369b8cffc106bbb3842d80afae446d7e4afee2cdec85f0ac5",
+    "author": "Xavier Larrea",
+    "ownerAuthored": true
+  },
+  "settingVoiceWakeWordFineTuneDescription": {
+    "source": "7e820afecde6acb43d54e4aa3ada2c63b364d511a9b1e76a00eabe6617d927c9",
+    "translation": "ae1fe3d04b347113ca50f1dc56e2397acb828002a4fb885b6ef5ada059b6d2f3",
+    "author": "Xavier Larrea",
+    "ownerAuthored": true
   }
 }

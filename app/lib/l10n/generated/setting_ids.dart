@@ -1808,6 +1808,10 @@ const settingMessageIds = <String, Map<String, String>>{
     "title": "settingVoiceWakeWordSensitivityTitle",
     "description": "settingVoiceWakeWordSensitivityDescription",
   },
+  "voice.wake_word_fine_tune": {
+    "title": "settingVoiceWakeWordFineTuneTitle",
+    "description": "settingVoiceWakeWordFineTuneDescription",
+  },
   "voice.noise_gate": {
     "title": "settingVoiceNoiseGateTitle",
     "description": "settingVoiceNoiseGateDescription",

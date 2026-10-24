@@ -14834,6 +14834,13 @@ class UiStringsNl extends UiStrings {
       'Hoe gemakkelijk de detectie op het wekwoord reageert.';
 
   @override
+  String get settingVoiceWakeWordFineTuneTitle => 'Gevoeligheid fijnafstellen';
+
+  @override
+  String get settingVoiceWakeWordFineTuneDescription =>
+      'Past de wekwoordgevoeligheid in kleinere stappen aan. Verhoog dit als je het wekwoord vaak moet herhalen en verlaag het als het per ongeluk reageert.';
+
+  @override
   String get settingVoiceNoiseGateTitle => 'Ruisfilter voor wekwoord';
 
   @override

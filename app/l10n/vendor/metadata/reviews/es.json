@@ -23133,5 +23133,15 @@
     "source": "da98c8e4aa209d24ce9015975783167c52349665cb5be82c0f0250a8b45dee2f",
     "translation": "7c3071bcbad9e531220ddf51ca59ba3a1031342a9bdb45be694b9cdc8bdc1e31",
     "author": "Xavier Larrea"
+  },
+  "settingVoiceWakeWordFineTuneDescription": {
+    "source": "7e820afecde6acb43d54e4aa3ada2c63b364d511a9b1e76a00eabe6617d927c9",
+    "translation": "a58c30a750c1701d91fe937d64fab21f0144f12545f0e66462266676716673e9",
+    "author": "Xavier Larrea"
+  },
+  "settingVoiceWakeWordFineTuneTitle": {
+    "source": "076c264bdc22a12e3fc861264361d7e2c0ee09d6c3869a8324759c22e2079de2",
+    "translation": "8dcd82715b678dda35f81ad1414fa7a474a7756ce478e6f370bf9ee507d3a274",
+    "author": "Xavier Larrea"
   }
 }

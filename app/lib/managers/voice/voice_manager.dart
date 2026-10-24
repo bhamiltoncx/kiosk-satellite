@@ -452,6 +452,7 @@ class VoiceManager extends Manager {
               e.key == defs.voiceAmazonLocale.key ||
               e.key == defs.voiceWakeWords.key ||
               e.key == defs.voiceWakeWordSensitivity.key ||
+              e.key == defs.voiceWakeWordFineTune.key ||
               e.key == defs.voiceNoiseGate.key ||
               e.key == defs.voiceStopWord.key) {
             unawaited(_sync());
@@ -2690,6 +2691,7 @@ class VoiceManager extends Manager {
       engine: _engine,
       activeIds: _activeIds(),
       sensitivity: _settings.get(defs.voiceWakeWordSensitivity),
+      fineTune: _settings.get(defs.voiceWakeWordFineTune),
       noiseGate: _settings.get(defs.voiceNoiseGate),
       stopWord: _settings.get(defs.voiceStopWord),
       external: _external,

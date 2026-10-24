@@ -14657,6 +14657,13 @@ class UiStringsEn extends UiStrings {
       'How easily the wake word triggers.';
 
   @override
+  String get settingVoiceWakeWordFineTuneTitle => 'Fine-tune sensitivity';
+
+  @override
+  String get settingVoiceWakeWordFineTuneDescription =>
+      'Adjusts the wake word sensitivity in smaller steps. Raise it if you often have to repeat the wake word, lower it if it wakes by mistake.';
+
+  @override
   String get settingVoiceNoiseGateTitle => 'Wake word noise gate';
 
   @override

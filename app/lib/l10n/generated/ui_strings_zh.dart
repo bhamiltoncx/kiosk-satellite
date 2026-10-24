@@ -13886,6 +13886,13 @@ class UiStringsZh extends UiStrings {
   String get settingVoiceWakeWordSensitivityDescription => '唤醒词触发的难易程度。';
 
   @override
+  String get settingVoiceWakeWordFineTuneTitle => '灵敏度微调';
+
+  @override
+  String get settingVoiceWakeWordFineTuneDescription =>
+      '以更小的幅度调整唤醒词灵敏度。如果经常需要重复唤醒词，请调高；如果经常误唤醒，请调低。';
+
+  @override
   String get settingVoiceNoiseGateTitle => '房间安静时暂停唤醒词识别';
 
   @override
@@ -28639,6 +28646,13 @@ class UiStringsZhCn extends UiStringsZh {
 
   @override
   String get settingVoiceWakeWordSensitivityDescription => '唤醒词触发的难易程度。';
+
+  @override
+  String get settingVoiceWakeWordFineTuneTitle => '灵敏度微调';
+
+  @override
+  String get settingVoiceWakeWordFineTuneDescription =>
+      '以更小的幅度调整唤醒词灵敏度。如果经常需要重复唤醒词，请调高；如果经常误唤醒，请调低。';
 
   @override
   String get settingVoiceNoiseGateTitle => '房间安静时暂停唤醒词识别';

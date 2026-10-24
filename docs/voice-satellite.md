@@ -71,7 +71,7 @@ When Home Assistant runs the integration, onboarding offers the same migration i
 | | Tools | What the model can control. See [Realtime conversations](#realtime-conversations). |
 | Wake Word | Wake word engine | vsWakeWord (default), microWakeWord or openWakeWord. All models ship with the app. The Echo Dot also offers Amazon's engine. See [Wake Word](echo-dot.md#wake-word) in the Echo Dot docs. |
 | | Wake word 1 and 2 | Home Assistant's selects. Wake word 2 is answered by Assistant 2. |
-| | Wake word sensitivity, Wake word noise gate | How easily the wake word triggers. The noise gate skips inference while the room is quiet to save CPU. |
+| | Wake word sensitivity, Fine-tune sensitivity, Wake word noise gate | How easily the wake word triggers. **Fine-tune sensitivity** adjusts it in smaller steps on each kiosk, from -10 to +10, and 0 keeps the sensitivity as picked. Raise it if you often have to repeat the wake word and lower it if the kiosk wakes by mistake. The stop word keeps the picked sensitivity. The noise gate skips inference while the room is quiet to save CPU. |
 | | Stop word interruption | Say "stop" to cut off an answer, a timer alert or an announcement. It also closes a result panel. |
 | | Wake Word Arbitration | When several kiosks hear the wake word, only the closest one answers. See [Wake word arbitration](#wake-word-arbitration). |
 | | Custom Models | Your own wake word models. See [Custom wake word models](custom-wake-words.md). |

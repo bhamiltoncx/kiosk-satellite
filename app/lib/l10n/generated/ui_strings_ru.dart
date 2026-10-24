@@ -14751,6 +14751,14 @@ class UiStringsRu extends UiStrings {
       'Насколько легко срабатывает слово пробуждения.';
 
   @override
+  String get settingVoiceWakeWordFineTuneTitle =>
+      'Точная настройка чувствительности';
+
+  @override
+  String get settingVoiceWakeWordFineTuneDescription =>
+      'Меняет чувствительность слова пробуждения более мелкими шагами. Повысьте, если слово пробуждения часто приходится повторять, и понизьте, если оно срабатывает по ошибке.';
+
+  @override
   String get settingVoiceNoiseGateTitle => 'Шумовой порог слова пробуждения';
 
   @override

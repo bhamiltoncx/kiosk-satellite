@@ -14813,6 +14813,14 @@ class UiStringsUk extends UiStrings {
       'Наскільки легко спрацьовує слово активації.';
 
   @override
+  String get settingVoiceWakeWordFineTuneTitle =>
+      'Точне налаштування чутливості';
+
+  @override
+  String get settingVoiceWakeWordFineTuneDescription =>
+      'Змінює чутливість слова активації меншими кроками. Підвищте її, якщо часто доводиться повторювати слово активації, і знизьте, якщо воно спрацьовує помилково.';
+
+  @override
   String get settingVoiceNoiseGateTitle => 'Шумовий поріг слова активації';
 
   @override

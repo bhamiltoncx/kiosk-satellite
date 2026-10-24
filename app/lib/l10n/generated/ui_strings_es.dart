@@ -14951,6 +14951,14 @@ class UiStringsEs extends UiStrings {
       'Con qué facilidad se activa la palabra de activación.';
 
   @override
+  String get settingVoiceWakeWordFineTuneTitle =>
+      'Ajuste fino de la sensibilidad';
+
+  @override
+  String get settingVoiceWakeWordFineTuneDescription =>
+      'Ajusta la sensibilidad de la palabra de activación en pasos más pequeños. Súbelo si a menudo tienes que repetir la palabra de activación y bájalo si se activa por error.';
+
+  @override
   String get settingVoiceNoiseGateTitle =>
       'Puerta de ruido de la palabra de activación';
 

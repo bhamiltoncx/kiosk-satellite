@@ -14978,6 +14978,14 @@ class UiStringsDe extends UiStrings {
       'Wie leicht das Aktivierungswort auslöst.';
 
   @override
+  String get settingVoiceWakeWordFineTuneTitle =>
+      'Empfindlichkeit feinjustieren';
+
+  @override
+  String get settingVoiceWakeWordFineTuneDescription =>
+      'Passt die Empfindlichkeit des Aktivierungsworts in kleineren Schritten an. Erhöhe sie, wenn du das Aktivierungswort oft wiederholen musst, und senke sie, wenn es versehentlich auslöst.';
+
+  @override
   String get settingVoiceNoiseGateTitle =>
       'Rauschsperre für das Aktivierungswort';
 

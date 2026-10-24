@@ -3999,6 +3999,7 @@ class _CategoryContentState extends State<_CategoryContent> {
           final native = [
             voiceWakeWordEngine,
             voiceWakeWordSensitivity,
+            voiceWakeWordFineTune,
             voiceNoiseGate,
             voiceStopWord,
           ];

@@ -7533,6 +7533,27 @@ const voiceWakeWordSensitivity = SettingDef<String>(
   dependsOn: 'voice.enabled',
 );
 
+/// Moves the wake words' gates between and past the Sensitivity presets,
+/// see [wakeTuneFor]. Per device: how loud the wake word reaches the model
+/// depends on the microphone. The presets stay a select because Home
+/// Assistant's sensitivity entities offer only those three.
+const voiceWakeWordFineTune = SettingDef<num>(
+  key: 'voice.wake_word_fine_tune',
+  type: SettingType.number,
+  defaultValue: 0,
+  min: -10,
+  max: 10,
+  step: 1,
+  title: 'Fine-tune sensitivity',
+  description:
+      'Adjusts the wake word sensitivity in smaller steps. Raise it if you '
+      'often have to repeat the wake word, lower it if it wakes by mistake.',
+  category: 'Voice Satellite',
+  subpage: 'Wake Word',
+  perDevice: true,
+  dependsOn: 'voice.enabled',
+);
+
 const voiceNoiseGate = SettingDef<bool>(
   key: 'voice.noise_gate',
   type: SettingType.boolean,
@@ -13352,6 +13373,7 @@ const List<SettingDef<Object>> allSettings = [
   voiceRealtimeMcpUrl,
   voiceRealtimeMcpToken,
   voiceWakeWordSensitivity,
+  voiceWakeWordFineTune,
   voiceNoiseGate,
   voiceStopWord,
   voiceWakeArbitration,

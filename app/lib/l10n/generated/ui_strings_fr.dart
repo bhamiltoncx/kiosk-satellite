@@ -14946,6 +14946,14 @@ class UiStringsFr extends UiStrings {
       'La facilité avec laquelle le mot de réveil se déclenche.';
 
   @override
+  String get settingVoiceWakeWordFineTuneTitle =>
+      'Réglage fin de la sensibilité';
+
+  @override
+  String get settingVoiceWakeWordFineTuneDescription =>
+      'Ajuste la sensibilité du mot de réveil par petits pas. Augmentez-la si vous devez souvent répéter le mot de réveil, baissez-la s\'il se déclenche par erreur.';
+
+  @override
   String get settingVoiceNoiseGateTitle => 'Porte de bruit du mot de réveil';
 
   @override

@@ -5042,6 +5042,10 @@ String messageById(UiStrings strings, String? id, String fallback) =>
         strings.settingVoiceWakeWordSensitivityTitle,
       'settingVoiceWakeWordSensitivityDescription' =>
         strings.settingVoiceWakeWordSensitivityDescription,
+      'settingVoiceWakeWordFineTuneTitle' =>
+        strings.settingVoiceWakeWordFineTuneTitle,
+      'settingVoiceWakeWordFineTuneDescription' =>
+        strings.settingVoiceWakeWordFineTuneDescription,
       'settingVoiceNoiseGateTitle' => strings.settingVoiceNoiseGateTitle,
       'settingVoiceNoiseGateDescription' =>
         strings.settingVoiceNoiseGateDescription,
