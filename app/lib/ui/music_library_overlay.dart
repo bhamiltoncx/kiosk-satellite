@@ -47,9 +47,9 @@ double libraryChromeScale(AppContainer c, [double rate = 0.7]) {
   return math.max(1, 1 + (scale - 1) * rate);
 }
 
-/// A menu, sheet or dialog the library opens, at its chrome's text size.
-/// Those are routes above the library, so its own scale never reaches
-/// them.
+/// A menu, sheet or dialog the library opens, at the library's Text
+/// scale, its icons too, never below their normal size. Those are routes
+/// above the library, so its own scale never reaches them.
 class LibraryMenuText extends StatelessWidget {
   const LibraryMenuText({
     super.key,
@@ -63,13 +63,15 @@ class LibraryMenuText extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final media = MediaQuery.of(context);
+    final scale = libraryChromeScale(container, 1);
     return MediaQuery(
       data: media.copyWith(
-        textScaler: TextScaler.linear(
-          media.textScaler.scale(1) * libraryChromeScale(container),
-        ),
+        textScaler: TextScaler.linear(media.textScaler.scale(1) * scale),
       ),
-      child: child,
+      child: IconTheme.merge(
+        data: IconThemeData(size: 22 * scale),
+        child: child,
+      ),
     );
   }
 }
@@ -561,7 +563,7 @@ class _MusicLibraryScreenState extends State<MusicLibraryScreen> {
                   container: c,
                   child: Row(
                     children: [
-                      Icon(icon, size: 22),
+                      Icon(icon),
                       const SizedBox(width: 14),
                       Text(label),
                     ],
@@ -1587,7 +1589,6 @@ class _MusicLibraryScreenState extends State<MusicLibraryScreen> {
     final scheme = Theme.of(context).colorScheme;
     Widget check(bool on) => Icon(
       Icons.check_rounded,
-      size: 22,
       color: on ? scheme.primary : Colors.transparent,
     );
     Future<void> Function()? chosen;

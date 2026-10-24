@@ -167,7 +167,7 @@ class _LibraryQueuePanelState extends State<LibraryQueuePanel> {
                 container: c,
                 child: Row(
                   children: [
-                    Icon(icon, size: 22),
+                    Icon(icon),
                     const SizedBox(width: 14),
                     Text(label),
                   ],
