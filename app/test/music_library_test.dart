@@ -1150,9 +1150,14 @@ void main() {
       expect(find.text('Track A'), findsOneWidget);
       // Play resumes the queue on its current track, with a ring around
       // the button until the player reports it.
+      final before = tester.getRect(find.byTooltip('Play').last);
+      final next = tester.getRect(find.byTooltip('Next track').last);
       await tester.tap(find.byTooltip('Play').last);
       await tester.pump(const Duration(milliseconds: 50));
       expect(find.byType(CircularProgressIndicator), findsOneWidget);
+      // The ring takes no room: nothing around the button moves.
+      expect(tester.getRect(find.byTooltip('Play').last), before);
+      expect(tester.getRect(find.byTooltip('Next track').last), next);
       await tester.pumpAndSettle();
       expect(api.calls, contains('player_queues/play_index'));
       expect(api.args['player_queues/play_index'], containsPair('index', 'a'));

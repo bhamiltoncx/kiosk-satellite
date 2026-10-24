@@ -3626,6 +3626,9 @@ class _MiniPlayerState extends State<_MiniPlayer> {
 
     final playButton = Stack(
       alignment: Alignment.center,
+      // The ring spills past the button, which alone sizes the stack, so
+      // nothing around it moves when it shows.
+      clipBehavior: Clip.none,
       children: [
         IconButton.filled(
           tooltip: playing ? s.mediaPause : s.mediaPlay,
@@ -3641,12 +3644,18 @@ class _MiniPlayerState extends State<_MiniPlayer> {
         // A ring around it until the player answers a play, a pause or
         // a skip.
         if (busy)
-          IgnorePointer(
-            child: SizedBox.square(
-              dimension: roomy ? 54 : 50,
-              child: CircularProgressIndicator(
-                strokeWidth: 2.5,
-                color: scheme.primary,
+          Positioned.fill(
+            child: IgnorePointer(
+              child: OverflowBox(
+                maxWidth: double.infinity,
+                maxHeight: double.infinity,
+                child: SizedBox.square(
+                  dimension: roomy ? 54 : 50,
+                  child: CircularProgressIndicator(
+                    strokeWidth: 2.5,
+                    color: scheme.primary,
+                  ),
+                ),
               ),
             ),
           ),
