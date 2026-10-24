@@ -624,7 +624,9 @@ class RemoteManager extends Manager {
     // Deliberately public (issue #75): the point of a health check is a
     // monitor polling it every minute, and a monitor cannot do a login
     // dance around a 7-day token. Read-only hardware facts; no settings,
-    // no secrets, no page content.
+    // no secrets, no page content. Any origin may read it (issue #1128),
+    // so a static page can list kiosks by name and version. A plain GET
+    // needs no preflight.
     if (path == 'api/health' && request.method == 'GET') return _health();
 
     // Fleet Management's public face, for a kiosk that has no token here
@@ -881,7 +883,7 @@ class RemoteManager extends Manager {
     final link = await commands.execute('getNetworkLink', const {});
     final info = (device.data as Map?)?.cast<String, Object?>() ?? const {};
     final det = (details.data as Map?)?.cast<String, Object?>() ?? const {};
-    return _json(200, {
+    final body = {
       'name': info['name'],
       'model': info['model'],
       'brand': det['brand'],
@@ -911,7 +913,15 @@ class RemoteManager extends Manager {
       // Seconds. `network` is null while offline; its clock starts at app
       // start at the earliest (see DeviceDetails.uptime).
       'uptime': info['uptime'],
-    });
+    };
+    return Response(
+      200,
+      body: jsonEncode(body),
+      headers: {
+        'content-type': 'application/json',
+        'access-control-allow-origin': '*',
+      },
+    );
   }
 
   /// What the device is doing, as the admin's dashboard draws it.
