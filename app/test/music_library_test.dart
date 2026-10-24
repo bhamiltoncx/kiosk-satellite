@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:kiosk_satellite/managers/analytics/usage_counters.dart';
 import 'package:kiosk_satellite/app_container.dart';
 import 'package:kiosk_satellite/managers/music_library/ha_library_source.dart';
 import 'package:kiosk_satellite/managers/music_library/library_model.dart';
@@ -698,6 +699,11 @@ void main() {
       });
       expect(none['ok'], isFalse);
       expect(none['error'], 'nothing_found');
+      // Both requests count for usage analytics, the Play next that went
+      // through as a queue add.
+      final counts = UsageCounters.read(c.settings);
+      expect(counts['library_voice_requests'], 2);
+      expect(counts['library_queue_adds'], 1);
     });
   });
 
@@ -992,6 +998,15 @@ void main() {
       // A player that never reports lets go after a while.
       await c.musicLibrary.play(album, PlayMode.now);
       expect(c.musicLibrary.starting.value, album);
+      // Two plays by their source, one queue add, for usage analytics.
+      final counts = UsageCounters.read(c.settings);
+      expect(counts['library_queue_adds'], 1);
+      expect(
+        counts.entries
+            .where((e) => e.key.startsWith('library_plays_'))
+            .map((e) => e.value),
+        [2],
+      );
       await tester.pump(const Duration(seconds: 16));
       expect(c.musicLibrary.starting.value, isNull);
       c.musicLibrary.visible.value = false;

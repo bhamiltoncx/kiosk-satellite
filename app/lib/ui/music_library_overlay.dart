@@ -337,6 +337,7 @@ class _MusicLibraryScreenState extends State<MusicLibraryScreen> {
     _debounce?.cancel();
     _debounce = Timer(const Duration(milliseconds: 450), () {
       if (!mounted || text.trim() == _searched) return;
+      if (text.trim().isNotEmpty) widget.container.musicLibrary.noteSearch();
       setState(() {
         _searched = text.trim();
         _searchKind = null;
@@ -1384,6 +1385,9 @@ class _MusicLibraryScreenState extends State<MusicLibraryScreen> {
         onChanged: _onQuery,
         onSubmitted: (text) {
           _debounce?.cancel();
+          if (text.trim().isNotEmpty && text.trim() != _searched) {
+            widget.container.musicLibrary.noteSearch();
+          }
           setState(() {
             _searched = text.trim();
             _searchKind = null;

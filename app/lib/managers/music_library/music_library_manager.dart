@@ -441,13 +441,24 @@ class MusicLibraryManager extends Manager {
     final error = await src.play(item, mode, pick: pick.value, within: within);
     if (error != null && changes) _settle();
     if (error == null) {
-      unawaited(UsageCounters.bump(_settings, 'library_plays'));
+      // A play by the source it came from; Play next and Add to queue
+      // change nothing that plays, so they count apart.
+      unawaited(
+        UsageCounters.bump(
+          _settings,
+          changes ? 'library_plays_${src.key}' : 'library_queue_adds',
+        ),
+      );
       log.info(name, 'play ${item.kind.name} ${mode.name} on ${pick.value}');
     } else {
       log.warn(name, 'play ${item.id} on ${pick.value}: $error');
     }
     return error;
   }
+
+  /// Counts a search someone typed, for usage analytics.
+  void noteSearch() =>
+      unawaited(UsageCounters.bump(_settings, 'library_searches'));
 
   Future<void> open() async {
     unawaited(UsageCounters.bump(_settings, 'library_opens'));

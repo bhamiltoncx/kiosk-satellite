@@ -16,6 +16,7 @@ import '../../core/manager.dart';
 import '../airplay/airplay_manager.dart';
 import '../settings/definitions.dart' as defs;
 import '../settings/settings_manager.dart';
+import '../analytics/usage_counters.dart';
 import 'airplay_player.dart';
 import 'ha_remote_player.dart';
 import 'artwork_cache.dart';
@@ -3022,9 +3023,18 @@ class SendspinManager extends Manager {
   /// Take the item [id] out of the queue.
   Future<bool> removeQueueItem(String id) async {
     if (_remote case final SonosPlayer sonos) {
-      return sonos.removeQueueTrack(id);
+      return _edited(sonos.removeQueueTrack(id));
     }
-    return _queueCommand('player_queues/delete_item', {'item_id_or_index': id});
+    return _edited(
+      _queueCommand('player_queues/delete_item', {'item_id_or_index': id}),
+    );
+  }
+
+  /// Counts a queue edit that went through, for usage analytics.
+  Future<bool> _edited(Future<bool> edit) async {
+    final ok = await edit;
+    if (ok) unawaited(UsageCounters.bump(_settings, 'queue_edits'));
+    return ok;
   }
 
   /// Move the item [id] from [from] to [to], both positions in the queue
@@ -3033,12 +3043,14 @@ class SendspinManager extends Manager {
   Future<bool> moveQueueItem(String id, int from, int to) async {
     if (from == to) return true;
     if (_remote case final SonosPlayer sonos) {
-      return sonos.moveQueueTrack(from + 1, to + 1);
+      return _edited(sonos.moveQueueTrack(from + 1, to + 1));
     }
-    return _queueCommand('player_queues/move_item', {
-      'queue_item_id': id,
-      'pos_shift': to - from,
-    });
+    return _edited(
+      _queueCommand('player_queues/move_item', {
+        'queue_item_id': id,
+        'pos_shift': to - from,
+      }),
+    );
   }
 
   /// Move the item [id] right after the playing one. Music Assistant does
@@ -3049,18 +3061,24 @@ class SendspinManager extends Manager {
       final from = rows.indexWhere((r) => r['id'] == id);
       final current = rows.indexWhere((r) => r['current'] == true);
       if (from < 0) return false;
-      return sonos.moveQueueTrack(from + 1, current < 0 ? 1 : current + 2);
+      return _edited(
+        sonos.moveQueueTrack(from + 1, current < 0 ? 1 : current + 2),
+      );
     }
-    return _queueCommand('player_queues/move_item', {
-      'queue_item_id': id,
-      'pos_shift': 0,
-    });
+    return _edited(
+      _queueCommand('player_queues/move_item', {
+        'queue_item_id': id,
+        'pos_shift': 0,
+      }),
+    );
   }
 
   /// Empty the queue.
   Future<bool> clearQueue() async {
-    if (_remote case final SonosPlayer sonos) return sonos.clearQueueTracks();
-    return _queueCommand('player_queues/clear', const {});
+    if (_remote case final SonosPlayer sonos) {
+      return _edited(sonos.clearQueueTracks());
+    }
+    return _edited(_queueCommand('player_queues/clear', const {}));
   }
 
   Future<bool> _queueCommand(String command, Map<String, Object?> args) async {
