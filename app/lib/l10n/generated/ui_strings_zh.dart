@@ -3523,6 +3523,11 @@ class UiStringsZh extends UiStrings {
   String get pluginInstalled => '已安装';
 
   @override
+  String pluginNeedsAppVersion(String version) {
+    return '需要 Kiosk Satellite $version 或更高版本';
+  }
+
+  @override
   String get pluginStars => '星标';
 
   @override
@@ -3992,6 +3997,11 @@ class UiStringsZh extends UiStrings {
   @override
   String pluginErrorAndroidApi(String version) {
     return '插件需要 Android API $version';
+  }
+
+  @override
+  String pluginErrorAppVersion(String required, String current) {
+    return '插件需要 Kiosk Satellite $required 或更高版本。本机运行的是 $current。';
   }
 
   @override
@@ -18285,6 +18295,11 @@ class UiStringsZhCn extends UiStringsZh {
   String get pluginInstalled => '已安装';
 
   @override
+  String pluginNeedsAppVersion(String version) {
+    return '需要 Kiosk Satellite $version 或更高版本';
+  }
+
+  @override
   String get pluginStars => '星标';
 
   @override
@@ -18754,6 +18769,11 @@ class UiStringsZhCn extends UiStringsZh {
   @override
   String pluginErrorAndroidApi(String version) {
     return '插件需要 Android API $version';
+  }
+
+  @override
+  String pluginErrorAppVersion(String required, String current) {
+    return '插件需要 Kiosk Satellite $required 或更高版本。本机运行的是 $current。';
   }
 
   @override

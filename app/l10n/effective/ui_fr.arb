@@ -13773,6 +13773,25 @@
       ]
     }
   },
+  "pluginNeedsAppVersion": "Nécessite Kiosk Satellite {version} ou plus récent",
+  "@pluginNeedsAppVersion": {
+    "context": "Settings > Plugin Manager > Browse plugins",
+    "description": "Shown on a listed plugin whose newest release needs a newer Kiosk Satellite than this kiosk runs.",
+    "x-locations": {
+      "device": [
+        "Settings > Plugin Manager > Browse plugins"
+      ],
+      "remoteAdmin": [
+        "Plugin Manager > Browse plugins"
+      ]
+    },
+    "placeholders": {
+      "version": {
+        "type": "String",
+        "example": "2026.10.40"
+      }
+    }
+  },
   "pluginStars": "Étoiles",
   "@pluginStars": {
     "context": "Settings > Plugin Manager > Browse plugins",
@@ -15731,6 +15750,29 @@
       "version": {
         "type": "String",
         "example": "35"
+      }
+    }
+  },
+  "pluginErrorAppVersion": "Le plugin nécessite Kiosk Satellite {required} ou plus récent. Ce kiosque exécute {current}.",
+  "@pluginErrorAppVersion": {
+    "context": "Settings > Plugin Manager > Add plugin, preview or install",
+    "description": "Explain the failure. Keep technical identifiers, file names and product names unchanged.",
+    "x-locations": {
+      "device": [
+        "Settings > Plugin Manager > Add plugin, preview or install"
+      ],
+      "remoteAdmin": [
+        "Settings > Plugin Manager > Add plugin, preview or install"
+      ]
+    },
+    "placeholders": {
+      "required": {
+        "type": "String",
+        "example": "2026.10.40"
+      },
+      "current": {
+        "type": "String",
+        "example": "2026.10.36"
       }
     }
   },

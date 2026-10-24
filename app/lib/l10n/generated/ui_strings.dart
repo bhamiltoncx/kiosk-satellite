@@ -6460,6 +6460,12 @@ abstract class UiStrings {
   /// **'Installed'**
   String get pluginInstalled;
 
+  /// Shown on a listed plugin whose newest release needs a newer Kiosk Satellite than this kiosk runs.
+  ///
+  /// In en, this message translates to:
+  /// **'Needs Kiosk Satellite {version} or newer'**
+  String pluginNeedsAppVersion(String version);
+
   /// Visible label, help or status in this section.
   ///
   /// In en, this message translates to:
@@ -7329,6 +7335,12 @@ abstract class UiStrings {
   /// In en, this message translates to:
   /// **'Plugin needs Android API {version}'**
   String pluginErrorAndroidApi(String version);
+
+  /// Explain the failure. Keep technical identifiers, file names and product names unchanged.
+  ///
+  /// In en, this message translates to:
+  /// **'Plugin needs Kiosk Satellite {required} or newer. This kiosk runs {current}.'**
+  String pluginErrorAppVersion(String required, String current);
 
   /// Explain the failure. Keep technical identifiers, file names and product names unchanged.
   ///

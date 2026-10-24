@@ -28002,5 +28002,17 @@
     "translation": "a3dc89907f4b7088e0ed6b7aef90f40123e31ce7cde6985581445d7fd0c20d94",
     "author": "Xavier Larrea",
     "ownerAuthored": true
+  },
+  "pluginErrorAppVersion": {
+    "source": "8acd41dd1defb731dc2fe0a507c9bd75820c01a73b4bd069b48d66d6c518115a",
+    "translation": "3905a59d0e727e300f4a29b8e8f655bd0597253d54f824e07c4674c4d9de3c17",
+    "author": "Xavier Larrea",
+    "ownerAuthored": true
+  },
+  "pluginNeedsAppVersion": {
+    "source": "96cba1a7bf506245af3f97157882d2e00a1674600825d0917e0463e7b21e3ad9",
+    "translation": "73410f6cd02354ed0c66abf9bed8d178a8e32711165b96868924b9fb24803167",
+    "author": "Xavier Larrea",
+    "ownerAuthored": true
   }
 }

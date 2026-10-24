@@ -27857,5 +27857,17 @@
     "translation": "5fdc759e9b0c3f9e61430a18d899e165092e2f67ac17dea27749609878fa6f4f",
     "author": "Xavier Larrea",
     "ownerAuthored": true
+  },
+  "pluginNeedsAppVersion": {
+    "source": "96cba1a7bf506245af3f97157882d2e00a1674600825d0917e0463e7b21e3ad9",
+    "translation": "6894fad4abc807606bb638a44bb5f2566f90f3152799a67cf0a4a709e4227fe7",
+    "author": "Xavier Larrea",
+    "ownerAuthored": true
+  },
+  "pluginErrorAppVersion": {
+    "source": "8acd41dd1defb731dc2fe0a507c9bd75820c01a73b4bd069b48d66d6c518115a",
+    "translation": "e2e1276abe0cfb71dfe2338fa98872b0c9f4bf323b4f568ca31a1c33ad3e5f29",
+    "author": "Xavier Larrea",
+    "ownerAuthored": true
   }
 }

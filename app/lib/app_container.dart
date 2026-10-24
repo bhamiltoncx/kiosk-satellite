@@ -195,6 +195,7 @@ class AppContainer {
     glance = GlanceManager(bus, commands, log, settings, homeAssistant);
     shizuku = ShizukuManager(bus, commands, log);
     plugins = PluginManager(bus, commands, log)
+      ..appVersion = (() => device.appVersion)
       ..voice = PluginVoiceFeed(
         view: voice.view,
         level: voice.level,

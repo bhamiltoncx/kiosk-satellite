@@ -2,6 +2,11 @@
 
 All notable changes to Kiosk Satellite are documented here. Full release notes for each version are available on the [releases page](https://github.com/jxlarrea/kiosk-satellite/releases).
 
+## Unreleased
+
+### Added
+- **Plugins can name the Kiosk Satellite release they need.** A plugin's manifest can set `minAppVersion`, such as `2026.10.40`. Kiosk Satellite will not install or update a plugin that needs a newer release, also through fleet sync, and the review and the error name both versions. **Browse plugins** shows **Needs Kiosk Satellite 2026.10.40 or newer** on such a plugin instead of Install or Update, and the version you have keeps running. Community Plugins now requires the field on new submissions (#1140).
+
 ## v2026.10.39 - 2026-10-24
 
 ### Added

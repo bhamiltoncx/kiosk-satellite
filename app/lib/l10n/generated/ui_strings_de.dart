@@ -3664,6 +3664,11 @@ class UiStringsDe extends UiStrings {
   String get pluginInstalled => 'Installiert';
 
   @override
+  String pluginNeedsAppVersion(String version) {
+    return 'Benötigt Kiosk Satellite $version oder neuer';
+  }
+
+  @override
   String get pluginStars => 'Sterne';
 
   @override
@@ -4203,6 +4208,11 @@ class UiStringsDe extends UiStrings {
   @override
   String pluginErrorAndroidApi(String version) {
     return 'Das Plugin benötigt Android-API $version';
+  }
+
+  @override
+  String pluginErrorAppVersion(String required, String current) {
+    return 'Das Plugin benötigt Kiosk Satellite $required oder neuer. Auf diesem Kiosk läuft $current.';
   }
 
   @override
