@@ -227,7 +227,13 @@ class AppContainer {
     alarms = AlarmManager(bus, commands, log, settings)
       ..screensaverModeOverride = () => screensaver.modeOverride.value;
     calendar = CalendarManager(bus, commands, log, settings);
-    musicLibrary = MusicLibraryManager(bus, commands, log, settings);
+    musicLibrary = MusicLibraryManager(
+      bus,
+      commands,
+      log,
+      settings,
+      nowPlaying: sendspin.nowPlaying,
+    );
     // The library is opaque and full screen too.
     musicLibrary.visible.addListener(
       () => browser.setCovered(

@@ -2959,18 +2959,14 @@ class _GenreTile extends StatelessWidget {
           height: height,
           child: Stack(
             children: [
+              // Large and cut by the tile's corner, as a backdrop.
               Positioned(
-                right: 4,
-                top: 0,
-                bottom: 0,
-                child: Opacity(
-                  opacity: .9,
-                  child: _GenreGlyph(
-                    container: container,
-                    item: item,
-                    size: height - 12,
-                    color: scheme.onSecondaryContainer,
-                  ),
+                right: -height * 0.12,
+                bottom: -height * 0.18,
+                child: Icon(
+                  genreIcon(item.title),
+                  size: height * 1.05,
+                  color: scheme.onSecondaryContainer.withValues(alpha: .22),
                 ),
               ),
               Positioned(
@@ -2992,62 +2988,6 @@ class _GenreTile extends StatelessWidget {
           ),
         ),
       ),
-    );
-  }
-}
-
-/// A genre's picture in one color, or nothing until it loads.
-class _GenreGlyph extends StatefulWidget {
-  const _GenreGlyph({
-    required this.container,
-    required this.item,
-    required this.size,
-    required this.color,
-  });
-
-  final AppContainer container;
-  final LibraryItem item;
-  final double size;
-  final Color color;
-
-  @override
-  State<_GenreGlyph> createState() => _GenreGlyphState();
-}
-
-class _GenreGlyphState extends State<_GenreGlyph> {
-  Uint8List? _bytes;
-
-  @override
-  void initState() {
-    super.initState();
-    final url = widget.item.art ?? '';
-    if (url.isEmpty) return;
-    _bytes = widget.container.musicLibrary.cachedArt(url);
-    if (_bytes != null) return;
-    unawaited(
-      widget.container.musicLibrary.loadArt(url).then((bytes) {
-        if (mounted) setState(() => _bytes = bytes);
-      }),
-    );
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    final bytes = _bytes;
-    return SizedBox.square(
-      dimension: widget.size,
-      child: bytes == null
-          ? Icon(
-              Icons.category_outlined,
-              size: widget.size * 0.5,
-              color: widget.color,
-            )
-          : _isSvg(bytes)
-          ? SvgPicture.memory(
-              bytes,
-              colorFilter: ColorFilter.mode(widget.color, BlendMode.srcIn),
-            )
-          : Image.memory(bytes, fit: BoxFit.contain),
     );
   }
 }
@@ -3098,13 +3038,25 @@ class _Row extends StatelessWidget {
             if (number != null)
               SizedBox(
                 width: 28,
-                child: Text(
-                  '$number',
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                    color: scheme.onSurfaceVariant,
-                    fontFeatures: const [FontFeature.tabularFigures()],
-                  ),
+                // The tap answered at once: a spinner in place of the
+                // number while the track starts.
+                child: ValueListenableBuilder<LibraryItem?>(
+                  valueListenable: container.musicLibrary.starting,
+                  builder: (context, starting, _) => starting?.id == item.id
+                      ? const Center(
+                          child: SizedBox.square(
+                            dimension: 18,
+                            child: CircularProgressIndicator(strokeWidth: 2),
+                          ),
+                        )
+                      : Text(
+                          '$number',
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                            color: scheme.onSurfaceVariant,
+                            fontFeatures: const [FontFeature.tabularFigures()],
+                          ),
+                        ),
                 ),
               )
             else
@@ -3180,7 +3132,45 @@ class _Row extends StatelessWidget {
 /// A cover, fetched through the library (which knows each source's
 /// certificates and tokens), with the kind's icon until it lands or when
 /// there is none.
-/// Music Assistant's genre pictures and provider logos are SVG.
+/// A genre's icon, picked from words in its name, in the app's own icon
+/// set. A genre no word matches gets a note.
+IconData genreIcon(String name) {
+  final n = name.toLowerCase();
+  bool any(List<String> words) => words.any(n.contains);
+  return switch (n) {
+    _ when any(['hip hop', 'hip-hop', 'hiphop', 'rap', 'r&b', 'rnb', 'trap']) =>
+      Icons.mic_rounded,
+    _ when any(['classical', 'composer', 'orchestra', 'opera', 'piano']) =>
+      Icons.piano_rounded,
+    _ when any(['jazz', 'blues', 'swing', 'soul', 'funk', 'lounge']) =>
+      Icons.nightlife_rounded,
+    _ when any(['dance', 'disco', 'edm', 'house', 'club']) =>
+      Icons.celebration_rounded,
+    _ when any(['electro', 'techno', 'trance', 'dubstep', 'drum', 'synth']) =>
+      Icons.graphic_eq_rounded,
+    _ when any(['rock', 'metal', 'punk', 'grunge', 'alternative', 'indie']) =>
+      Icons.bolt_rounded,
+    _ when any(['ambient', 'chill', 'lo-fi', 'lofi', 'sleep', 'relax']) =>
+      Icons.nights_stay_rounded,
+    _ when any(['folk', 'singer']) => Icons.mic_external_on_rounded,
+    _ when any(['acoustic', 'unplugged']) => Icons.waves_rounded,
+    _ when any(['reggae', 'latin', 'salsa', 'samba', 'bossa', 'tropical']) =>
+      Icons.wb_sunny_rounded,
+    _ when any(['world', 'afro', 'celtic']) => Icons.public_rounded,
+    _ when any(['soundtrack', 'score', 'film', 'movie']) => Icons.movie_rounded,
+    _ when any(['game']) => Icons.sports_esports_rounded,
+    _ when any(['gospel', 'christian', 'worship']) => Icons.church_rounded,
+    _ when any(['kids', 'children']) => Icons.child_care_rounded,
+    _ when any(['christmas', 'holiday']) => Icons.ac_unit_rounded,
+    _ when any(['spoken', 'comedy', 'podcast', 'audiobook']) =>
+      Icons.record_voice_over_rounded,
+    _ when any(['love', 'romance']) => Icons.favorite_rounded,
+    _ when any(['pop']) => Icons.auto_awesome_rounded,
+    _ => Icons.music_note_rounded,
+  };
+}
+
+/// Music Assistant's provider logos are SVG.
 bool _isSvg(Uint8List bytes) {
   final head = String.fromCharCodes(
     bytes.take(256).where((b) => b < 128),
@@ -3197,12 +3187,17 @@ class LibraryArt extends StatefulWidget {
     required this.size,
     this.radius = 12,
     this.square = false,
+    this.showStarting = true,
   });
 
   final AppContainer container;
   final LibraryItem item;
   final double size;
   final double radius;
+
+  /// A spinner over the cover while a play of this item starts. The
+  /// player bar's own cover leaves it out: the bar says so itself.
+  final bool showStarting;
 
   /// Square even for an artist, filling a tile's edge.
   final bool square;
@@ -3238,7 +3233,10 @@ class _LibraryArtState extends State<LibraryArt> {
 
   void _fetch() {
     final dark = Theme.of(context).brightness == Brightness.dark;
-    final url = (dark ? widget.item.artDark : null) ?? widget.item.art ?? '';
+    // A genre is drawn by the app, not from the server's picture.
+    final url = widget.item.kind == LibraryKind.genre
+        ? ''
+        : (dark ? widget.item.artDark : null) ?? widget.item.art ?? '';
     if (url == _url) return;
     _url = url;
     _ticket?.cancel();
@@ -3266,11 +3264,21 @@ class _LibraryArtState extends State<LibraryArt> {
     final radius = round
         ? BorderRadius.circular(widget.size / 2)
         : BorderRadius.circular(widget.radius);
-    return ClipRRect(
+    final genre = widget.item.kind == LibraryKind.genre;
+    final art = ClipRRect(
       borderRadius: radius,
       child: SizedBox.square(
         dimension: widget.size,
-        child: bytes == null
+        child: genre
+            ? ColoredBox(
+                color: scheme.secondaryContainer,
+                child: Icon(
+                  genreIcon(widget.item.title),
+                  size: widget.size * 0.46,
+                  color: scheme.onSecondaryContainer,
+                ),
+              )
+            : bytes == null
             ? ColoredBox(
                 color: scheme.surfaceContainerHighest,
                 child: Icon(
@@ -3284,17 +3292,7 @@ class _LibraryArtState extends State<LibraryArt> {
                 color: scheme.surfaceContainerHighest,
                 child: Padding(
                   padding: EdgeInsets.all(widget.size * 0.18),
-                  child: SvgPicture.memory(
-                    bytes,
-                    // A genre's picture is a black glyph, drawn in the
-                    // theme's color. A provider logo keeps its own.
-                    colorFilter: widget.item.kind == LibraryKind.genre
-                        ? ColorFilter.mode(
-                            scheme.onSurfaceVariant,
-                            BlendMode.srcIn,
-                          )
-                        : null,
-                  ),
+                  child: SvgPicture.memory(bytes),
                 ),
               )
             : Image.memory(
@@ -3308,6 +3306,33 @@ class _LibraryArtState extends State<LibraryArt> {
                     ColoredBox(color: scheme.surfaceContainerHighest),
               ),
       ),
+    );
+    if (!widget.showStarting || widget.item.id.isEmpty) return art;
+    // The tap answered at once: a spinner over the cover while it starts.
+    return ValueListenableBuilder<LibraryItem?>(
+      valueListenable: widget.container.musicLibrary.starting,
+      child: art,
+      builder: (context, starting, art) => starting?.id != widget.item.id
+          ? art!
+          : Stack(
+              alignment: Alignment.center,
+              children: [
+                art!,
+                Positioned.fill(
+                  child: ClipRRect(
+                    borderRadius: radius,
+                    child: const ColoredBox(color: Colors.black45),
+                  ),
+                ),
+                SizedBox.square(
+                  dimension: math.min(36, widget.size * 0.4),
+                  child: const CircularProgressIndicator(
+                    strokeWidth: 3,
+                    color: Colors.white,
+                  ),
+                ),
+              ],
+            ),
     );
   }
 
@@ -3361,6 +3386,13 @@ class _MiniPlayerState extends State<_MiniPlayer> {
   String? _repeat;
   double? _seekDrag;
   double? _volumeDrag;
+  bool? _wantPlaying;
+
+  /// The track a skip left, until the player reports another.
+  String? _skippedFrom;
+
+  /// Lets go of a press the player never reported.
+  Timer? _pending;
 
   @override
   void initState() {
@@ -3368,6 +3400,7 @@ class _MiniPlayerState extends State<_MiniPlayer> {
     c.sendspin.nowPlaying.addListener(_changed);
     c.sendspin.favorite.addListener(_changed);
     c.sendspin.queueItems.addListener(_changed);
+    c.musicLibrary.starting.addListener(_changed);
     _changed();
     _readQueue();
   }
@@ -3397,8 +3430,38 @@ class _MiniPlayerState extends State<_MiniPlayer> {
     c.sendspin.nowPlaying.removeListener(_changed);
     c.sendspin.favorite.removeListener(_changed);
     c.sendspin.queueItems.removeListener(_changed);
+    c.musicLibrary.starting.removeListener(_changed);
     _tick?.cancel();
+    _pending?.cancel();
     super.dispose();
+  }
+
+  static String _key(Map<String, Object?>? now) =>
+      '${now?['title'] ?? ''}|${now?['artist'] ?? ''}';
+
+  void _await() {
+    _pending?.cancel();
+    _pending = Timer(const Duration(seconds: 6), () {
+      if (!mounted) return;
+      setState(() {
+        _wantPlaying = null;
+        _skippedFrom = null;
+      });
+    });
+  }
+
+  /// Play or pause shows at once, the player's answer after.
+  Future<void> _toggle(Future<bool> Function() run, bool playing) async {
+    setState(() => _wantPlaying = !playing);
+    _await();
+    if (!await run() && mounted) setState(() => _wantPlaying = null);
+  }
+
+  /// A skip shows the ring until the player moves to another track.
+  Future<void> _skip(Future<Object?> Function() run) async {
+    setState(() => _skippedFrom = _key(c.sendspin.nowPlaying.value));
+    _await();
+    if (await run() == false && mounted) setState(() => _skippedFrom = null);
   }
 
   bool _hadTrack = false;
@@ -3409,6 +3472,10 @@ class _MiniPlayerState extends State<_MiniPlayer> {
     if (_hadTrack && now == null) _readQueue();
     _hadTrack = now != null;
     if (_shuffle != null && now?['shuffle'] == _shuffle) _shuffle = null;
+    if (_wantPlaying != null && (now?['playing'] == true) == _wantPlaying) {
+      _wantPlaying = null;
+    }
+    if (_skippedFrom != null && _key(now) != _skippedFrom) _skippedFrom = null;
     if (_repeat != null && now?['repeat'] == _repeat) _repeat = null;
     final playing = now?['playing'] == true;
     if (playing && _tick == null) {
@@ -3467,12 +3534,24 @@ class _MiniPlayerState extends State<_MiniPlayer> {
         ? _idle()
         : (current: null, before: null, after: null);
     final queued = idle.current;
-    final title = '${now?['title'] ?? queued?['title'] ?? ''}';
-    final artist = '${now?['artist'] ?? queued?['artist'] ?? ''}';
-    final playing = now?['playing'] == true;
-    final art = '${now?['artworkUrl'] ?? queued?['artworkUrl'] ?? ''}';
+    // A play from the library shows what it starts at once, the player's
+    // own report after.
+    final starting = c.musicLibrary.starting.value;
+    final title = starting != null
+        ? starting.title
+        : '${now?['title'] ?? queued?['title'] ?? ''}';
+    final artist = starting != null
+        ? s.commonLoading
+        : '${now?['artist'] ?? queued?['artist'] ?? ''}';
+    final playing =
+        _wantPlaying ?? (starting != null || now?['playing'] == true);
+    final art = starting != null
+        ? starting.art ?? ''
+        : '${now?['artworkUrl'] ?? queued?['artworkUrl'] ?? ''}';
+    final busy =
+        starting != null || _wantPlaying != null || _skippedFrom != null;
     VoidCallback? jump(String? id) =>
-        id == null ? null : () => c.sendspin.playQueueItem(id);
+        id == null ? null : () => _skip(() => c.sendspin.playQueueItem(id));
     final canOpen = now != null && c.settings.get(defs.sendspinFullscreen);
     final duration = (now?['durationMs'] as num?)?.toDouble() ?? 0;
     final position = now == null ? 0.0 : _position(now, duration);
@@ -3512,6 +3591,7 @@ class _MiniPlayerState extends State<_MiniPlayer> {
               title: title,
               art: art.isEmpty ? null : art,
             ),
+            showStarting: false,
             size: roomy ? 56 : 44,
             radius: 8,
           ),
@@ -3544,13 +3624,33 @@ class _MiniPlayerState extends State<_MiniPlayer> {
       ),
     );
 
-    final playButton = IconButton.filled(
-      tooltip: playing ? s.mediaPause : s.mediaPlay,
-      iconSize: roomy ? 30 : 26,
-      icon: Icon(playing ? Icons.pause_rounded : Icons.play_arrow_rounded),
-      onPressed: now != null
-          ? () => c.sendspin.control('toggle')
-          : jump(queued == null ? null : '${queued['id']}'),
+    final playButton = Stack(
+      alignment: Alignment.center,
+      children: [
+        IconButton.filled(
+          tooltip: playing ? s.mediaPause : s.mediaPlay,
+          iconSize: roomy ? 30 : 26,
+          icon: Icon(playing ? Icons.pause_rounded : Icons.play_arrow_rounded),
+          onPressed: now != null
+              ? () => _toggle(
+                  () => c.sendspin.control('toggle'),
+                  now['playing'] == true,
+                )
+              : jump(queued == null ? null : '${queued['id']}'),
+        ),
+        // A ring around it until the player answers a play, a pause or
+        // a skip.
+        if (busy)
+          IgnorePointer(
+            child: SizedBox.square(
+              dimension: roomy ? 54 : 50,
+              child: CircularProgressIndicator(
+                strokeWidth: 2.5,
+                color: scheme.primary,
+              ),
+            ),
+          ),
+      ],
     );
 
     if (narrow) {
@@ -3574,7 +3674,7 @@ class _MiniPlayerState extends State<_MiniPlayer> {
                         Icons.skip_next_rounded,
                         s.mediaNextTrack,
                         now != null
-                            ? () => c.sendspin.control('next')
+                            ? () => _skip(() => c.sendspin.control('next'))
                             : jump(idle.after),
                       ),
                     ],
@@ -3625,7 +3725,7 @@ class _MiniPlayerState extends State<_MiniPlayer> {
           Icons.skip_previous_rounded,
           s.mediaPreviousTrack,
           now != null
-              ? () => c.sendspin.control('previous')
+              ? () => _skip(() => c.sendspin.control('previous'))
               : jump(idle.before),
           size: 28,
         ),
@@ -3635,7 +3735,9 @@ class _MiniPlayerState extends State<_MiniPlayer> {
         button(
           Icons.skip_next_rounded,
           s.mediaNextTrack,
-          now != null ? () => c.sendspin.control('next') : jump(idle.after),
+          now != null
+              ? () => _skip(() => c.sendspin.control('next'))
+              : jump(idle.after),
           size: 28,
         ),
         if (now != null && (has('repeat') || has('repeat_all')))

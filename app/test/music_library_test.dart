@@ -701,6 +701,20 @@ void main() {
     });
   });
 
+  test('a genre gets an icon from its name, a note when nothing fits', () {
+    expect(genreIcon('Hip-Hop'), Icons.mic_rounded);
+    expect(genreIcon('Classical'), Icons.piano_rounded);
+    expect(genreIcon('Composer'), Icons.piano_rounded);
+    expect(genreIcon('Dance'), Icons.celebration_rounded);
+    expect(genreIcon('Synthpop'), Icons.graphic_eq_rounded);
+    expect(genreIcon('Indie Rock'), Icons.bolt_rounded);
+    expect(genreIcon('Folk'), Icons.mic_external_on_rounded);
+    expect(genreIcon('Acoustic'), Icons.waves_rounded);
+    expect(genreIcon('Country'), Icons.music_note_rounded);
+    expect(genreIcon('K-Pop'), Icons.auto_awesome_rounded);
+    expect(genreIcon('Unknown'), Icons.music_note_rounded);
+  });
+
   group('the overlay', () {
     final album = LibraryItem(
       id: 'library://album/1',
@@ -940,6 +954,51 @@ void main() {
       }
     }
 
+    testWidgets('a play shows what it starts until the player reports it', (
+      tester,
+    ) async {
+      final c = await container();
+      tester.view.physicalSize = const Size(1280, 800);
+      tester.view.devicePixelRatio = 1.0;
+      addTearDown(tester.view.reset);
+      c.musicLibrary.visible.value = true;
+      await tester.pumpWidget(
+        MaterialApp(
+          home: Scaffold(
+            body: Stack(children: [MusicLibraryOverlay(container: c)]),
+          ),
+        ),
+      );
+      await tester.pump(const Duration(milliseconds: 200));
+      c.musicLibrary.pick.value = 'ma:living';
+      // Queuing changes nothing that plays: no wait.
+      await c.musicLibrary.play(album, PlayMode.add);
+      expect(c.musicLibrary.starting.value, isNull);
+      await c.musicLibrary.play(album, PlayMode.replace);
+      expect(c.musicLibrary.starting.value, album);
+      await tester.pump();
+      // The bar names it at once, and the cover spins.
+      expect(find.text('Loading…'), findsOneWidget);
+      expect(find.byType(CircularProgressIndicator), findsWidgets);
+      // The player's report ends the wait.
+      c.sendspin.nowPlaying.value = {
+        'title': 'Glass Harbor',
+        'artist': 'Juniper Lane',
+        'playing': true,
+      };
+      expect(c.musicLibrary.starting.value, isNull);
+      await tester.pump();
+      expect(find.text('Loading…'), findsNothing);
+      // A player that never reports lets go after a while.
+      await c.musicLibrary.play(album, PlayMode.now);
+      expect(c.musicLibrary.starting.value, album);
+      await tester.pump(const Duration(seconds: 16));
+      expect(c.musicLibrary.starting.value, isNull);
+      c.musicLibrary.visible.value = false;
+      c.sendspin.nowPlaying.value = null;
+      await tester.pump(const Duration(seconds: 7));
+    });
+
     testWidgets('each grid density step changes the tile size', (tester) async {
       final source = _FakeSource(album);
       final c = await container(source: source);
@@ -1089,8 +1148,11 @@ void main() {
       await tester.pumpAndSettle();
       expect(find.text('Nothing playing'), findsNothing);
       expect(find.text('Track A'), findsOneWidget);
-      // Play resumes the queue on its current track.
+      // Play resumes the queue on its current track, with a ring around
+      // the button until the player reports it.
       await tester.tap(find.byTooltip('Play').last);
+      await tester.pump(const Duration(milliseconds: 50));
+      expect(find.byType(CircularProgressIndicator), findsOneWidget);
       await tester.pumpAndSettle();
       expect(api.calls, contains('player_queues/play_index'));
       expect(api.args['player_queues/play_index'], containsPair('index', 'a'));

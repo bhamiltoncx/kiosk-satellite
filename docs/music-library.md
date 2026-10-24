@@ -16,7 +16,7 @@ The source picker sits at the top of the sidebar on a tablet, at the top of the 
 
 Discover shows the rows Music Assistant's own Discover page shows, in the same order. To hide, show or reorder them, edit the Discover page in Music Assistant and the library follows. Music Assistant saves that layout for each of its users, so the library uses the layout of the user the token belongs to. When Music Assistant recommends nothing, Discover shows what was played recently, your playlists, recently added tracks and radio stations instead. A row that mixes kinds, such as Recently played, says under each entry whether it is a track, an album, an artist or a playlist.
 
-**Browse by genre** comes last on Discover, as on Music Assistant's page, with the eight genres that have the most music in your library. Tap one to open the rows Music Assistant shows for that genre, such as its artists and albums.
+**Browse by genre** comes last on Discover, as on Music Assistant's page, with the eight genres that have the most music in your library. Each genre gets an icon picked from its name. Tap one to open the rows Music Assistant shows for that genre, such as its artists and albums.
 
 Browse shows each music provider with its logo, as Music Assistant does.
 
@@ -43,7 +43,7 @@ When a play needs a speaker of the source first, such as Home Assistant before a
 - Tap a radio station, a podcast episode or a track in a list to play it.
 - Tap the menu button on a row, or long press a card, for **Play now**, **Play next**, **Add to queue**, **Start radio**, **Go to artist** and **Add to favorites**. Start radio and favorites are Music Assistant only. Start radio keeps playing similar music after the track, album, artist or playlist ends.
 
-Play next and Add to queue show a message, and its **View** button opens the [queue](#the-queue).
+Play next and Add to queue show a message, and its **View** button opens the [queue](#the-queue). A play shows a spinner over the cover you tapped, and the player bar shows it with **Loading…** until the speaker starts it.
 
 The player bar at the bottom works like Music Assistant's. The track and its favorite heart sit on the left. Shuffle, previous, play or pause, next and repeat sit over the seek bar in the middle. The [queue](#the-queue), the volume and the button that opens Now Playing sit on the right. Each control shows only where the player supports it, as on Now Playing. With nothing playing, the bar shows the track the queue would resume from: play starts the queue there, and previous and next move through it. Tap the track to open the Now Playing view over the library, and close Now Playing to come back to the library. On a short screen the seek bar becomes a line along the top of the bar, and the volume button opens Speakers. On a phone the bar keeps the track, play or pause, next and the queue.
 
