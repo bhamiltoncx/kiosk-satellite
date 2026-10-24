@@ -14390,6 +14390,14 @@ class UiStringsNl extends UiStrings {
       'Onderbreek een antwoord door te spreken. Zet uit als het zichzelf onderbreekt.';
 
   @override
+  String get settingVoiceRealtimeTalkOverSensitivityTitle =>
+      'Gevoeligheid voor onderbreken';
+
+  @override
+  String get settingVoiceRealtimeTalkOverSensitivityDescription =>
+      'Hoe makkelijk spreken een antwoord onderbreekt. Verhoog dit als onderbreken niet werkt met een zachte microfoon. Hogere waarden kunnen ervoor zorgen dat het zichzelf onderbreekt.';
+
+  @override
   String get settingVoiceRealtimeToolsTitle => 'Tools';
 
   @override

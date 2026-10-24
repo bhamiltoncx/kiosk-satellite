@@ -13480,6 +13480,13 @@ class UiStringsZh extends UiStrings {
       '允许你通过说话打断助手的回复。如果助手会被自己播放的声音打断，请关闭此项。';
 
   @override
+  String get settingVoiceRealtimeTalkOverSensitivityTitle => '语音打断灵敏度';
+
+  @override
+  String get settingVoiceRealtimeTalkOverSensitivityDescription =>
+      '说话打断回复的难易程度。如果麦克风音量较小导致无法打断，请调高此项。设置过高可能导致助手被自己的声音打断。';
+
+  @override
   String get settingVoiceRealtimeToolsTitle => '工具';
 
   @override
@@ -28226,6 +28233,13 @@ class UiStringsZhCn extends UiStringsZh {
   @override
   String get settingVoiceRealtimeTalkOverDescription =>
       '允许你通过说话打断助手的回复。如果助手会被自己播放的声音打断，请关闭此项。';
+
+  @override
+  String get settingVoiceRealtimeTalkOverSensitivityTitle => '语音打断灵敏度';
+
+  @override
+  String get settingVoiceRealtimeTalkOverSensitivityDescription =>
+      '说话打断回复的难易程度。如果麦克风音量较小导致无法打断，请调高此项。设置过高可能导致助手被自己的声音打断。';
 
   @override
   String get settingVoiceRealtimeToolsTitle => '工具';

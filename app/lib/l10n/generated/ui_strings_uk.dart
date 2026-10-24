@@ -14369,6 +14369,14 @@ class UiStringsUk extends UiStrings {
       'Перебивайте відповідь голосом. Вимкніть, якщо асистент перебиває сам себе.';
 
   @override
+  String get settingVoiceRealtimeTalkOverSensitivityTitle =>
+      'Чутливість перебивання';
+
+  @override
+  String get settingVoiceRealtimeTalkOverSensitivityDescription =>
+      'Наскільки легко голос перебиває відповідь. Підвищте її, якщо перебити не вдається через тихий мікрофон. Вищі значення можуть змусити асистента перебивати самого себе.';
+
+  @override
   String get settingVoiceRealtimeToolsTitle => 'Інструменти';
 
   @override

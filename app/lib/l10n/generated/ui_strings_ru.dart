@@ -14308,6 +14308,14 @@ class UiStringsRu extends UiStrings {
       'Прерывать ответ, начав говорить. Выключите, если ассистент перебивает сам себя.';
 
   @override
+  String get settingVoiceRealtimeTalkOverSensitivityTitle =>
+      'Чувствительность перебивания';
+
+  @override
+  String get settingVoiceRealtimeTalkOverSensitivityDescription =>
+      'Насколько легко голос прерывает ответ. Повысьте, если перебить не получается из-за тихого микрофона. Высокие значения могут заставить ассистента перебивать самого себя.';
+
+  @override
   String get settingVoiceRealtimeToolsTitle => 'Инструменты';
 
   @override

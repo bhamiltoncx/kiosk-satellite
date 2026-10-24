@@ -27729,5 +27729,17 @@
     "translation": "879a4382816bee89e121fcc4a06d0a0941dd1558294d191abf99112beeafdbcb",
     "author": "Xavier Larrea",
     "ownerAuthored": true
+  },
+  "settingVoiceRealtimeTalkOverSensitivityDescription": {
+    "source": "5b74c233bfe3d565348826f68e950613905ac98c16291d25142f544c70374576",
+    "translation": "03fe47cbac028f23b58f43d05785ad2d9d90679cb321e7d4783f4cb996e6bcff",
+    "author": "Xavier Larrea",
+    "ownerAuthored": true
+  },
+  "settingVoiceRealtimeTalkOverSensitivityTitle": {
+    "source": "da98c8e4aa209d24ce9015975783167c52349665cb5be82c0f0250a8b45dee2f",
+    "translation": "53b343130cee60370cd2a4fc23bc558e64bd0a28ea03fa6a30f64e2d159327c0",
+    "author": "Xavier Larrea",
+    "ownerAuthored": true
   }
 }

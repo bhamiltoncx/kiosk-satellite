@@ -52186,6 +52186,16 @@
     "context": "Settings > Voice Satellite > Realtime",
     "description": "Translate the visible label or help. Keep Voice Satellite, Kiosk Satellite, Home Assistant, ESPHome, HACS and model names unchanged."
   },
+  "settingVoiceRealtimeTalkOverSensitivityTitle": "Unterbrechungsempfindlichkeit",
+  "@settingVoiceRealtimeTalkOverSensitivityTitle": {
+    "context": "Settings > Voice Satellite > Realtime",
+    "description": "Translate the visible label or help. Keep Voice Satellite, Kiosk Satellite, Home Assistant, ESPHome, HACS and model names unchanged."
+  },
+  "settingVoiceRealtimeTalkOverSensitivityDescription": "Wie leicht Sprechen eine Antwort unterbricht. Erhöhe sie, wenn das Unterbrechen bei einem leisen Mikrofon nicht klappt. Höhere Werte können dazu führen, dass er sich selbst unterbricht.",
+  "@settingVoiceRealtimeTalkOverSensitivityDescription": {
+    "context": "Settings > Voice Satellite > Realtime",
+    "description": "Translate the visible label or help. Keep Voice Satellite, Kiosk Satellite, Home Assistant, ESPHome, HACS and model names unchanged."
+  },
   "settingVoiceRealtimeToolsTitle": "Werkzeuge",
   "@settingVoiceRealtimeToolsTitle": {
     "context": "Settings > Voice Satellite > Realtime",

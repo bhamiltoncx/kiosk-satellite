@@ -14500,6 +14500,14 @@ class UiStringsEs extends UiStrings {
       'Interrumpe una respuesta hablando. Desactívalo si se interrumpe solo.';
 
   @override
+  String get settingVoiceRealtimeTalkOverSensitivityTitle =>
+      'Sensibilidad de interrupción';
+
+  @override
+  String get settingVoiceRealtimeTalkOverSensitivityDescription =>
+      'Qué tan fácil es interrumpir una respuesta hablando. Súbela si interrumpir no funciona con un micrófono silencioso. Los valores más altos pueden hacer que se interrumpa solo.';
+
+  @override
   String get settingVoiceRealtimeToolsTitle => 'Herramientas';
 
   @override

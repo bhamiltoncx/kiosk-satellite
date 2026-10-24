@@ -14498,6 +14498,14 @@ class UiStringsFr extends UiStrings {
       'Interrompez une réponse en parlant. Désactivez si l\'assistant s\'interrompt tout seul.';
 
   @override
+  String get settingVoiceRealtimeTalkOverSensitivityTitle =>
+      'Sensibilité d\'interruption';
+
+  @override
+  String get settingVoiceRealtimeTalkOverSensitivityDescription =>
+      'Facilité avec laquelle la parole interrompt une réponse. Augmentez-la si l\'interruption ne fonctionne pas avec un micro peu sensible. Des réglages plus élevés peuvent amener l\'assistant à s\'interrompre tout seul.';
+
+  @override
   String get settingVoiceRealtimeToolsTitle => 'Outils';
 
   @override

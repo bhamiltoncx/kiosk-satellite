@@ -2188,6 +2188,9 @@ class VoiceManager extends Manager {
     seamless: _settings.get(defs.voiceSeamlessWake),
     idleSeconds: _settings.get(defs.voiceRealtimeIdleSeconds).toInt(),
     talkOver: _settings.get(defs.voiceRealtimeTalkOver),
+    talkOverLevel: RealtimeSession.talkOverLevel(
+      _settings.get(defs.voiceRealtimeTalkOverSensitivity),
+    ),
     language: _settings.get(defs.uiLanguage),
     historyHours: _settings.get(defs.voiceRealtimeHistoryHours).toDouble(),
   );

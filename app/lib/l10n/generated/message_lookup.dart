@@ -4894,6 +4894,10 @@ String messageById(UiStrings strings, String? id, String fallback) =>
         strings.settingVoiceRealtimeTalkOverTitle,
       'settingVoiceRealtimeTalkOverDescription' =>
         strings.settingVoiceRealtimeTalkOverDescription,
+      'settingVoiceRealtimeTalkOverSensitivityTitle' =>
+        strings.settingVoiceRealtimeTalkOverSensitivityTitle,
+      'settingVoiceRealtimeTalkOverSensitivityDescription' =>
+        strings.settingVoiceRealtimeTalkOverSensitivityDescription,
       'settingVoiceRealtimeToolsTitle' =>
         strings.settingVoiceRealtimeToolsTitle,
       'settingVoiceRealtimeToolsDescription' =>

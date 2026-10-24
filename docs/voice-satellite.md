@@ -67,7 +67,7 @@ When Home Assistant runs the integration, onboarding offers the same migration i
 | | Follow-up delay, Chime before a follow-up | A pause and a chime before listening for the answer to a question. |
 | | Play sounds on, Play as | Where answers and chimes play. See [below](#play-sounds-on-a-media-player). |
 | Realtime | Providers | A row per provider with its status. **Configure** opens its API key, model, voice and endpoint, plus **Reasoning effort** for OpenAI and Gemini, xAI's **Web Search** and **X Search** switches and Gemini's **Google Search** and **Ignore talk not meant for it** switches, and **Save & Validate** stores them once the provider connects. |
-| | Instructions, End after silence, Speech speed, Session duration, Talk over answers | How the conversation behaves, sounds, ends and carries over, for every provider. |
+| | Instructions, End after silence, Speech speed, Session duration, Talk over answers, Talk over sensitivity | How the conversation behaves, sounds, ends and carries over, for every provider. |
 | | Tools | What the model can control. See [Realtime conversations](#realtime-conversations). |
 | Wake Word | Wake word engine | vsWakeWord (default), microWakeWord or openWakeWord. All models ship with the app. The Echo Dot also offers Amazon's engine. See [Wake Word](echo-dot.md#wake-word) in the Echo Dot docs. |
 | | Wake word 1 and 2 | Home Assistant's selects. Wake word 2 is answered by Assistant 2. |
@@ -152,6 +152,8 @@ If a script declares a `ks_device_id` field, the kiosk hides it from the model a
 **Gemini** picks the language from what you say, decides on its own when you finished talking and stops an answer when it hears you over it. "Stop" cuts off the answer on the kiosk, but Gemini cannot be told how much of it you heard.
 
 **Talk over answers** keeps the microphone open while the model speaks, so you can interrupt it. It relies on the kiosk's echo canceller. If the model keeps interrupting itself, turn it off: the microphone then closes while the model speaks and "stop" interrupts it when **Stop word interruption** is on.
+
+**Talk over sensitivity** sets how loud you have to be to interrupt an answer, from 0 to 100. If the model keeps talking when you interrupt it on a device with a quiet microphone, raise it a step at a time. Higher values can make the model interrupt itself with its own voice, and lowering it below the default of 50 helps a device that keeps doing that. Each device keeps its own value, since the right one depends on its microphone. The log says why each interruption was taken or ignored, with the level it was measured against.
 
 > **Note:** The model's voice always plays on the kiosk, even with **Play sounds on** set to a media player. Only the chimes follow that setting. Providers bill realtime models by the minute of audio, and a conversation ends after nine minutes at most.
 

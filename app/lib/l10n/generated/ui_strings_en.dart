@@ -14222,6 +14222,14 @@ class UiStringsEn extends UiStrings {
       'Interrupt an answer by speaking. Turn off if it interrupts itself.';
 
   @override
+  String get settingVoiceRealtimeTalkOverSensitivityTitle =>
+      'Talk over sensitivity';
+
+  @override
+  String get settingVoiceRealtimeTalkOverSensitivityDescription =>
+      'How easily speaking interrupts an answer. Raise it if interrupting does not work on a quiet microphone. Higher values can make it interrupt itself.';
+
+  @override
   String get settingVoiceRealtimeToolsTitle => 'Tools';
 
   @override

@@ -14533,6 +14533,14 @@ class UiStringsDe extends UiStrings {
       'Unterbrich eine Antwort, indem du sprichst. Schalte es aus, wenn er sich selbst unterbricht.';
 
   @override
+  String get settingVoiceRealtimeTalkOverSensitivityTitle =>
+      'Unterbrechungsempfindlichkeit';
+
+  @override
+  String get settingVoiceRealtimeTalkOverSensitivityDescription =>
+      'Wie leicht Sprechen eine Antwort unterbricht. Erhöhe sie, wenn das Unterbrechen bei einem leisen Mikrofon nicht klappt. Höhere Werte können dazu führen, dass er sich selbst unterbricht.';
+
+  @override
   String get settingVoiceRealtimeToolsTitle => 'Werkzeuge';
 
   @override

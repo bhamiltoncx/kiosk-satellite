@@ -1992,6 +1992,10 @@ const settingMessageIds = <String, Map<String, String>>{
     "title": "settingVoiceRealtimeTalkOverTitle",
     "description": "settingVoiceRealtimeTalkOverDescription",
   },
+  "voice.realtime_talk_over_sensitivity": {
+    "title": "settingVoiceRealtimeTalkOverSensitivityTitle",
+    "description": "settingVoiceRealtimeTalkOverSensitivityDescription",
+  },
   "voice.realtime_tools": {
     "title": "settingVoiceRealtimeToolsTitle",
     "description": "settingVoiceRealtimeToolsDescription",

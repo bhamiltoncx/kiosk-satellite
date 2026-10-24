@@ -7435,6 +7435,29 @@ const voiceRealtimeTalkOver = SettingDef<bool>(
   dependsOn: 'voice.enabled',
 );
 
+/// How loud speech over an answer has to be to interrupt it. Per device:
+/// the level that works depends on the microphone and its echo canceller.
+/// 50 is the level every device used before the setting, see
+/// [RealtimeSession.talkOverLevel].
+const voiceRealtimeTalkOverSensitivity = SettingDef<num>(
+  key: 'voice.realtime_talk_over_sensitivity',
+  type: SettingType.number,
+  defaultValue: 50,
+  min: 0,
+  max: 100,
+  step: 5,
+  title: 'Talk over sensitivity',
+  description:
+      'How easily speaking interrupts an answer. Raise it if interrupting '
+      'does not work on a quiet microphone. Higher values can make it '
+      'interrupt itself.',
+  category: 'Voice Satellite',
+  subpage: 'Realtime',
+  section: 'Conversation',
+  perDevice: true,
+  dependsOn: 'voice.realtime_talk_over',
+);
+
 const voiceRealtimeTools = SettingDef<String>(
   key: 'voice.realtime_tools',
   type: SettingType.select,
@@ -13324,6 +13347,7 @@ const List<SettingDef<Object>> allSettings = [
   voiceRealtimeSpeed,
   voiceRealtimeHistoryHours,
   voiceRealtimeTalkOver,
+  voiceRealtimeTalkOverSensitivity,
   voiceRealtimeTools,
   voiceRealtimeMcpUrl,
   voiceRealtimeMcpToken,
