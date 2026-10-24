@@ -2,7 +2,7 @@
 
 All notable changes to Kiosk Satellite are documented here. Full release notes for each version are available on the [releases page](https://github.com/jxlarrea/kiosk-satellite/releases).
 
-## Unreleased
+## v2026.10.39 - 2026-10-24
 
 ### Added
 - **Sort the Music Library's lists.** A sort button next to the title of each Music Assistant list orders it A to Z, Z to A, recently played, recently added or most played, and each list keeps its own order. On Artists the same menu has **Album artists only**, which hides the artists who only appear on a few tracks of a compilation (#1129).
