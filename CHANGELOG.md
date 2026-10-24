@@ -7,6 +7,9 @@ All notable changes to Kiosk Satellite are documented here. Full release notes f
 ### Added
 - **Plugins can name the Kiosk Satellite release they need.** A plugin's manifest can set `minAppVersion`, such as `2026.10.40`. Kiosk Satellite will not install or update a plugin that needs a newer release, also through fleet sync, and the review and the error name both versions. **Browse plugins** shows **Needs Kiosk Satellite 2026.10.40 or newer** on such a plugin instead of Install or Update, and the version you have keeps running. Community Plugins now requires the field on new submissions (#1140).
 
+### Fixed
+- **Realtime scripts know the device with more than one LLM API.** If Home Assistant's MCP Server had more than one LLM API ticked, scripts run in a realtime conversation never got `ks_device_id`. Home Assistant then puts the API's name in front of each tool, such as `assist__script__play_music`, and Kiosk Satellite did not count those as scripts. It does now, and the model no longer sees the `ks_device_id` field of a script that declares it (#1143).
+
 ## v2026.10.39 - 2026-10-24
 
 ### Added

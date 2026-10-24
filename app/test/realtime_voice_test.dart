@@ -478,7 +478,12 @@ void main() {
         final result = switch (method) {
           'tools/list' => {
             'tools': [
-              for (final name in ['script__probe', 'HassTurnOn'])
+              for (final name in [
+                'script__probe',
+                'assist__script__probe',
+                'assist__HassTurnOn',
+                'HassTurnOn',
+              ])
                 {
                   'name': name,
                   'description': '',
@@ -540,6 +545,29 @@ void main() {
           McpClient.scriptDeviceArgument: 'made_up',
         });
         await mcp.callTool('HassTurnOn', {'name': 'Kitchen'});
+        expect(calls[0]['arguments'], {
+          'room': 'Kitchen',
+          McpClient.scriptDeviceArgument: 'dev1',
+        });
+        expect(calls[1]['arguments'], {'name': 'Kitchen'});
+      });
+
+      test('when the server puts the API name in front', () async {
+        final mcp = McpClient(
+          url: Uri.parse('http://ha/api/mcp'),
+          client: server(),
+          deviceId: () async => 'dev1',
+        );
+        final tools = {for (final t in await mcp.listTools()) t.name: t};
+        final script = tools['assist__script__probe']!.inputSchema;
+        expect((script['properties']! as Map).keys, ['room']);
+        expect(
+          (tools['assist__HassTurnOn']!.inputSchema['properties']! as Map).keys,
+          contains(McpClient.scriptDeviceArgument),
+        );
+
+        await mcp.callTool('assist__script__probe', {'room': 'Kitchen'});
+        await mcp.callTool('assist__HassTurnOn', {'name': 'Kitchen'});
         expect(calls[0]['arguments'], {
           'room': 'Kitchen',
           McpClient.scriptDeviceArgument: 'dev1',
