@@ -11290,6 +11290,180 @@
       ]
     }
   },
+  "librarySort": "Sortieren",
+  "@librarySort": {
+    "context": "Music Library",
+    "description": "Tooltip of the button that opens the sort menu of a library list such as Albums or Playlists.",
+    "x-locations": {
+      "device": [
+        "Kiosk menu > Music Library"
+      ]
+    }
+  },
+  "librarySortAToZ": "A bis Z",
+  "@librarySortAToZ": {
+    "context": "Music Library",
+    "description": "Sort menu option: alphabetical order by name.",
+    "x-locations": {
+      "device": [
+        "Kiosk menu > Music Library"
+      ]
+    }
+  },
+  "librarySortZToA": "Z bis A",
+  "@librarySortZToA": {
+    "context": "Music Library",
+    "description": "Sort menu option: reverse alphabetical order by name.",
+    "x-locations": {
+      "device": [
+        "Kiosk menu > Music Library"
+      ]
+    }
+  },
+  "librarySortMostPlayed": "Meistgespielt",
+  "@librarySortMostPlayed": {
+    "context": "Music Library",
+    "description": "Sort menu option: the most played entries first.",
+    "x-locations": {
+      "device": [
+        "Kiosk menu > Music Library"
+      ]
+    }
+  },
+  "libraryAlbumArtistsOnly": "Nur Albumkünstler",
+  "@libraryAlbumArtistsOnly": {
+    "context": "Music Library",
+    "description": "Checkable option in the Artists sort menu. Lists only artists credited on an album, leaving out artists who only appear on single tracks of compilations.",
+    "x-locations": {
+      "device": [
+        "Kiosk menu > Music Library"
+      ]
+    }
+  },
+  "libraryKindGenre": "Genre",
+  "@libraryKindGenre": {
+    "context": "Music Library",
+    "description": "Kind of entry shown in lists and on a genre's page, like Artist or Album.",
+    "x-locations": {
+      "device": [
+        "Kiosk menu > Music Library"
+      ]
+    }
+  },
+  "libraryBrowseByGenre": "Nach Genre stöbern",
+  "@libraryBrowseByGenre": {
+    "context": "Music Library",
+    "description": "Discover section title: a grid of music genres to open.",
+    "x-locations": {
+      "device": [
+        "Kiosk menu > Music Library"
+      ]
+    }
+  },
+  "settingLibraryTextScaleDescription": "Größe der Titel, Namen und Beschriftungen in der Bibliothek.",
+  "@settingLibraryTextScaleDescription": {
+    "context": "Music Library",
+    "description": "Setting description under Text scale, a percentage slider.",
+    "x-locations": {
+      "device": [
+        "Settings > Media Player > Music Library"
+      ],
+      "remoteAdmin": [
+        "Media Player > Music Library"
+      ]
+    }
+  },
+  "settingLibrarySquareArtworkTitle": "Quadratische Bilder",
+  "@settingLibrarySquareArtworkTitle": {
+    "context": "Music Library",
+    "description": "Setting label: show artists in square tiles instead of circles.",
+    "x-locations": {
+      "device": [
+        "Settings > Media Player > Music Library"
+      ],
+      "remoteAdmin": [
+        "Media Player > Music Library"
+      ]
+    }
+  },
+  "settingLibrarySquareArtworkDescription": "Zeigt Künstler als quadratische Kacheln, wie Alben und Playlists.",
+  "@settingLibrarySquareArtworkDescription": {
+    "context": "Music Library",
+    "description": "Setting description.",
+    "x-locations": {
+      "device": [
+        "Settings > Media Player > Music Library"
+      ],
+      "remoteAdmin": [
+        "Media Player > Music Library"
+      ]
+    }
+  },
+  "settingLibraryGridDensityTitle": "Rasterdichte",
+  "@settingLibraryGridDensityTitle": {
+    "context": "Music Library",
+    "description": "Setting label: how large the tiles in the library's grids are.",
+    "x-locations": {
+      "device": [
+        "Settings > Media Player > Music Library"
+      ],
+      "remoteAdmin": [
+        "Media Player > Music Library"
+      ]
+    }
+  },
+  "settingLibraryGridDensityDescription": "Größe der Kacheln in der Bibliothek. Kompakt zeigt mehr pro Reihe.",
+  "@settingLibraryGridDensityDescription": {
+    "context": "Music Library",
+    "description": "Setting description. Compact is one of the options.",
+    "x-locations": {
+      "device": [
+        "Settings > Media Player > Music Library"
+      ],
+      "remoteAdmin": [
+        "Media Player > Music Library"
+      ]
+    }
+  },
+  "libraryDensityComfortable": "Großzügig",
+  "@libraryDensityComfortable": {
+    "context": "Music Library",
+    "description": "Grid density option: larger tiles, fewer in a row.",
+    "x-locations": {
+      "device": [
+        "Settings > Media Player > Music Library"
+      ],
+      "remoteAdmin": [
+        "Media Player > Music Library"
+      ]
+    }
+  },
+  "libraryDensityStandard": "Standard",
+  "@libraryDensityStandard": {
+    "context": "Music Library",
+    "description": "Grid density option: the default tile size.",
+    "x-locations": {
+      "device": [
+        "Settings > Media Player > Music Library"
+      ],
+      "remoteAdmin": [
+        "Media Player > Music Library"
+      ]
+    }
+  },
+  "libraryDensityCompact": "Kompakt",
+  "@libraryDensityCompact": {
+    "context": "Music Library",
+    "description": "Grid density option: smaller tiles, more in a row.",
+    "x-locations": {
+      "device": [
+        "Settings > Media Player > Music Library"
+      ],
+      "remoteAdmin": [
+        "Media Player > Music Library"
+      ]
+    }
+  },
   "libraryMoreResults": "Weitere Ergebnisse",
   "@libraryMoreResults": {
     "context": "Music Library",

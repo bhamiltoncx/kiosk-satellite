@@ -23048,5 +23048,80 @@
     "source": "362fafe03d7a1728023213e634d88197642e78559b2fc38a292c412ca40efb12",
     "translation": "e8e2265b99b22b2cfbd9204fc56290b7d41d4cc442484d66091af0d52eef3538",
     "author": "Xavier Larrea"
+  },
+  "librarySortZToA": {
+    "source": "7b532ed82bcbd245bb98deba66518b7c77d6dd20eec08a2ccede605ef1c25a0e",
+    "translation": "4ab27af6bdafebc0e87e2b56f9c140c40f2aea771d1165c07372b561dc79d7de",
+    "author": "Xavier Larrea"
+  },
+  "librarySortMostPlayed": {
+    "source": "c134206d11b2cf5848a90012123f0a474903de72de1885863f95e55c525ae307",
+    "translation": "9131fabed0be1b9f8569b194b3650f9e31163abca4a175b2ddd1023ead5cc873",
+    "author": "Xavier Larrea"
+  },
+  "libraryAlbumArtistsOnly": {
+    "source": "1a5da217c31c8ce4c794416248ed406623385b6cbd5831a25eb5ebc7ba4eb4df",
+    "translation": "8188aa32b8eb3e67d8d1ed893587ab4086f0ef17f1c82640236ed1502d1486ed",
+    "author": "Xavier Larrea"
+  },
+  "librarySort": {
+    "source": "92b77e06fcbf0d7037b6b7cd82e3a0819c64c0354b5ec25d46b5da4a5aeaa315",
+    "translation": "39f93451ee48b979ba731947e75dc4dda58219a079ef3a244847acfbdf9b01ae",
+    "author": "Xavier Larrea"
+  },
+  "librarySortAToZ": {
+    "source": "c6294a3ab00f1624eabb3333ae617bf53c5fec06c64d05738e0a62cac652531e",
+    "translation": "ad4265cb0b7cd0d94f45825da06df66480f92ebacf14cd6d577ea2ca7d7cb34c",
+    "author": "Xavier Larrea"
+  },
+  "settingLibrarySquareArtworkDescription": {
+    "source": "ffee69699fc2f0621b3db297bd845e510377393dacc4f3f415717c06c19942f0",
+    "translation": "535228a167fbe9da9c93be2cf2c3b5173ce9753c2de36058c30d5527befadd31",
+    "author": "Xavier Larrea"
+  },
+  "settingLibraryGridDensityDescription": {
+    "source": "58ccbc37ed23c06dc5f686886f7529be806317d231dc99a2392dde3a3ad6352f",
+    "translation": "e909432b9cfdb8f67240efeaac5761c8f8cff92d59f57e4592f36484b37fa44b",
+    "author": "Xavier Larrea"
+  },
+  "settingLibraryGridDensityTitle": {
+    "source": "3c30e558cb757ec57405b653fded11c02bfa26e235242395d50a7f1d960cfba2",
+    "translation": "2ddf4ddddeee3a445afc6414a16e7ba15f8871f8a728ff068451d41ad958160b",
+    "author": "Xavier Larrea"
+  },
+  "libraryDensityStandard": {
+    "source": "dc5d4c673410bec270d56a7d40020a0b51a5dbbb92eec746324b6b8a34c0a89e",
+    "translation": "51db4780cd4e5d712d77d2675ea5016cb7742c6801e162082f774d06216a131c",
+    "author": "Xavier Larrea"
+  },
+  "settingLibrarySquareArtworkTitle": {
+    "source": "16f38928bc357e3449c361fd3a07683cc4dae82f42a7a2e3d2a64301030eb5ae",
+    "translation": "79f1957454f028d6d0a4031a371c9ec7ad7bae19babec6a63db3860fa6abf88f",
+    "author": "Xavier Larrea"
+  },
+  "libraryDensityComfortable": {
+    "source": "858368f4072f63d768ab50a233d3464d5e28640fe325c20d44394dcce393ca3c",
+    "translation": "6f655f2b6379f3e2e4b17dc20003a62fcbde71f773034dd951d3e9bf84bba4b9",
+    "author": "Xavier Larrea"
+  },
+  "libraryDensityCompact": {
+    "source": "a2cb0605af5442d324d5fd4a77970820af0d6da8e35c073ac8a184ffc165647a",
+    "translation": "a2ca5e248c7835380a103d8fc0d05fb1d98c3c3bbcd22ebd252a1e90612832b3",
+    "author": "Xavier Larrea"
+  },
+  "libraryKindGenre": {
+    "source": "0720b3ed992a1487bacfacd7e883153b5309a0a6530349e15dd8eab4e5984ce9",
+    "translation": "736f64cd6d4a796f129a310c8203fb39409a1f5f02b72e657063f6791ce7f7e0",
+    "author": "Xavier Larrea"
+  },
+  "libraryBrowseByGenre": {
+    "source": "c479a73f02d42b20e20e0479a18b29efe43069bbe91617c6b72c944c915c2e08",
+    "translation": "d9ff6117ae7cdc9af5c9c04fb0806121eb2023b68f47f7b9cfe453420e589ef1",
+    "author": "Xavier Larrea"
+  },
+  "settingLibraryTextScaleDescription": {
+    "source": "15b530a341f3bdd0aff8231de0f869598203751fe4fbb503091845a672b8c524",
+    "translation": "a09c5c0720585d06c36f332426ee3afe291d26489821504e2c07399620a19384",
+    "author": "Xavier Larrea"
   }
 }

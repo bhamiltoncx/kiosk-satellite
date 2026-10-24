@@ -10092,6 +10092,78 @@ const libraryNowPlayingButton = SettingDef<bool>(
   section: 'Music Library',
 );
 
+/// Artists in square tiles like albums and playlists, instead of round.
+const librarySquareArtwork = SettingDef<bool>(
+  key: 'library.square_artwork',
+  type: SettingType.boolean,
+  defaultValue: false,
+  title: 'Square artwork',
+  description: 'Show artists in square tiles, like albums and playlists.',
+  category: 'Sendspin',
+  subpage: 'Music Library',
+  section: 'User Interface',
+);
+
+/// The size of the library's text, as a percentage of the device's own.
+const libraryTextScale = SettingDef<num>(
+  key: 'library.text_scale',
+  type: SettingType.number,
+  defaultValue: 100,
+  title: 'Text scale',
+  description: 'Size of the titles, names and labels in the library.',
+  category: 'Sendspin',
+  subpage: 'Music Library',
+  section: 'User Interface',
+  min: 50,
+  max: 200,
+  step: 5,
+  unit: '%',
+);
+
+/// How large the library's tiles are: comfortable fits fewer in a row,
+/// compact more.
+const libraryGridDensity = SettingDef<String>(
+  key: 'library.grid_density',
+  type: SettingType.select,
+  defaultValue: 'standard',
+  title: 'Grid density',
+  description: 'Size of the tiles in the library. Compact fits more in a row.',
+  category: 'Sendspin',
+  subpage: 'Music Library',
+  section: 'User Interface',
+  options: ['comfortable', 'standard', 'compact'],
+  optionLabels: {
+    'comfortable': 'Comfortable',
+    'standard': 'Standard',
+    'compact': 'Compact',
+  },
+);
+
+/// The order each library list was left in, as JSON: the list's key to
+/// a LibrarySort name, for example {"playlists": "recentlyPlayed"}.
+/// Hidden: set from the sort menu in the library, not a settings row.
+const librarySort = SettingDef<String>(
+  key: 'library.sort',
+  type: SettingType.string,
+  defaultValue: '{}',
+  title: 'Library sort',
+  description: 'Internal: the order each library list was left in.',
+  category: 'Sendspin',
+  hidden: true,
+);
+
+/// Artists lists only the artists credited on an album. Hidden: set from
+/// the sort menu in the library.
+const libraryAlbumArtists = SettingDef<bool>(
+  key: 'library.album_artists',
+  type: SettingType.boolean,
+  defaultValue: false,
+  title: 'Album artists only',
+  description: 'Internal: Artists lists only album artists.',
+  category: 'Sendspin',
+  hidden: true,
+);
+
 /// Timer group position as "x,y" fractions of the free area.
 /// Saved by dragging and kept local to this device.
 const voiceTimerPosition = SettingDef<String>(
@@ -13365,6 +13437,11 @@ const List<SettingDef<Object>> allSettings = [
   libraryMenu,
   libraryNowPlayingButton,
   libraryIdleCloseMinutes,
+  libraryTextScale,
+  librarySquareArtwork,
+  libraryGridDensity,
+  librarySort,
+  libraryAlbumArtists,
   sendspinSonosHosts,
   sendspinShowPlayer,
   sendspinPlayerSize,

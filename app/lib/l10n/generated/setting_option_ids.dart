@@ -501,6 +501,11 @@ const settingOptionMessageIds = <String, Map<String, String>>{
   },
   "library.source": {
     "": "screenAudioAutomatic"
+  },
+  "library.grid_density": {
+    "comfortable": "libraryDensityComfortable",
+    "standard": "libraryDensityStandard",
+    "compact": "libraryDensityCompact"
   }
 };
 const settingPlaceholderMessageIds = <String, String>{

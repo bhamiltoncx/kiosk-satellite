@@ -2476,4 +2476,16 @@ const settingMessageIds = <String, Map<String, String>>{
     "title": "settingLibraryNowPlayingButtonTitle",
     "description": "settingLibraryNowPlayingButtonDescription",
   },
+  "library.square_artwork": {
+    "title": "settingLibrarySquareArtworkTitle",
+    "description": "settingLibrarySquareArtworkDescription",
+  },
+  "library.grid_density": {
+    "title": "settingLibraryGridDensityTitle",
+    "description": "settingLibraryGridDensityDescription",
+  },
+  "library.text_scale": {
+    "title": "settingSendspinFullscreenTextScaleTitle",
+    "description": "settingLibraryTextScaleDescription",
+  },
 };

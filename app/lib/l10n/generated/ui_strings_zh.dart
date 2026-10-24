@@ -2855,6 +2855,51 @@ class UiStringsZh extends UiStrings {
   String get libraryRecentlyAdded => '最近添加';
 
   @override
+  String get librarySort => '排序';
+
+  @override
+  String get librarySortAToZ => 'A 到 Z';
+
+  @override
+  String get librarySortZToA => 'Z 到 A';
+
+  @override
+  String get librarySortMostPlayed => '最常播放';
+
+  @override
+  String get libraryAlbumArtistsOnly => '仅专辑艺人';
+
+  @override
+  String get libraryKindGenre => '流派';
+
+  @override
+  String get libraryBrowseByGenre => '按流派浏览';
+
+  @override
+  String get settingLibraryTextScaleDescription => '音乐库中标题、名称和标签的大小。';
+
+  @override
+  String get settingLibrarySquareArtworkTitle => '方形封面';
+
+  @override
+  String get settingLibrarySquareArtworkDescription => '像专辑和播放列表一样，以方形卡片显示艺人。';
+
+  @override
+  String get settingLibraryGridDensityTitle => '网格密度';
+
+  @override
+  String get settingLibraryGridDensityDescription => '音乐库中卡片的大小。紧凑可在每行显示更多。';
+
+  @override
+  String get libraryDensityComfortable => '宽松';
+
+  @override
+  String get libraryDensityStandard => '标准';
+
+  @override
+  String get libraryDensityCompact => '紧凑';
+
+  @override
   String get libraryMoreResults => '更多结果';
 
   @override
@@ -17556,6 +17601,51 @@ class UiStringsZhCn extends UiStringsZh {
 
   @override
   String get libraryRecentlyAdded => '最近添加';
+
+  @override
+  String get librarySort => '排序';
+
+  @override
+  String get librarySortAToZ => 'A 到 Z';
+
+  @override
+  String get librarySortZToA => 'Z 到 A';
+
+  @override
+  String get librarySortMostPlayed => '最常播放';
+
+  @override
+  String get libraryAlbumArtistsOnly => '仅专辑艺人';
+
+  @override
+  String get libraryKindGenre => '流派';
+
+  @override
+  String get libraryBrowseByGenre => '按流派浏览';
+
+  @override
+  String get settingLibraryTextScaleDescription => '音乐库中标题、名称和标签的大小。';
+
+  @override
+  String get settingLibrarySquareArtworkTitle => '方形封面';
+
+  @override
+  String get settingLibrarySquareArtworkDescription => '像专辑和播放列表一样，以方形卡片显示艺人。';
+
+  @override
+  String get settingLibraryGridDensityTitle => '网格密度';
+
+  @override
+  String get settingLibraryGridDensityDescription => '音乐库中卡片的大小。紧凑可在每行显示更多。';
+
+  @override
+  String get libraryDensityComfortable => '宽松';
+
+  @override
+  String get libraryDensityStandard => '标准';
+
+  @override
+  String get libraryDensityCompact => '紧凑';
 
   @override
   String get libraryMoreResults => '更多结果';

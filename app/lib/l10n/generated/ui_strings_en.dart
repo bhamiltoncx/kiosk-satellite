@@ -2920,6 +2920,54 @@ class UiStringsEn extends UiStrings {
   String get libraryRecentlyAdded => 'Recently added';
 
   @override
+  String get librarySort => 'Sort';
+
+  @override
+  String get librarySortAToZ => 'A to Z';
+
+  @override
+  String get librarySortZToA => 'Z to A';
+
+  @override
+  String get librarySortMostPlayed => 'Most played';
+
+  @override
+  String get libraryAlbumArtistsOnly => 'Album artists only';
+
+  @override
+  String get libraryKindGenre => 'Genre';
+
+  @override
+  String get libraryBrowseByGenre => 'Browse by genre';
+
+  @override
+  String get settingLibraryTextScaleDescription =>
+      'Size of the titles, names and labels in the library.';
+
+  @override
+  String get settingLibrarySquareArtworkTitle => 'Square artwork';
+
+  @override
+  String get settingLibrarySquareArtworkDescription =>
+      'Show artists in square tiles, like albums and playlists.';
+
+  @override
+  String get settingLibraryGridDensityTitle => 'Grid density';
+
+  @override
+  String get settingLibraryGridDensityDescription =>
+      'Size of the tiles in the library. Compact fits more in a row.';
+
+  @override
+  String get libraryDensityComfortable => 'Comfortable';
+
+  @override
+  String get libraryDensityStandard => 'Standard';
+
+  @override
+  String get libraryDensityCompact => 'Compact';
+
+  @override
   String get libraryMoreResults => 'More results';
 
   @override

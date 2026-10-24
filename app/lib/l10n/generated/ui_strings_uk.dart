@@ -2934,6 +2934,54 @@ class UiStringsUk extends UiStrings {
   String get libraryRecentlyAdded => 'Нещодавно додане';
 
   @override
+  String get librarySort => 'Сортування';
+
+  @override
+  String get librarySortAToZ => 'Від А до Я';
+
+  @override
+  String get librarySortZToA => 'Від Я до А';
+
+  @override
+  String get librarySortMostPlayed => 'Найчастіше відтворюване';
+
+  @override
+  String get libraryAlbumArtistsOnly => 'Лише виконавці альбомів';
+
+  @override
+  String get libraryKindGenre => 'Жанр';
+
+  @override
+  String get libraryBrowseByGenre => 'Огляд за жанрами';
+
+  @override
+  String get settingLibraryTextScaleDescription =>
+      'Розмір назв, імен і підписів у бібліотеці.';
+
+  @override
+  String get settingLibrarySquareArtworkTitle => 'Квадратні обкладинки';
+
+  @override
+  String get settingLibrarySquareArtworkDescription =>
+      'Показує виконавців квадратними плитками, як альбоми та плейлисти.';
+
+  @override
+  String get settingLibraryGridDensityTitle => 'Щільність сітки';
+
+  @override
+  String get settingLibraryGridDensityDescription =>
+      'Розмір плиток у бібліотеці. Компактна вміщує більше в ряд.';
+
+  @override
+  String get libraryDensityComfortable => 'Простора';
+
+  @override
+  String get libraryDensityStandard => 'Стандартна';
+
+  @override
+  String get libraryDensityCompact => 'Компактна';
+
+  @override
   String get libraryMoreResults => 'Інші результати';
 
   @override

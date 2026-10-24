@@ -14,7 +14,13 @@ The source picker sits at the top of the sidebar on a tablet, at the top of the 
 | Home Assistant | The media the picked speaker's integration offers, such as a Sonos speaker's favorites, a Spotify account, Radio Browser and My media. Search shows when the speaker's integration supports it. | A Home Assistant speaker picked as the speaker. The list changes with the speaker. |
 | Sonos | My Sonos favorites, Sonos playlists and the music library the speakers index from a shared folder. Lists with nothing in them stay hidden. | A Sonos speaker found or added under **Media Player > Sonos**. |
 
-Discover shows the recommendations Music Assistant makes. When it has none, it shows what was played recently, your playlists, recently added tracks and radio stations instead.
+Discover shows the rows Music Assistant's own Discover page shows, in the same order. To hide, show or reorder them, edit the Discover page in Music Assistant and the library follows. Music Assistant saves that layout for each of its users, so the library uses the layout of the user the token belongs to. When Music Assistant recommends nothing, Discover shows what was played recently, your playlists, recently added tracks and radio stations instead. A row that mixes kinds, such as Recently played, says under each entry whether it is a track, an album, an artist or a playlist.
+
+**Browse by genre** comes last on Discover, as on Music Assistant's page, with the eight genres that have the most music in your library. Tap one to open the rows Music Assistant shows for that genre, such as its artists and albums.
+
+Browse shows each music provider with its logo, as Music Assistant does.
+
+The sort button next to the title of a Music Assistant list orders it **A to Z**, **Z to A**, **Recently played**, **Recently added** or **Most played**. Each list keeps its own order. On **Artists** the same menu has **Album artists only**, which leaves out artists who only appear on a few tracks, such as the contributors to a compilation. Home Assistant and Sonos lists keep the order the source gives them.
 
 Picture, camera and text-to-speech sources in Home Assistant's media are left out, since a speaker has nothing to play from them.
 
@@ -43,7 +49,7 @@ The player bar at the bottom works like Music Assistant's. The track and its fav
 
 ## The queue
 
-The queue button on the player bar opens the queue of the speaker the library plays on. On a tablet it docks to the right of the library, and on a short screen or a phone it takes the library's place until you close it. It also opens from **View** on the message after Play next or Add to queue.
+The queue button on the player bar opens the queue of the speaker the library plays on. On a tablet in landscape it docks to the right of the library. On a tablet in portrait, a short screen or a phone it takes the library's place until you close it. It also opens from **View** on the message after Play next or Add to queue.
 
 - The playing track sits at the top under **Now playing**, and what comes next is listed under **Up next**.
 - Drag a track by its handle to move it.
@@ -119,4 +125,12 @@ Under **Settings > Media Player > Music Library**:
 | Show on Now Playing | Adds the library button next to the close button on the Now Playing view. On by default. |
 | Close when idle | Returns to the dashboard after no touch for this long. Two minutes by default. The screensaver waits while the library is open. |
 
-The **Voice Control** group below them opens the guide to [playing music by voice](#playing-music-by-voice).
+The **User Interface** group below them sets how the library looks:
+
+| Setting | What it does |
+| --- | --- |
+| Text scale | The size of the text in the library, from 50% to 200%. Rows get taller with it. The title at the top, the navigation, the pickers, the menus and the player bar's track and times grow at a slower rate and keep their normal size below 100%. 100% by default. |
+| Square artwork | Shows artists in square tiles, like albums and playlists, instead of circles. Off by default. |
+| Grid density | The size of the tiles in the library's grids and rows. **Comfortable** makes them larger and **Compact** fits more in a row. **Standard** by default. |
+
+The **Voice Control** group opens the guide to [playing music by voice](#playing-music-by-voice).

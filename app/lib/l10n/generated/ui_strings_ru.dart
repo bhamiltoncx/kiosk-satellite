@@ -2933,6 +2933,54 @@ class UiStringsRu extends UiStrings {
   String get libraryRecentlyAdded => 'Недавно добавленное';
 
   @override
+  String get librarySort => 'Сортировка';
+
+  @override
+  String get librarySortAToZ => 'От А до Я';
+
+  @override
+  String get librarySortZToA => 'От Я до А';
+
+  @override
+  String get librarySortMostPlayed => 'Самое прослушиваемое';
+
+  @override
+  String get libraryAlbumArtistsOnly => 'Только исполнители альбомов';
+
+  @override
+  String get libraryKindGenre => 'Жанр';
+
+  @override
+  String get libraryBrowseByGenre => 'Обзор по жанрам';
+
+  @override
+  String get settingLibraryTextScaleDescription =>
+      'Размер заголовков, имён и подписей в библиотеке.';
+
+  @override
+  String get settingLibrarySquareArtworkTitle => 'Квадратные обложки';
+
+  @override
+  String get settingLibrarySquareArtworkDescription =>
+      'Показывает исполнителей квадратными плитками, как альбомы и плейлисты.';
+
+  @override
+  String get settingLibraryGridDensityTitle => 'Плотность сетки';
+
+  @override
+  String get settingLibraryGridDensityDescription =>
+      'Размер плиток в библиотеке. Компактная вмещает больше в ряд.';
+
+  @override
+  String get libraryDensityComfortable => 'Просторная';
+
+  @override
+  String get libraryDensityStandard => 'Стандартная';
+
+  @override
+  String get libraryDensityCompact => 'Компактная';
+
+  @override
   String get libraryMoreResults => 'Другие результаты';
 
   @override

@@ -266,10 +266,41 @@ class MusicLibraryManager extends Manager {
           webBase: () =>
               musicAssistantWebUrl(_settings.get(defs.sendspinMaUrl)),
           ownQueueId: _ownQueueId,
+          preferences: () => _ma.userPreferences,
         ),
       };
 
   Future<void> setSource(String key) => _settings.set(defs.librarySource, key);
+
+  /// The order [category] was left in, if [source] sorts at all: one of
+  /// its sorts, else the first.
+  LibrarySort? sortFor(LibrarySource source, LibraryCategory category) {
+    if (source.sorts.isEmpty) return null;
+    final name = _savedSorts()[category.key];
+    return source.sorts.where((s) => s.name == name).firstOrNull ??
+        source.sorts.first;
+  }
+
+  Future<void> setSort(LibraryCategory category, LibrarySort sort) =>
+      _settings.set(
+        defs.librarySort,
+        jsonEncode({..._savedSorts(), category.key: sort.name}),
+      );
+
+  Map<String, Object?> _savedSorts() {
+    try {
+      final saved = jsonDecode(_settings.get(defs.librarySort));
+      return saved is Map ? saved.cast<String, Object?>() : const {};
+    } on FormatException {
+      return const {};
+    }
+  }
+
+  /// Artists lists only the artists credited on an album.
+  bool get albumArtists => _settings.get(defs.libraryAlbumArtists);
+
+  Future<void> setAlbumArtists(bool on) =>
+      _settings.set(defs.libraryAlbumArtists, on);
 
   /// The source [key] names, built if need be, without changing the one
   /// on screen. Null when it is not set up.
@@ -419,6 +450,14 @@ class MusicLibraryManager extends Manager {
     };
 
   Future<Uint8List?> _fetchArt(String url) async {
+    // A provider logo comes inline.
+    if (url.startsWith('data:')) {
+      try {
+        return UriData.parse(url).contentAsBytes();
+      } on FormatException {
+        return null;
+      }
+    }
     final uri = Uri.tryParse(url);
     if (uri == null || !uri.hasAuthority) return null;
     final haBase = Uri.tryParse(

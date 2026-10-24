@@ -2963,6 +2963,54 @@ class UiStringsDe extends UiStrings {
   String get libraryRecentlyAdded => 'Zuletzt hinzugefügt';
 
   @override
+  String get librarySort => 'Sortieren';
+
+  @override
+  String get librarySortAToZ => 'A bis Z';
+
+  @override
+  String get librarySortZToA => 'Z bis A';
+
+  @override
+  String get librarySortMostPlayed => 'Meistgespielt';
+
+  @override
+  String get libraryAlbumArtistsOnly => 'Nur Albumkünstler';
+
+  @override
+  String get libraryKindGenre => 'Genre';
+
+  @override
+  String get libraryBrowseByGenre => 'Nach Genre stöbern';
+
+  @override
+  String get settingLibraryTextScaleDescription =>
+      'Größe der Titel, Namen und Beschriftungen in der Bibliothek.';
+
+  @override
+  String get settingLibrarySquareArtworkTitle => 'Quadratische Bilder';
+
+  @override
+  String get settingLibrarySquareArtworkDescription =>
+      'Zeigt Künstler als quadratische Kacheln, wie Alben und Playlists.';
+
+  @override
+  String get settingLibraryGridDensityTitle => 'Rasterdichte';
+
+  @override
+  String get settingLibraryGridDensityDescription =>
+      'Größe der Kacheln in der Bibliothek. Kompakt zeigt mehr pro Reihe.';
+
+  @override
+  String get libraryDensityComfortable => 'Großzügig';
+
+  @override
+  String get libraryDensityStandard => 'Standard';
+
+  @override
+  String get libraryDensityCompact => 'Kompakt';
+
+  @override
   String get libraryMoreResults => 'Weitere Ergebnisse';
 
   @override

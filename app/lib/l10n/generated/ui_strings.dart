@@ -5223,6 +5223,96 @@ abstract class UiStrings {
   /// **'Recently added'**
   String get libraryRecentlyAdded;
 
+  /// Tooltip of the button that opens the sort menu of a library list such as Albums or Playlists.
+  ///
+  /// In en, this message translates to:
+  /// **'Sort'**
+  String get librarySort;
+
+  /// Sort menu option: alphabetical order by name.
+  ///
+  /// In en, this message translates to:
+  /// **'A to Z'**
+  String get librarySortAToZ;
+
+  /// Sort menu option: reverse alphabetical order by name.
+  ///
+  /// In en, this message translates to:
+  /// **'Z to A'**
+  String get librarySortZToA;
+
+  /// Sort menu option: the most played entries first.
+  ///
+  /// In en, this message translates to:
+  /// **'Most played'**
+  String get librarySortMostPlayed;
+
+  /// Checkable option in the Artists sort menu. Lists only artists credited on an album, leaving out artists who only appear on single tracks of compilations.
+  ///
+  /// In en, this message translates to:
+  /// **'Album artists only'**
+  String get libraryAlbumArtistsOnly;
+
+  /// Kind of entry shown in lists and on a genre's page, like Artist or Album.
+  ///
+  /// In en, this message translates to:
+  /// **'Genre'**
+  String get libraryKindGenre;
+
+  /// Discover section title: a grid of music genres to open.
+  ///
+  /// In en, this message translates to:
+  /// **'Browse by genre'**
+  String get libraryBrowseByGenre;
+
+  /// Setting description under Text scale, a percentage slider.
+  ///
+  /// In en, this message translates to:
+  /// **'Size of the titles, names and labels in the library.'**
+  String get settingLibraryTextScaleDescription;
+
+  /// Setting label: show artists in square tiles instead of circles.
+  ///
+  /// In en, this message translates to:
+  /// **'Square artwork'**
+  String get settingLibrarySquareArtworkTitle;
+
+  /// Setting description.
+  ///
+  /// In en, this message translates to:
+  /// **'Show artists in square tiles, like albums and playlists.'**
+  String get settingLibrarySquareArtworkDescription;
+
+  /// Setting label: how large the tiles in the library's grids are.
+  ///
+  /// In en, this message translates to:
+  /// **'Grid density'**
+  String get settingLibraryGridDensityTitle;
+
+  /// Setting description. Compact is one of the options.
+  ///
+  /// In en, this message translates to:
+  /// **'Size of the tiles in the library. Compact fits more in a row.'**
+  String get settingLibraryGridDensityDescription;
+
+  /// Grid density option: larger tiles, fewer in a row.
+  ///
+  /// In en, this message translates to:
+  /// **'Comfortable'**
+  String get libraryDensityComfortable;
+
+  /// Grid density option: the default tile size.
+  ///
+  /// In en, this message translates to:
+  /// **'Standard'**
+  String get libraryDensityStandard;
+
+  /// Grid density option: smaller tiles, more in a row.
+  ///
+  /// In en, this message translates to:
+  /// **'Compact'**
+  String get libraryDensityCompact;
+
   /// Search results shelf for entries of other kinds.
   ///
   /// In en, this message translates to:

@@ -2939,6 +2939,54 @@ class UiStringsNl extends UiStrings {
   String get libraryRecentlyAdded => 'Recent toegevoegd';
 
   @override
+  String get librarySort => 'Sorteren';
+
+  @override
+  String get librarySortAToZ => 'A tot Z';
+
+  @override
+  String get librarySortZToA => 'Z tot A';
+
+  @override
+  String get librarySortMostPlayed => 'Meest afgespeeld';
+
+  @override
+  String get libraryAlbumArtistsOnly => 'Alleen albumartiesten';
+
+  @override
+  String get libraryKindGenre => 'Genre';
+
+  @override
+  String get libraryBrowseByGenre => 'Bladeren op genre';
+
+  @override
+  String get settingLibraryTextScaleDescription =>
+      'Grootte van titels, namen en labels in de bibliotheek.';
+
+  @override
+  String get settingLibrarySquareArtworkTitle => 'Vierkante afbeeldingen';
+
+  @override
+  String get settingLibrarySquareArtworkDescription =>
+      'Toont artiesten als vierkante tegels, zoals albums en afspeellijsten.';
+
+  @override
+  String get settingLibraryGridDensityTitle => 'Rasterdichtheid';
+
+  @override
+  String get settingLibraryGridDensityDescription =>
+      'Grootte van de tegels in de bibliotheek. Compact toont meer per rij.';
+
+  @override
+  String get libraryDensityComfortable => 'Ruim';
+
+  @override
+  String get libraryDensityStandard => 'Standaard';
+
+  @override
+  String get libraryDensityCompact => 'Compact';
+
+  @override
   String get libraryMoreResults => 'Meer resultaten';
 
   @override

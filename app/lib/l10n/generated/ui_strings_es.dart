@@ -2949,6 +2949,54 @@ class UiStringsEs extends UiStrings {
   String get libraryRecentlyAdded => 'Añadido recientemente';
 
   @override
+  String get librarySort => 'Ordenar';
+
+  @override
+  String get librarySortAToZ => 'De la A a la Z';
+
+  @override
+  String get librarySortZToA => 'De la Z a la A';
+
+  @override
+  String get librarySortMostPlayed => 'Más escuchado';
+
+  @override
+  String get libraryAlbumArtistsOnly => 'Solo artistas de álbum';
+
+  @override
+  String get libraryKindGenre => 'Género';
+
+  @override
+  String get libraryBrowseByGenre => 'Explorar por género';
+
+  @override
+  String get settingLibraryTextScaleDescription =>
+      'Tamaño de los títulos, nombres y etiquetas de la biblioteca.';
+
+  @override
+  String get settingLibrarySquareArtworkTitle => 'Portadas cuadradas';
+
+  @override
+  String get settingLibrarySquareArtworkDescription =>
+      'Muestra los artistas en mosaicos cuadrados, como los álbumes y las listas de reproducción.';
+
+  @override
+  String get settingLibraryGridDensityTitle => 'Densidad de la cuadrícula';
+
+  @override
+  String get settingLibraryGridDensityDescription =>
+      'Tamaño de los mosaicos de la biblioteca. Compacta muestra más por fila.';
+
+  @override
+  String get libraryDensityComfortable => 'Amplia';
+
+  @override
+  String get libraryDensityStandard => 'Estándar';
+
+  @override
+  String get libraryDensityCompact => 'Compacta';
+
+  @override
   String get libraryMoreResults => 'Más resultados';
 
   @override

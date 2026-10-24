@@ -773,6 +773,26 @@ String messageById(UiStrings strings, String? id, String fallback) =>
       'librarySonosPlaylists' => strings.librarySonosPlaylists,
       'libraryRecentlyPlayed' => strings.libraryRecentlyPlayed,
       'libraryRecentlyAdded' => strings.libraryRecentlyAdded,
+      'librarySort' => strings.librarySort,
+      'librarySortAToZ' => strings.librarySortAToZ,
+      'librarySortZToA' => strings.librarySortZToA,
+      'librarySortMostPlayed' => strings.librarySortMostPlayed,
+      'libraryAlbumArtistsOnly' => strings.libraryAlbumArtistsOnly,
+      'libraryKindGenre' => strings.libraryKindGenre,
+      'libraryBrowseByGenre' => strings.libraryBrowseByGenre,
+      'settingLibraryTextScaleDescription' =>
+        strings.settingLibraryTextScaleDescription,
+      'settingLibrarySquareArtworkTitle' =>
+        strings.settingLibrarySquareArtworkTitle,
+      'settingLibrarySquareArtworkDescription' =>
+        strings.settingLibrarySquareArtworkDescription,
+      'settingLibraryGridDensityTitle' =>
+        strings.settingLibraryGridDensityTitle,
+      'settingLibraryGridDensityDescription' =>
+        strings.settingLibraryGridDensityDescription,
+      'libraryDensityComfortable' => strings.libraryDensityComfortable,
+      'libraryDensityStandard' => strings.libraryDensityStandard,
+      'libraryDensityCompact' => strings.libraryDensityCompact,
       'libraryMoreResults' => strings.libraryMoreResults,
       'libraryTopTracks' => strings.libraryTopTracks,
       'libraryKindArtist' => strings.libraryKindArtist,
