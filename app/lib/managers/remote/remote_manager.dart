@@ -881,8 +881,10 @@ class RemoteManager extends Manager {
     final screenOn = await commands.execute('isScreenOn', const {});
     final brightness = await commands.execute('getBrightness', const {});
     final link = await commands.execute('getNetworkLink', const {});
+    final fleet = await commands.execute('fleetIdentity', const {});
     final info = (device.data as Map?)?.cast<String, Object?>() ?? const {};
     final det = (details.data as Map?)?.cast<String, Object?>() ?? const {};
+    final identity = (fleet.data as Map?)?.cast<String, Object?>() ?? const {};
     final body = {
       'name': info['name'],
       'model': info['model'],
@@ -913,6 +915,10 @@ class RemoteManager extends Manager {
       // Seconds. `network` is null while offline; its clock starts at app
       // start at the earliest (see DeviceDetails.uptime).
       'uptime': info['uptime'],
+      // Fleet Management: whether this kiosk leads a fleet and the name of
+      // the leader it follows, null when it follows none (issue #1128).
+      'leader': identity['leader'],
+      'follows': identity['follows'],
     };
     return Response(
       200,
