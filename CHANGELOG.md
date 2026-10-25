@@ -2,7 +2,7 @@
 
 All notable changes to Kiosk Satellite are documented here. Full release notes for each version are available on the [releases page](https://github.com/jxlarrea/kiosk-satellite/releases).
 
-## Unreleased
+## v2026.10.40 - 2026-10-25
 
 ### Added
 - **A screen light for the barcode scanner.** A new button in the scanner turns the screen white around a smaller camera preview and puts the screen at full brightness, so the screen lights the code for a front camera. Your brightness comes back when the scanner closes, and the brightness setting and its Home Assistant entity do not move. It helps a kiosk on the wall read a barcode without tilting it. Switching does not restart the camera. The scanner remembers your choice for the next scan, both in plugins and in the setup token scan. The choice belongs to each device and fleets do not sync it (#1148).
