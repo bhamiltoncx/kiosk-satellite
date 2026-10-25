@@ -266,6 +266,18 @@ abstract class UiStrings {
   /// **'The Dot restarts twice to install the update and is offline for about a minute and a half each time.'**
   String get aboutSystemInstallHelp;
 
+  /// Row shown when a newer system image exists that the device cannot install as an update. It has to be installed by hand, following a guide. The Echo Dot smart speaker moves from its LineageOS 14.1 image to a LineageOS 18.1 one this way.
+  ///
+  /// In en, this message translates to:
+  /// **'New image available'**
+  String get aboutSystemManual;
+
+  /// Explanation below the row about a newer system image that has to be installed by hand. Next to it is a link to the guide. The Dot is the Echo Dot smart speaker.
+  ///
+  /// In en, this message translates to:
+  /// **'Version {version} of the new Echo Dot image installs by hand, not as an update.'**
+  String aboutSystemManualHelp(String version);
+
   /// Name of the alarms feature: the kiosk menu entry, the alarm list eyebrow and section headings.
   ///
   /// In en, this message translates to:

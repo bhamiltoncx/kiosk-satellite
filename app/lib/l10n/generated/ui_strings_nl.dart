@@ -97,6 +97,14 @@ class UiStringsNl extends UiStrings {
       'De Dot start twee keer opnieuw op om de update te installeren en is elke keer ongeveer anderhalve minuut offline.';
 
   @override
+  String get aboutSystemManual => 'Nieuwe image beschikbaar';
+
+  @override
+  String aboutSystemManualHelp(String version) {
+    return 'Versie $version van de nieuwe Echo Dot-image installeer je met de hand, niet als update.';
+  }
+
+  @override
   String get alarmsTitle => 'Alarmen';
 
   @override

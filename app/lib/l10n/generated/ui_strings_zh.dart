@@ -92,6 +92,14 @@ class UiStringsZh extends UiStrings {
   String get aboutSystemInstallHelp => 'Dot 会重启两次以安装更新，每次离线约一分半钟。';
 
   @override
+  String get aboutSystemManual => '有新镜像可用';
+
+  @override
+  String aboutSystemManualHelp(String version) {
+    return '新的 Echo Dot 镜像 $version 版需要手动安装，无法作为更新安装。';
+  }
+
+  @override
   String get alarmsTitle => '闹钟';
 
   @override
@@ -14922,6 +14930,14 @@ class UiStringsZhCn extends UiStringsZh {
 
   @override
   String get aboutSystemInstallHelp => 'Dot 会重启两次以安装更新，每次离线约一分半钟。';
+
+  @override
+  String get aboutSystemManual => '有新镜像可用';
+
+  @override
+  String aboutSystemManualHelp(String version) {
+    return '新的 Echo Dot 镜像 $version 版需要手动安装，无法作为更新安装。';
+  }
 
   @override
   String get alarmsTitle => '闹钟';

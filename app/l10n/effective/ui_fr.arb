@@ -315,6 +315,34 @@
       ]
     }
   },
+  "aboutSystemManual": "Nouvelle image disponible",
+  "@aboutSystemManual": {
+    "context": "Remote administration > About > System",
+    "description": "Row shown when a newer system image exists that the device cannot install as an update. It has to be installed by hand, following a guide. The Echo Dot smart speaker moves from its LineageOS 14.1 image to a LineageOS 18.1 one this way.",
+    "x-locations": {
+      "remoteAdmin": [
+        "About > System",
+        "Overview > Needs attention"
+      ]
+    }
+  },
+  "aboutSystemManualHelp": "La version {version} de la nouvelle image de l'Echo Dot s'installe à la main, pas comme une mise à jour.",
+  "@aboutSystemManualHelp": {
+    "context": "Remote administration > About > System",
+    "description": "Explanation below the row about a newer system image that has to be installed by hand. Next to it is a link to the guide. The Dot is the Echo Dot smart speaker.",
+    "x-locations": {
+      "remoteAdmin": [
+        "About > System",
+        "Overview > Needs attention"
+      ]
+    },
+    "placeholders": {
+      "version": {
+        "type": "String",
+        "description": "Release of the new Echo Dot system image, such as 2026.10.6."
+      }
+    }
+  },
   "alarmsTitle": "Alarmes",
   "@alarmsTitle": {
     "context": "Alarms",

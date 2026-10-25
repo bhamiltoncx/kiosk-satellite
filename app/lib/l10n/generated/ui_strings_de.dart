@@ -98,6 +98,14 @@ class UiStringsDe extends UiStrings {
       'Der Dot startet zur Installation des Updates zweimal neu und ist dabei jedes Mal etwa anderthalb Minuten offline.';
 
   @override
+  String get aboutSystemManual => 'Neues Image verfügbar';
+
+  @override
+  String aboutSystemManualHelp(String version) {
+    return 'Version $version des neuen Echo-Dot-Images wird von Hand installiert, nicht als Update.';
+  }
+
+  @override
   String get alarmsTitle => 'Wecker';
 
   @override

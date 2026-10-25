@@ -96,6 +96,14 @@ class UiStringsRu extends UiStrings {
       'Dot дважды перезагружается для установки обновления и каждый раз около полутора минут не в сети.';
 
   @override
+  String get aboutSystemManual => 'Доступен новый образ';
+
+  @override
+  String aboutSystemManualHelp(String version) {
+    return 'Версия $version нового образа Echo Dot устанавливается вручную, а не как обновление.';
+  }
+
+  @override
   String get alarmsTitle => 'Будильники';
 
   @override

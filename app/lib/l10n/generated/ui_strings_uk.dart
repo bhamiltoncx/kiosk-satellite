@@ -97,6 +97,14 @@ class UiStringsUk extends UiStrings {
       'Dot двічі перезапускається, щоб встановити оновлення, і щоразу приблизно півтори хвилини не в мережі.';
 
   @override
+  String get aboutSystemManual => 'Доступний новий образ';
+
+  @override
+  String aboutSystemManualHelp(String version) {
+    return 'Версія $version нового образу Echo Dot встановлюється вручну, а не як оновлення.';
+  }
+
+  @override
   String get alarmsTitle => 'Будильники';
 
   @override

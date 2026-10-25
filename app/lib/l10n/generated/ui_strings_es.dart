@@ -97,6 +97,14 @@ class UiStringsEs extends UiStrings {
       'El Dot se reinicia dos veces para instalar la actualización y queda sin conexión aproximadamente un minuto y medio cada vez.';
 
   @override
+  String get aboutSystemManual => 'Nueva imagen disponible';
+
+  @override
+  String aboutSystemManualHelp(String version) {
+    return 'La versión $version de la nueva imagen del Echo Dot se instala a mano, no como una actualización.';
+  }
+
+  @override
   String get alarmsTitle => 'Alarmas';
 
   @override

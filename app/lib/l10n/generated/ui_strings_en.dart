@@ -97,6 +97,14 @@ class UiStringsEn extends UiStrings {
       'The Dot restarts twice to install the update and is offline for about a minute and a half each time.';
 
   @override
+  String get aboutSystemManual => 'New image available';
+
+  @override
+  String aboutSystemManualHelp(String version) {
+    return 'Version $version of the new Echo Dot image installs by hand, not as an update.';
+  }
+
+  @override
   String get alarmsTitle => 'Alarms';
 
   @override

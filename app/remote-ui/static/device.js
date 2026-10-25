@@ -709,7 +709,7 @@ export async function loadAboutInfo() {
   const [info, updRes, sysRes] = await Promise.all([
     api('/api/info').then((r) => r.json()).catch(() => null),
     cmd('getUpdateStatus').catch(() => null),
-    isHeadless() ? cmd('getSystemUpdateStatus').catch(() => null) : null,
+    cmd('getSystemUpdateStatus').catch(() => null),
   ]);
   const upd = updRes?.data;
   const sys = sysRes?.data?.supported ? sysRes.data : null;
@@ -762,8 +762,9 @@ export async function loadAboutInfo() {
     return a;
   };
 
-  // The Echo Dot image, above the app it runs: its release, the same tap
-  // to check for a newer one, and the update itself.
+  // The system image, above the app it runs: its release, the same tap
+  // to check for a newer one, and the update itself. A newer image that
+  // installs by hand gets its guide instead.
   if (sys) {
     const sysVersion = document.createElement('a');
     sysVersion.textContent = or(sys.currentVersion);
@@ -794,11 +795,16 @@ export async function loadAboutInfo() {
       setAboutLabel(btn, 'deviceInstallVersion', { version: sys.availableVersion });
       attachSystemUpdateInstall(btn, () => sys, () => { refreshUpdateBadge(); loadAboutInfo(); });
       updateRow = ['Update available', btn, failed];
+    } else if (sys.manualVersion) {
+      const guide = link('', sys.manualUrl);
+      setAboutLabel(guide, 'deviceOpenGuide');
+      const help = document.createElement('div');
+      setAboutLabel(help, 'aboutSystemManualHelp', {version: sys.manualVersion});
+      updateRow = [{id: 'aboutSystemManual'}, guide, help];
     } else {
       updateRow = ['Updates', aboutStatus('drawerUpdateCurrent'), failed];
     }
-    const image = link('jxlarrea/lineageos-biscuit-kiosk-satellite',
-      'https://github.com/jxlarrea/lineageos-biscuit-kiosk-satellite');
+    const image = link(sys.repository.replace('https://github.com/', ''), sys.repository);
     image.insertAdjacentHTML('afterbegin', githubMark);
     card({id: 'aboutSystem'}, [
       [{id: 'aboutSystemVersion'}, sysVersion],
@@ -942,7 +948,7 @@ export function renderLocalizationCredits() {
 export async function refreshUpdateBadge() {
   const [upd, sys] = await Promise.all([
     cmd('getUpdateStatus').catch(() => null).then((r) => r?.data),
-    isHeadless() ? cmd('getSystemUpdateStatus').catch(() => null).then((r) => r?.data) : null,
+    cmd('getSystemUpdateStatus').catch(() => null).then((r) => r?.data),
   ]);
   const title = document.querySelector('button[data-tab="about"] .nav-title');
   if (!title) return;

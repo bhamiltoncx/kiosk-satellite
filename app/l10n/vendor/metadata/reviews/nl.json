@@ -27950,5 +27950,17 @@
     "translation": "fee39f8cfbc913dce4087a88c2e5f7798e93a8421cb0e9264e3d2512175d17ae",
     "author": "Xavier Larrea",
     "ownerAuthored": true
+  },
+  "aboutSystemManualHelp": {
+    "source": "c550c6a8d2569daadcb1b52c84afa1440795a863319daf9b650d25284281bb2b",
+    "translation": "d3605bdbca9da35e5fb57a148077616f816d040878d20fc181f7a7964f168ef6",
+    "author": "Xavier Larrea",
+    "ownerAuthored": true
+  },
+  "aboutSystemManual": {
+    "source": "d4edea00cfd9b6341c7851371a9bd8ab92438fec57b382bd0200aad01d8a4ed8",
+    "translation": "bef64d4b13179c93b8d5c0d42c26fe2906d014b9ef60f429b8d5cf9348010045",
+    "author": "Xavier Larrea",
+    "ownerAuthored": true
   }
 }

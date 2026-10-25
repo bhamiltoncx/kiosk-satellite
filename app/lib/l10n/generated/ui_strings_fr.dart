@@ -97,6 +97,14 @@ class UiStringsFr extends UiStrings {
       'Le Dot redémarre deux fois pour installer la mise à jour et reste hors ligne environ une minute et demie à chaque fois.';
 
   @override
+  String get aboutSystemManual => 'Nouvelle image disponible';
+
+  @override
+  String aboutSystemManualHelp(String version) {
+    return 'La version $version de la nouvelle image de l\'Echo Dot s\'installe à la main, pas comme une mise à jour.';
+  }
+
+  @override
   String get alarmsTitle => 'Alarmes';
 
   @override

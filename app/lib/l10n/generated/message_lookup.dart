@@ -27,6 +27,7 @@ String messageById(UiStrings strings, String? id, String fallback) =>
       'aboutSystemVerifying' => strings.aboutSystemVerifying,
       'aboutSystemInstalling' => strings.aboutSystemInstalling,
       'aboutSystemInstallHelp' => strings.aboutSystemInstallHelp,
+      'aboutSystemManual' => strings.aboutSystemManual,
       'alarmsTitle' => strings.alarmsTitle,
       'alarmsSetAnAlarm' => strings.alarmsSetAnAlarm,
       'alarmsNone' => strings.alarmsNone,
