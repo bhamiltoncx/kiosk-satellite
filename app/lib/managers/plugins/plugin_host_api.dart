@@ -385,6 +385,7 @@ class PluginHostApi {
       'enabled',
       'running',
       'connected',
+      'playing',
       'clientId',
       'playerName',
       'serverName',
