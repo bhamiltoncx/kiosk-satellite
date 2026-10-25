@@ -61,6 +61,7 @@ import 'managers/screensaver/screensaver_manager.dart';
 import 'managers/sendspin/sendspin_manager.dart';
 import 'managers/service/service_manager.dart';
 import 'managers/sound/sound_manager.dart';
+import 'managers/settings/echo_defaults.dart';
 import 'managers/settings/headless_settings.dart';
 import 'managers/settings/provisioning.dart';
 import 'managers/settings/settings_manager.dart';
@@ -432,6 +433,9 @@ class AppContainer {
 
   Future<void> init() async {
     await settings.init();
+    // An Echo image's first start: before the provisioning below, which
+    // may override it, and before any manager reads its settings.
+    await EchoDefaults(settings, log).apply();
     // Apply any adb/MDM intent provisioning before other managers read
     // their settings; the channel also handles pushes while running.
     await ProvisioningChannel(settings, log).init();

@@ -29,6 +29,8 @@ The Dot names itself `echo-dot-ks` and the last three characters of its serial, 
 
 Open `http://<dot ip>:2324` in a browser. The image's guide shows how to find the Dot's [IP address](https://github.com/jxlarrea/lineageos-echo-kiosk-satellite/blob/main/docs/echo-dot.md#after-installing). In the setup wizard, set an admin password, the Home Assistant connection and the Voice Satellite wake word. The wizard skips the dashboard step. Then add the Dot in Home Assistant under **Settings > Devices & services**, where it shows up as discovered.
 
+A fresh install starts with **Use real Wi-Fi MAC address** on, so the Dot's ESPHome device links with the entries your router and network integrations already have for it ([Device Identity](esphome.md#device-identity)).
+
 The Action button and the volume buttons reach Kiosk Satellite as broadcasts from the image, so Kiosk Satellite needs no accessibility service.
 
 On the CM14.1 image the Action button goes through an accessibility service instead, which is switched on at every boot. Force-stopping Kiosk Satellite there, with `adb shell am force-stop` or **Force stop** in Android's app settings, switches the service off until the next reboot. **Restart app** does not switch it off.
