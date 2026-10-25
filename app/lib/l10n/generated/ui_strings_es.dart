@@ -93,8 +93,8 @@ class UiStringsEs extends UiStrings {
   String get aboutSystemInstalling => 'Instalando…';
 
   @override
-  String get aboutSystemInstallHelp =>
-      'El Dot se reinicia dos veces para instalar la actualización y queda sin conexión aproximadamente un minuto y medio cada vez.';
+  String get aboutSystemRestartHelp =>
+      'El dispositivo se reinicia dos veces para instalar la actualización y queda sin conexión unos minutos.';
 
   @override
   String get aboutSystemManual => 'Nueva imagen disponible';
@@ -4412,8 +4412,8 @@ class UiStringsEs extends UiStrings {
   String get overviewSystemUpdate => 'Actualización del sistema disponible';
 
   @override
-  String overviewSystemUpdateHelp(String version) {
-    return 'La versión $version de la imagen del Echo Dot está lista para instalarse. El Dot se reinicia dos veces para instalarla.';
+  String overviewSystemImageUpdateHelp(String version) {
+    return 'La versión $version de la imagen del sistema está lista para instalarse. El dispositivo se reinicia dos veces para instalarla.';
   }
 
   @override

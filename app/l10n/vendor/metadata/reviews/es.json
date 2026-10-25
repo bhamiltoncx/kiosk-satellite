@@ -23273,5 +23273,15 @@
     "source": "8c28103b2b3f541493d854adc4746707ced2c2737824b0bde06e6401c0d9dd21",
     "translation": "460d1d4ca3458c03f435f4324207049c1c9ae8cd094843a909ccd469fa479ca7",
     "author": "Xavier Larrea"
+  },
+  "aboutSystemRestartHelp": {
+    "source": "67a44b13a43856b77c976ad1cf8320a30e6ce5738b56071c6ac454bc473f63ae",
+    "translation": "fcc79fcddf40cc44860b3ab9020642d61791b4b47079009950a310b4bc616232",
+    "author": "Xavier Larrea"
+  },
+  "overviewSystemImageUpdateHelp": {
+    "source": "0d06f6d4bb26c1a1327282c3f6cf368312bb502829af813bf02af0ba6b2bd378",
+    "translation": "8f2de368de30b719dbc71c008ea5a2c21101428cfe6184580f54d7897b92c0a9",
+    "author": "Xavier Larrea"
   }
 }

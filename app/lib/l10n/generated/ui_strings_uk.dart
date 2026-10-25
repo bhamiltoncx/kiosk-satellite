@@ -93,8 +93,8 @@ class UiStringsUk extends UiStrings {
   String get aboutSystemInstalling => 'Встановлення…';
 
   @override
-  String get aboutSystemInstallHelp =>
-      'Dot двічі перезапускається, щоб встановити оновлення, і щоразу приблизно півтори хвилини не в мережі.';
+  String get aboutSystemRestartHelp =>
+      'Пристрій двічі перезапускається, щоб встановити оновлення, і кілька хвилин не в мережі.';
 
   @override
   String get aboutSystemManual => 'Доступний новий образ';
@@ -4379,8 +4379,8 @@ class UiStringsUk extends UiStrings {
   String get overviewSystemUpdate => 'Доступне оновлення системи';
 
   @override
-  String overviewSystemUpdateHelp(String version) {
-    return 'Версія $version образу Echo Dot готова до встановлення. Для цього Dot двічі перезапуститься.';
+  String overviewSystemImageUpdateHelp(String version) {
+    return 'Версія $version образу системи готова до встановлення. Для цього пристрій двічі перезапуститься.';
   }
 
   @override

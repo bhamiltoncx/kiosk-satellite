@@ -304,10 +304,10 @@
       ]
     }
   },
-  "aboutSystemInstallHelp": "Dot 会重启两次以安装更新，每次离线约一分半钟。",
-  "@aboutSystemInstallHelp": {
+  "aboutSystemRestartHelp": "设备会重启两次以安装更新，期间离线几分钟。",
+  "@aboutSystemRestartHelp": {
     "context": "Remote administration > About > System",
-    "description": "Guidance below the release notes before a system update installs. The Dot is the Echo Dot smart speaker.",
+    "description": "Guidance below the release notes before a system update installs. The device is an Echo Dot or Echo Show running the Kiosk Satellite image.",
     "x-locations": {
       "remoteAdmin": [
         "About > System > install a version",
@@ -16542,8 +16542,8 @@
       ]
     }
   },
-  "overviewSystemUpdateHelp": "Echo Dot 镜像 {version} 版已可安装。安装时 Dot 会重启两次。",
-  "@overviewSystemUpdateHelp": {
+  "overviewSystemImageUpdateHelp": "系统镜像 {version} 版已可安装。安装时设备会重启两次。",
+  "@overviewSystemImageUpdateHelp": {
     "context": "Remote admin > Overview > Needs attention",
     "description": "Translate the interface text. Keep external names, versions and technical details unchanged.",
     "x-locations": {
@@ -16555,7 +16555,7 @@
     "placeholders": {
       "version": {
         "type": "String",
-        "description": "Release of the Echo Dot's system image, such as 2026.10.4."
+        "description": "Release of the device's system image, such as 2026.10.4."
       }
     }
   },

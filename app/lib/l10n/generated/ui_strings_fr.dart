@@ -93,8 +93,8 @@ class UiStringsFr extends UiStrings {
   String get aboutSystemInstalling => 'Installation…';
 
   @override
-  String get aboutSystemInstallHelp =>
-      'Le Dot redémarre deux fois pour installer la mise à jour et reste hors ligne environ une minute et demie à chaque fois.';
+  String get aboutSystemRestartHelp =>
+      'L\'appareil redémarre deux fois pour installer la mise à jour et reste hors ligne quelques minutes.';
 
   @override
   String get aboutSystemManual => 'Nouvelle image disponible';
@@ -4410,8 +4410,8 @@ class UiStringsFr extends UiStrings {
   String get overviewSystemUpdate => 'Mise à jour du système disponible';
 
   @override
-  String overviewSystemUpdateHelp(String version) {
-    return 'La version $version de l\'image de l\'Echo Dot est prête à être installée. Le Dot redémarre deux fois pour l\'installer.';
+  String overviewSystemImageUpdateHelp(String version) {
+    return 'La version $version de l\'image système est prête à être installée. L\'appareil redémarre deux fois pour l\'installer.';
   }
 
   @override
