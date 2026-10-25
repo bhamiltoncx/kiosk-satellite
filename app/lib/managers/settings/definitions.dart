@@ -11847,6 +11847,15 @@ const fleetDefaultCredentials = {
   'intercom.key',
 };
 
+/// What [fleetDefaultCredentials] used to be, oldest first, for a profile
+/// saved before profiles recorded their default: one still holding exactly
+/// one of these (besides the realtime keys an upgrade added) never had its
+/// credentials touched and gains the ones that joined the default since.
+const fleetFormerDefaultCredentials = <Set<String>>[
+  // Before the intercom (2026.9.50).
+  {'sendspin.ma_token', 'screensaver.immich_api_key'},
+];
+
 /// Excluded from every new profile: what scales the UI, drives the
 /// backlight or sets a volume, files and picks that only resolve on the
 /// device that made them, and the tuning of its camera. A profile can bring
