@@ -8563,14 +8563,14 @@ abstract class UiStrings {
   /// Setting label.
   ///
   /// In en, this message translates to:
-  /// **'Wait while media plays'**
-  String get settingLauncherAutoReturnMediaTitle;
+  /// **'Wait during media and calls'**
+  String get settingLauncherAutoReturnHoldTitle;
 
   /// Help below this setting.
   ///
   /// In en, this message translates to:
-  /// **'Do not come back while video or music is playing.'**
-  String get settingLauncherAutoReturnMediaDescription;
+  /// **'Do not come back during video, music or calls.'**
+  String get settingLauncherAutoReturnHoldDescription;
 
   /// Label or guidance in this section.
   ///

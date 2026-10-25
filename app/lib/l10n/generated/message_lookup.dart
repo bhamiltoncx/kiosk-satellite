@@ -1333,10 +1333,10 @@ String messageById(UiStrings strings, String? id, String fallback) =>
         strings.settingLauncherAutoReturnSecondsTitle,
       'settingLauncherAutoReturnSecondsDescription' =>
         strings.settingLauncherAutoReturnSecondsDescription,
-      'settingLauncherAutoReturnMediaTitle' =>
-        strings.settingLauncherAutoReturnMediaTitle,
-      'settingLauncherAutoReturnMediaDescription' =>
-        strings.settingLauncherAutoReturnMediaDescription,
+      'settingLauncherAutoReturnHoldTitle' =>
+        strings.settingLauncherAutoReturnHoldTitle,
+      'settingLauncherAutoReturnHoldDescription' =>
+        strings.settingLauncherAutoReturnHoldDescription,
       'launcherOverlayHeld' => strings.launcherOverlayHeld,
       'launcherOverlayMissing' => strings.launcherOverlayMissing,
       'launcherOverlayRemote' => strings.launcherOverlayRemote,

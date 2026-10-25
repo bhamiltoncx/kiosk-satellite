@@ -4920,12 +4920,12 @@ class UiStringsEs extends UiStrings {
       'Tiempo sin tocar la otra aplicación antes de volver al kiosko.';
 
   @override
-  String get settingLauncherAutoReturnMediaTitle =>
-      'Esperar mientras se reproduce contenido';
+  String get settingLauncherAutoReturnHoldTitle =>
+      'Esperar durante contenido y llamadas';
 
   @override
-  String get settingLauncherAutoReturnMediaDescription =>
-      'No vuelve mientras se reproduce video o música.';
+  String get settingLauncherAutoReturnHoldDescription =>
+      'No vuelve durante video, música o llamadas.';
 
   @override
   String get launcherOverlayHeld =>

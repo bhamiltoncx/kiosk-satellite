@@ -4890,12 +4890,12 @@ class UiStringsUk extends UiStrings {
       'Час без взаємодії в іншому застосунку до повернення кіоска.';
 
   @override
-  String get settingLauncherAutoReturnMediaTitle =>
-      'Чекати під час відтворення';
+  String get settingLauncherAutoReturnHoldTitle =>
+      'Чекати під час відтворення та дзвінків';
 
   @override
-  String get settingLauncherAutoReturnMediaDescription =>
-      'Не повертатися, поки відтворюється відео або музика.';
+  String get settingLauncherAutoReturnHoldDescription =>
+      'Не повертатися під час відео, музики або дзвінків.';
 
   @override
   String get launcherOverlayHeld =>

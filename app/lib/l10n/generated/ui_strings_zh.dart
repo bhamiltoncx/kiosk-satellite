@@ -4692,10 +4692,10 @@ class UiStringsZh extends UiStrings {
       '在其他应用中连续多久没有触屏操作后，自动返回 Kiosk。';
 
   @override
-  String get settingLauncherAutoReturnMediaTitle => '媒体播放时等待';
+  String get settingLauncherAutoReturnHoldTitle => '媒体播放或通话时等待';
 
   @override
-  String get settingLauncherAutoReturnMediaDescription => '正在播放视频或音乐时不自动返回。';
+  String get settingLauncherAutoReturnHoldDescription => '正在播放视频、音乐或通话时不自动返回。';
 
   @override
   String get launcherOverlayHeld => 'Kiosk Satellite 可以自动返回前台，并检测其他应用中的触屏操作。';
@@ -19532,10 +19532,10 @@ class UiStringsZhCn extends UiStringsZh {
       '在其他应用中连续多久没有触屏操作后，自动返回 Kiosk。';
 
   @override
-  String get settingLauncherAutoReturnMediaTitle => '媒体播放时等待';
+  String get settingLauncherAutoReturnHoldTitle => '媒体播放或通话时等待';
 
   @override
-  String get settingLauncherAutoReturnMediaDescription => '正在播放视频或音乐时不自动返回。';
+  String get settingLauncherAutoReturnHoldDescription => '正在播放视频、音乐或通话时不自动返回。';
 
   @override
   String get launcherOverlayHeld => 'Kiosk Satellite 可以自动返回前台，并检测其他应用中的触屏操作。';

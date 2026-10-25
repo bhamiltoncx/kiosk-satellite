@@ -4919,12 +4919,12 @@ class UiStringsFr extends UiStrings {
       'Durée sans interaction dans l\'autre application avant que le kiosque revienne.';
 
   @override
-  String get settingLauncherAutoReturnMediaTitle =>
-      'Attendre pendant la lecture';
+  String get settingLauncherAutoReturnHoldTitle =>
+      'Attendre pendant la lecture et les appels';
 
   @override
-  String get settingLauncherAutoReturnMediaDescription =>
-      'Ne pas revenir tant qu\'une vidéo ou de la musique est en lecture.';
+  String get settingLauncherAutoReturnHoldDescription =>
+      'Ne pas revenir pendant une vidéo, de la musique ou un appel.';
 
   @override
   String get launcherOverlayHeld =>

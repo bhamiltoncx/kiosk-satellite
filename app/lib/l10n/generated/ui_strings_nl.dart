@@ -4905,11 +4905,12 @@ class UiStringsNl extends UiStrings {
       'Tijd zonder aanraking in de andere app voordat de kiosk terugkeert.';
 
   @override
-  String get settingLauncherAutoReturnMediaTitle => 'Wachten tijdens afspelen';
+  String get settingLauncherAutoReturnHoldTitle =>
+      'Wachten tijdens afspelen en gesprekken';
 
   @override
-  String get settingLauncherAutoReturnMediaDescription =>
-      'Niet terugkeren zolang er video of muziek speelt.';
+  String get settingLauncherAutoReturnHoldDescription =>
+      'Niet terugkeren tijdens video, muziek of gesprekken.';
 
   @override
   String get launcherOverlayHeld =>

@@ -4954,12 +4954,12 @@ class UiStringsDe extends UiStrings {
       'Zeit ohne Interaktion mit der anderen App, bevor zum Kiosk zurückgekehrt wird.';
 
   @override
-  String get settingLauncherAutoReturnMediaTitle =>
-      'Warten, während Medien laufen';
+  String get settingLauncherAutoReturnHoldTitle =>
+      'Bei Medien und Anrufen warten';
 
   @override
-  String get settingLauncherAutoReturnMediaDescription =>
-      'Nicht zurückkehren, solange Video oder Musik läuft.';
+  String get settingLauncherAutoReturnHoldDescription =>
+      'Nicht zurückkehren, solange Video, Musik oder ein Anruf läuft.';
 
   @override
   String get launcherOverlayHeld =>

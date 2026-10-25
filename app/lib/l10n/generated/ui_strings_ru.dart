@@ -4883,12 +4883,12 @@ class UiStringsRu extends UiStrings {
       'Время без касаний в другом приложении до возврата в киоск.';
 
   @override
-  String get settingLauncherAutoReturnMediaTitle =>
-      'Ждать во время воспроизведения';
+  String get settingLauncherAutoReturnHoldTitle =>
+      'Ждать во время воспроизведения и звонков';
 
   @override
-  String get settingLauncherAutoReturnMediaDescription =>
-      'Не возвращаться, пока играет видео или музыка.';
+  String get settingLauncherAutoReturnHoldDescription =>
+      'Не возвращаться во время видео, музыки или звонков.';
 
   @override
   String get launcherOverlayHeld =>

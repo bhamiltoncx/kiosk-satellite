@@ -4853,11 +4853,12 @@ class UiStringsEn extends UiStrings {
       'Time without a touch in the other app before the kiosk comes back.';
 
   @override
-  String get settingLauncherAutoReturnMediaTitle => 'Wait while media plays';
+  String get settingLauncherAutoReturnHoldTitle =>
+      'Wait during media and calls';
 
   @override
-  String get settingLauncherAutoReturnMediaDescription =>
-      'Do not come back while video or music is playing.';
+  String get settingLauncherAutoReturnHoldDescription =>
+      'Do not come back during video, music or calls.';
 
   @override
   String get launcherOverlayHeld =>

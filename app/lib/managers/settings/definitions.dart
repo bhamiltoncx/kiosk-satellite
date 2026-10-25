@@ -1455,8 +1455,8 @@ const launcherAutoReturnMedia = SettingDef<bool>(
   key: 'launcher.auto_return_media',
   type: SettingType.boolean,
   defaultValue: true,
-  title: 'Wait while media plays',
-  description: 'Do not come back while video or music is playing.',
+  title: 'Wait during media and calls',
+  description: 'Do not come back during video, music or calls.',
   category: 'Launcher',
   dependsOn: 'launcher.auto_return',
 );

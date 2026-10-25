@@ -434,6 +434,18 @@ class BackgroundBridge(
                         result.success(watching)
                     }
                 }
+                // Whether another app holds a call (issue #1155): VoIP apps
+                // like Zoom put the audio mode in communication for the
+                // whole call. This app never sets the mode, so the answer
+                // is always someone else's.
+                "inCall" -> {
+                    val audio = context.getSystemService(Context.AUDIO_SERVICE) as android.media.AudioManager
+                    val mode = audio.mode
+                    result.success(
+                        mode == android.media.AudioManager.MODE_IN_COMMUNICATION ||
+                            mode == android.media.AudioManager.MODE_IN_CALL,
+                    )
+                }
                 "requestBringToFront" -> {
                     result.success(startSettings(overlayIntent()))
                 }

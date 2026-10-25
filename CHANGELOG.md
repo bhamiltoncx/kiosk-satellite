@@ -2,6 +2,11 @@
 
 All notable changes to Kiosk Satellite are documented here. Full release notes for each version are available on the [releases page](https://github.com/jxlarrea/kiosk-satellite/releases).
 
+## Unreleased
+
+### Changed
+- **Auto-return waits during calls.** The App Launcher's **Return automatically** no longer brings the kiosk back during a call in another app, such as Zoom, even if nobody touches the screen. The switch is now called **Wait during media and calls** and holds the return for video, music and calls. Once the call ends, the full **Return after** time starts over. Calls need no extra permission.
+
 ## v2026.10.40 - 2026-10-25
 
 ### Added
