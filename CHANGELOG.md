@@ -12,6 +12,7 @@ All notable changes to Kiosk Satellite are documented here. Full release notes f
 - **Auto-return waits during calls.** The App Launcher's **Return automatically** no longer brings the kiosk back during a call in another app, such as Zoom, even if nobody touches the screen. The switch is now called **Wait during media and calls** and holds the return for video, music and calls. Once the call ends, the full **Return after** time starts over. Calls need no extra permission.
 
 ### Fixed
+- **The Echo Dot's Firmware entity no longer goes missing after a restart.** Kiosk Satellite listed its entities to Home Assistant before it knew the image updates itself, so the **Firmware** entity was left out after every app start and came back only when the entity list changed for another reason. It is now listed from the start.
 - **Older fleet profiles now sync the intercom key.** A fleet profile saved before the intercom was added never turned on **Intercom key** under its credentials, so each follower kept its own key and every kiosk showed **Different key** for the others. A profile that still syncs the credentials it started with now turns the intercom key on, and its followers get the leader's key on the next sync. If you switch it off afterward, it stays off (#1156).
 
 ## v2026.10.40 - 2026-10-25

@@ -392,6 +392,9 @@ class AppContainer {
     // the other managers through the bus, so starting before them costs
     // nothing.
     leds,
+    // Before btProxy too: its first catalog lists the Firmware entity only
+    // once getSystemUpdateStatus says the image updates itself.
+    systemUpdate,
     btProxy,
     files,
     glance,
@@ -403,7 +406,6 @@ class AppContainer {
     voice,
     notifications,
     update,
-    systemUpdate,
     shizuku,
     plugins,
     remote,
