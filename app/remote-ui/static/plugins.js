@@ -618,11 +618,12 @@ function settingRow(plugin, setting, value, save) {
     control.append(input, output); settingRow.append(control);
   } else if (setting.type === 'entity') {
     // The entity picker, narrowed to the plugin's domain when it
-    // declares one; Clear empties the setting.
+    // declares one and listing hidden entities when it asks; Clear
+    // empties the setting.
     let current = value ?? setting.default ?? '';
     const domains = Array.isArray(setting.domain) ? setting.domain.map(String)
       : (setting.domain ? [String(setting.domain)] : []);
-    const spec = entitySpec({ domains });
+    const spec = entitySpec({ domains, includeHidden: setting.includeHidden === true });
     const field = pickField({
       spec, value: current,
       onClick: async () => {

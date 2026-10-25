@@ -4,6 +4,9 @@ All notable changes to Kiosk Satellite are documented here. Full release notes f
 
 ## Unreleased
 
+### Added
+- **Plugins can list hidden entities in the entity picker.** An `entity` setting with `"includeHidden": true` also lists the entities Home Assistant hides, such as a light group hidden so its members show on generated dashboards. It works on `entity` fields in a plugin's `list` setting too. Every other picker still leaves hidden entities out. Hidden entities show Home Assistant's hidden icon next to their name, on the device and in the remote admin. A setting that already points at a hidden entity no longer says the entity is gone from Home Assistant (#1157).
+
 ### Changed
 - **Auto-return waits during calls.** The App Launcher's **Return automatically** no longer brings the kiosk back during a call in another app, such as Zoom, even if nobody touches the screen. The switch is now called **Wait during media and calls** and holds the return for video, music and calls. Once the call ends, the full **Return after** time starts over. Calls need no extra permission.
 
