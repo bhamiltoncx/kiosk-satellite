@@ -14463,6 +14463,12 @@ class UiStringsZh extends UiStrings {
   String get setupQrFlashOn => '开启手电筒';
 
   @override
+  String get setupQrScreenLightOff => '关闭屏幕补光';
+
+  @override
+  String get setupQrScreenLightOn => '开启屏幕补光';
+
+  @override
   String get setupPasswordFirst => '请先设置管理密码';
 
   @override
@@ -29287,6 +29293,12 @@ class UiStringsZhCn extends UiStringsZh {
 
   @override
   String get setupQrFlashOn => '开启手电筒';
+
+  @override
+  String get setupQrScreenLightOff => '关闭屏幕补光';
+
+  @override
+  String get setupQrScreenLightOn => '开启屏幕补光';
 
   @override
   String get setupPasswordFirst => '请先设置管理密码';

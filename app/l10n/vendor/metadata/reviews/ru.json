@@ -28353,5 +28353,17 @@
     "translation": "072065986002d174b3a6238f5d5977861e450a115bed1aae5a6b0d2ca1b42ddc",
     "author": "Xavier Larrea",
     "ownerAuthored": true
+  },
+  "setupQrScreenLightOn": {
+    "source": "08067fa8c1109e285a5305ee87d361403c9146e83b8919d1704272c3e47fd680",
+    "translation": "20ce481c5a5b4b98b4f9fa11b5106171e7376722503a672e87b5c3d2b9a4fd59",
+    "author": "Xavier Larrea",
+    "ownerAuthored": true
+  },
+  "setupQrScreenLightOff": {
+    "source": "50c9b0ef9c2702a2f70a0979aab0d032d3118579bb6589e48c922083f670d8b5",
+    "translation": "cf3b8e149b9c60d9c0f90e793143440b20fffae4ea32589b0cccbc1e4dde017f",
+    "author": "Xavier Larrea",
+    "ownerAuthored": true
   }
 }

@@ -15261,6 +15261,12 @@ class UiStringsEn extends UiStrings {
   String get setupQrFlashOn => 'Turn on the flashlight';
 
   @override
+  String get setupQrScreenLightOff => 'Turn off the screen light';
+
+  @override
+  String get setupQrScreenLightOn => 'Turn on the screen light';
+
+  @override
   String get setupPasswordFirst => 'Set the admin password first';
 
   @override

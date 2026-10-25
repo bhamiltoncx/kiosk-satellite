@@ -15445,6 +15445,12 @@ class UiStringsNl extends UiStrings {
   String get setupQrFlashOn => 'Zaklamp inschakelen';
 
   @override
+  String get setupQrScreenLightOff => 'Schermlicht uitschakelen';
+
+  @override
+  String get setupQrScreenLightOn => 'Schermlicht inschakelen';
+
+  @override
   String get setupPasswordFirst =>
       'Stel eerst het wachtwoord van de beheerder in';
 

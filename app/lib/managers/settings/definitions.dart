@@ -5947,6 +5947,22 @@ const cameraDevice = SettingDef<String>(
   perDevice: true,
 );
 
+/// Whether the barcode scanner lights the code with a white screen around
+/// a smaller preview, for a front camera with little light on the code
+/// (issue #1148). Hidden: set from the button in the scanner, which
+/// remembers it for the next scan, the setup token scan and plugin scans
+/// alike. Per device, because it depends on where the kiosk hangs.
+const cameraScanScreenLight = SettingDef<bool>(
+  key: 'camera.scan_screen_light',
+  type: SettingType.boolean,
+  defaultValue: false,
+  title: 'Screen light for scans',
+  description: 'Internal: whether the barcode scanner lights the code.',
+  category: 'Camera',
+  hidden: true,
+  perDevice: true,
+);
+
 // The tiers are the standard 4:3 ladder (640x480, 960x720, 1440x1080)
 // that Android cameras virtually always offer, so the "p" labels match
 // what actually comes out; CameraX still lands on the nearest size on
@@ -13356,6 +13372,7 @@ const List<SettingDef<Object>> allSettings = [
   screensaverPostponeOnPerson,
   cameraEnabled,
   cameraDevice,
+  cameraScanScreenLight,
   cameraSnapshotResolution,
   cameraDisableDetectionSnapshots,
   cameraSnapshots,

@@ -15561,6 +15561,12 @@ class UiStringsFr extends UiStrings {
   String get setupQrFlashOn => 'Allumer la lampe torche';
 
   @override
+  String get setupQrScreenLightOff => 'Éteindre l’éclairage de l’écran';
+
+  @override
+  String get setupQrScreenLightOn => 'Allumer l’éclairage de l’écran';
+
+  @override
   String get setupPasswordFirst =>
       'Définissez d\'abord le mot de passe d\'administration';
 

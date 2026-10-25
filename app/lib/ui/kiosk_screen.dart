@@ -775,6 +775,10 @@ class _KioskScreenState extends State<KioskScreen>
               timeout: request.timeout,
               cancel: cancel,
               closeOnError: true,
+              screenLight: c.settings.get(defs.cameraScanScreenLight),
+              onScreenLight: (on) =>
+                  c.settings.set(defs.cameraScanScreenLight, on),
+              lightScreen: c.screen.holdScanLight,
             ),
           ),
         );

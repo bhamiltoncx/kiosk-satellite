@@ -26615,6 +26615,18 @@ abstract class UiStrings {
   /// **'Turn on the flashlight'**
   String get setupQrFlashOn;
 
+  /// Button label when the screen light is on. The screen light turns the screen white around a smaller camera preview to light the code.
+  ///
+  /// In en, this message translates to:
+  /// **'Turn off the screen light'**
+  String get setupQrScreenLightOff;
+
+  /// Button label when the screen light is off. The screen light turns the screen white around a smaller camera preview to light the code.
+  ///
+  /// In en, this message translates to:
+  /// **'Turn on the screen light'**
+  String get setupQrScreenLightOn;
+
   /// Error heading when importing before setting an admin password.
   ///
   /// In en, this message translates to:

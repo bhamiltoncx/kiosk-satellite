@@ -15358,6 +15358,12 @@ class UiStringsRu extends UiStrings {
   String get setupQrFlashOn => 'Включить фонарик';
 
   @override
+  String get setupQrScreenLightOff => 'Выключить подсветку экраном';
+
+  @override
+  String get setupQrScreenLightOn => 'Включить подсветку экраном';
+
+  @override
   String get setupPasswordFirst => 'Сначала задайте пароль администратора';
 
   @override

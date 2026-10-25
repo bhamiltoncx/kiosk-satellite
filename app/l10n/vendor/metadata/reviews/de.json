@@ -28122,5 +28122,17 @@
     "translation": "cdeec2b374c18dd4b59abc6d8c7001c4b163b3261ae62ac84b15560490f037a0",
     "author": "Xavier Larrea",
     "ownerAuthored": true
+  },
+  "setupQrScreenLightOn": {
+    "source": "08067fa8c1109e285a5305ee87d361403c9146e83b8919d1704272c3e47fd680",
+    "translation": "eb99fad6a156b5f9a0c59ec5517277a63fffa92217f62c3e1317846212b86398",
+    "author": "Xavier Larrea",
+    "ownerAuthored": true
+  },
+  "setupQrScreenLightOff": {
+    "source": "50c9b0ef9c2702a2f70a0979aab0d032d3118579bb6589e48c922083f670d8b5",
+    "translation": "dffb8da50572ec2f8122ea18cfa17f120f22a6478f9ba2cbbc8d88065b8a0e0b",
+    "author": "Xavier Larrea",
+    "ownerAuthored": true
   }
 }

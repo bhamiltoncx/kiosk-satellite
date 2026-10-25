@@ -15425,6 +15425,12 @@ class UiStringsUk extends UiStrings {
   String get setupQrFlashOn => 'Увімкнути ліхтарик';
 
   @override
+  String get setupQrScreenLightOff => 'Вимкнути підсвічування екраном';
+
+  @override
+  String get setupQrScreenLightOn => 'Увімкнути підсвічування екраном';
+
+  @override
   String get setupPasswordFirst => 'Спочатку встановіть пароль адміністратора';
 
   @override

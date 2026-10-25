@@ -55147,6 +55147,30 @@
       "remoteAdmin": []
     }
   },
+  "setupQrScreenLightOff": "Apagar la luz de pantalla",
+  "@setupQrScreenLightOff": {
+    "context": "First-time setup > Connect > Scan token QR code",
+    "description": "Button label when the screen light is on. The screen light turns the screen white around a smaller camera preview to light the code.",
+    "x-locations": {
+      "device": [
+        "First-time setup > Connect > Scan token QR code",
+        "Kiosk screen > plugin barcode scanner"
+      ],
+      "remoteAdmin": []
+    }
+  },
+  "setupQrScreenLightOn": "Encender la luz de pantalla",
+  "@setupQrScreenLightOn": {
+    "context": "First-time setup > Connect > Scan token QR code",
+    "description": "Button label when the screen light is off. The screen light turns the screen white around a smaller camera preview to light the code.",
+    "x-locations": {
+      "device": [
+        "First-time setup > Connect > Scan token QR code",
+        "Kiosk screen > plugin barcode scanner"
+      ],
+      "remoteAdmin": []
+    }
+  },
   "setupPasswordFirst": "Primero establece la contraseña de administración",
   "@setupPasswordFirst": {
     "context": "First-time setup > Welcome > Remote administration",

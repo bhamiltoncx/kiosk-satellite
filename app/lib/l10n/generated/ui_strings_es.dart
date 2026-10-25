@@ -15567,6 +15567,12 @@ class UiStringsEs extends UiStrings {
   String get setupQrFlashOn => 'Encender la linterna';
 
   @override
+  String get setupQrScreenLightOff => 'Apagar la luz de pantalla';
+
+  @override
+  String get setupQrScreenLightOn => 'Encender la luz de pantalla';
+
+  @override
   String get setupPasswordFirst =>
       'Primero establece la contraseña de administración';
 

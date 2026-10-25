@@ -15591,6 +15591,12 @@ class UiStringsDe extends UiStrings {
   String get setupQrFlashOn => 'Taschenlampe einschalten';
 
   @override
+  String get setupQrScreenLightOff => 'Bildschirmlicht ausschalten';
+
+  @override
+  String get setupQrScreenLightOn => 'Bildschirmlicht einschalten';
+
+  @override
   String get setupPasswordFirst =>
       'Bitte zuerst ein Administrationspasswort festlegen';
 
