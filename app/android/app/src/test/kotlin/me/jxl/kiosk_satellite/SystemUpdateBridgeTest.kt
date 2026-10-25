@@ -38,6 +38,12 @@ class SystemUpdateBridgeTest {
         assertEquals(SystemUpdater.ECHO, SystemUpdater.detect(props("ro.echo.ota" to "1")))
         assertNull(SystemUpdater.detect(props()))
         assertNull(SystemUpdater.detect(props("ro.echo.ota" to "0")))
+        // Dot releases 2026.10.7 to 2026.10.9 set both. EchoService would
+        // install into one slot only there, so BiscuitService wins.
+        assertEquals(
+            SystemUpdater.BISCUIT,
+            SystemUpdater.detect(props("ro.echo.ota" to "1", "ro.biscuit.ota" to "1")),
+        )
         // The Dot-only features do not make an updater.
         assertNull(SystemUpdater.detect(props("ro.biscuit.pryon" to "1")))
     }

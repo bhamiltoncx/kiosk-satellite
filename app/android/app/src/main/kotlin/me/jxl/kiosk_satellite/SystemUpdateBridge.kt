@@ -21,8 +21,13 @@ import java.util.concurrent.TimeUnit
  * The updater service of a Kiosk Satellite Edition ROM. The Echo Dot image
  * runs BiscuitService and the Echo Show images run EchoService. Both keep
  * one contract (status JSON, transaction codes, broadcast) and differ only
- * in their names. A ROM has one or the other, never both, and says which
- * with a property. Read on any device, with a screen or without.
+ * in their names. A ROM says which it has with a property, read on any
+ * device, with a screen or without.
+ *
+ * BiscuitService always wins: Dot releases 2026.10.7 to 2026.10.9 shipped
+ * EchoService by mistake and set both properties. EchoService installs the
+ * Show way, into the active slot only, which would leave such a Dot's two
+ * slots on different releases. [detect] checks the entries in order.
  */
 enum class SystemUpdater(
     val property: String,
