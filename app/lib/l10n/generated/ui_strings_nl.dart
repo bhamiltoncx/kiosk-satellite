@@ -7398,6 +7398,62 @@ class UiStringsNl extends UiStrings {
   String get deviceThemeSystem => 'Systeem';
 
   @override
+  String get settingUiToastsHiddenTitle =>
+      'Pop-upmeldingen van het systeem tonen';
+
+  @override
+  String get settingUiToastsHiddenDescription =>
+      'Kies welke pop-upmeldingen over het dashboard verschijnen. Meldingen in Instellingen verschijnen altijd.';
+
+  @override
+  String get deviceToastsAll => 'Alle';
+
+  @override
+  String get deviceToastsNone => 'Geen';
+
+  @override
+  String get deviceToastBack => 'Hints voor de terugknop';
+
+  @override
+  String get deviceToastGestures => 'Gebaaracties';
+
+  @override
+  String get deviceToastHoldMode => 'Wachtstand';
+
+  @override
+  String get deviceToastLinks => 'Dashboardlinks';
+
+  @override
+  String get deviceToastDownloads => 'Downloads';
+
+  @override
+  String get deviceToastNetwork => 'Netwerkstatus';
+
+  @override
+  String get deviceToastUpdates => 'Updatecontroles';
+
+  @override
+  String get deviceToastVoice => 'Voice Satellite-meldingen';
+
+  @override
+  String get deviceToastTimers => 'Timers';
+
+  @override
+  String get deviceToastAlarms => 'Alarmen';
+
+  @override
+  String get deviceToastMusicLibrary => 'Muziekbibliotheek';
+
+  @override
+  String get deviceToastIntercom => 'Intercom';
+
+  @override
+  String get deviceToastAppLauncher => 'Appstarter';
+
+  @override
+  String get deviceToastPlugins => 'Plug-inacties';
+
+  @override
   String get settingDlnaEnabledTitle => 'DLNA-renderer inschakelen';
 
   @override

@@ -7374,6 +7374,62 @@ class UiStringsUk extends UiStrings {
   String get deviceThemeSystem => 'Системна';
 
   @override
+  String get settingUiToastsHiddenTitle =>
+      'Показувати системні спливні повідомлення';
+
+  @override
+  String get settingUiToastsHiddenDescription =>
+      'Виберіть, які спливні повідомлення з\'являються поверх панелі. Повідомлення в налаштуваннях з\'являються завжди.';
+
+  @override
+  String get deviceToastsAll => 'Усі';
+
+  @override
+  String get deviceToastsNone => 'Жодних';
+
+  @override
+  String get deviceToastBack => 'Підказки кнопки «Назад»';
+
+  @override
+  String get deviceToastGestures => 'Дії жестів';
+
+  @override
+  String get deviceToastHoldMode => 'Режим утримання';
+
+  @override
+  String get deviceToastLinks => 'Посилання на панелі';
+
+  @override
+  String get deviceToastDownloads => 'Завантаження';
+
+  @override
+  String get deviceToastNetwork => 'Стан мережі';
+
+  @override
+  String get deviceToastUpdates => 'Перевірка оновлень';
+
+  @override
+  String get deviceToastVoice => 'Повідомлення Voice Satellite';
+
+  @override
+  String get deviceToastTimers => 'Таймери';
+
+  @override
+  String get deviceToastAlarms => 'Будильники';
+
+  @override
+  String get deviceToastMusicLibrary => 'Музична бібліотека';
+
+  @override
+  String get deviceToastIntercom => 'Інтерком';
+
+  @override
+  String get deviceToastAppLauncher => 'Лаунчер застосунків';
+
+  @override
+  String get deviceToastPlugins => 'Дії плагінів';
+
+  @override
   String get settingDlnaEnabledTitle => 'Увімкнути рендерер DLNA';
 
   @override

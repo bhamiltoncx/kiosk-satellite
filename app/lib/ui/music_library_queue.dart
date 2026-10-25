@@ -96,6 +96,7 @@ class _LibraryQueuePanelState extends State<LibraryQueuePanel> {
     if (!ok) {
       showToast(
         context,
+        source: 'music_library',
         title: l10n(context).libraryQueueFailed,
         kind: ToastKind.error,
       );

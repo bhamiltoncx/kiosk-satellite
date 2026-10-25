@@ -12806,6 +12806,114 @@ abstract class UiStrings {
   /// Setting label.
   ///
   /// In en, this message translates to:
+  /// **'Show system toast notifications'**
+  String get settingUiToastsHiddenTitle;
+
+  /// Help below the setting.
+  ///
+  /// In en, this message translates to:
+  /// **'Choose the pop-up messages shown over the dashboard. Messages in Settings always show.'**
+  String get settingUiToastsHiddenDescription;
+
+  /// Value of Show system toast notifications when every toast shows.
+  ///
+  /// In en, this message translates to:
+  /// **'All'**
+  String get deviceToastsAll;
+
+  /// Value of Show system toast notifications when every toast is turned off.
+  ///
+  /// In en, this message translates to:
+  /// **'None'**
+  String get deviceToastsNone;
+
+  /// Toast source: the hint to press back again.
+  ///
+  /// In en, this message translates to:
+  /// **'Back button hints'**
+  String get deviceToastBack;
+
+  /// Toast source: the outcome of a gesture's Home Assistant action.
+  ///
+  /// In en, this message translates to:
+  /// **'Gesture actions'**
+  String get deviceToastGestures;
+
+  /// Toast source: Hold mode turning on or off.
+  ///
+  /// In en, this message translates to:
+  /// **'Hold mode'**
+  String get deviceToastHoldMode;
+
+  /// Toast source: kiosk and app links on the dashboard that fail.
+  ///
+  /// In en, this message translates to:
+  /// **'Dashboard links'**
+  String get deviceToastLinks;
+
+  /// Toast source: file downloads from the dashboard.
+  ///
+  /// In en, this message translates to:
+  /// **'Downloads'**
+  String get deviceToastDownloads;
+
+  /// Toast source: the pill that says the network is gone or back.
+  ///
+  /// In en, this message translates to:
+  /// **'Network status'**
+  String get deviceToastNetwork;
+
+  /// Toast source: checking for updates from the kiosk menu.
+  ///
+  /// In en, this message translates to:
+  /// **'Update checks'**
+  String get deviceToastUpdates;
+
+  /// Toast source: Voice Satellite errors, warnings and notices.
+  ///
+  /// In en, this message translates to:
+  /// **'Voice Satellite notices'**
+  String get deviceToastVoice;
+
+  /// Toast source: voice timer pills.
+  ///
+  /// In en, this message translates to:
+  /// **'Timers'**
+  String get deviceToastTimers;
+
+  /// Toast source: the Alarms panel.
+  ///
+  /// In en, this message translates to:
+  /// **'Alarms'**
+  String get deviceToastAlarms;
+
+  /// Toast source: the Music Library.
+  ///
+  /// In en, this message translates to:
+  /// **'Music Library'**
+  String get deviceToastMusicLibrary;
+
+  /// Toast source: Intercom calls.
+  ///
+  /// In en, this message translates to:
+  /// **'Intercom'**
+  String get deviceToastIntercom;
+
+  /// Toast source: apps opened from the App Launcher.
+  ///
+  /// In en, this message translates to:
+  /// **'App Launcher'**
+  String get deviceToastAppLauncher;
+
+  /// Toast source: plugin actions in the kiosk menu.
+  ///
+  /// In en, this message translates to:
+  /// **'Plugin actions'**
+  String get deviceToastPlugins;
+
+  /// Setting label.
+  ///
+  /// In en, this message translates to:
   /// **'Enable DLNA renderer'**
   String get settingDlnaEnabledTitle;
 

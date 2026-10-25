@@ -36,6 +36,10 @@ const settingMessageIds = <String, Map<String, String>>{
     "title": "settingUiScaleTitle",
     "description": "settingUiScaleDescription",
   },
+  "ui.toasts_hidden": {
+    "title": "settingUiToastsHiddenTitle",
+    "description": "settingUiToastsHiddenDescription",
+  },
   "device.hostname": {
     "title": "settingDeviceHostnameTitle",
     "description": "settingDeviceHostnameDescription",

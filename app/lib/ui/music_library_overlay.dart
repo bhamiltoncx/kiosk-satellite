@@ -373,6 +373,7 @@ class _MusicLibraryScreenState extends State<MusicLibraryScreen> {
     if (error != null) {
       showToast(
         context,
+        source: 'music_library',
         title: s.libraryPlayFailed,
         message: error,
         kind: ToastKind.error,
@@ -384,6 +385,7 @@ class _MusicLibraryScreenState extends State<MusicLibraryScreen> {
     if (mode != PlayMode.next && mode != PlayMode.add) return;
     showToast(
       context,
+      source: 'music_library',
       title: mode == PlayMode.next ? s.libraryPlaysNext : s.libraryAddedToQueue,
       message: item.title,
       kind: ToastKind.success,
@@ -493,6 +495,7 @@ class _MusicLibraryScreenState extends State<MusicLibraryScreen> {
             if (!mounted) return;
             showToast(
               context,
+              source: 'music_library',
               title: ok
                   ? (item.favorite
                         ? s.libraryRemovedFavorite

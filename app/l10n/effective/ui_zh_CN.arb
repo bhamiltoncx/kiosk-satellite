@@ -27609,6 +27609,240 @@
       ]
     }
   },
+  "settingUiToastsHiddenTitle": "显示系统提示消息",
+  "@settingUiToastsHiddenTitle": {
+    "context": "Settings:Device:User Interface",
+    "description": "Setting label.",
+    "x-locations": {
+      "device": [
+        "Settings > Device > User Interface"
+      ],
+      "remoteAdmin": [
+        "Device > User Interface"
+      ]
+    }
+  },
+  "settingUiToastsHiddenDescription": "选择在仪表盘上方弹出的提示消息。设置中的消息始终显示。",
+  "@settingUiToastsHiddenDescription": {
+    "context": "Settings:Device:User Interface",
+    "description": "Help below the setting.",
+    "x-locations": {
+      "device": [
+        "Settings > Device > User Interface"
+      ],
+      "remoteAdmin": [
+        "Device > User Interface"
+      ]
+    }
+  },
+  "deviceToastsAll": "全部",
+  "@deviceToastsAll": {
+    "context": "Settings:Device:User Interface",
+    "description": "Value of Show system toast notifications when every toast shows.",
+    "x-locations": {
+      "device": [
+        "Settings > Device > User Interface"
+      ],
+      "remoteAdmin": [
+        "Device > User Interface"
+      ]
+    }
+  },
+  "deviceToastsNone": "无",
+  "@deviceToastsNone": {
+    "context": "Settings:Device:User Interface",
+    "description": "Value of Show system toast notifications when every toast is turned off.",
+    "x-locations": {
+      "device": [
+        "Settings > Device > User Interface"
+      ],
+      "remoteAdmin": [
+        "Device > User Interface"
+      ]
+    }
+  },
+  "deviceToastBack": "返回键提示",
+  "@deviceToastBack": {
+    "context": "Settings:Device:User Interface",
+    "description": "Toast source: the hint to press back again.",
+    "x-locations": {
+      "device": [
+        "Settings > Device > User Interface"
+      ],
+      "remoteAdmin": [
+        "Device > User Interface"
+      ]
+    }
+  },
+  "deviceToastGestures": "手势操作",
+  "@deviceToastGestures": {
+    "context": "Settings:Device:User Interface",
+    "description": "Toast source: the outcome of a gesture's Home Assistant action.",
+    "x-locations": {
+      "device": [
+        "Settings > Device > User Interface"
+      ],
+      "remoteAdmin": [
+        "Device > User Interface"
+      ]
+    }
+  },
+  "deviceToastHoldMode": "页面保持模式",
+  "@deviceToastHoldMode": {
+    "context": "Settings:Device:User Interface",
+    "description": "Toast source: Hold mode turning on or off.",
+    "x-locations": {
+      "device": [
+        "Settings > Device > User Interface"
+      ],
+      "remoteAdmin": [
+        "Device > User Interface"
+      ]
+    }
+  },
+  "deviceToastLinks": "仪表盘链接",
+  "@deviceToastLinks": {
+    "context": "Settings:Device:User Interface",
+    "description": "Toast source: kiosk and app links on the dashboard that fail.",
+    "x-locations": {
+      "device": [
+        "Settings > Device > User Interface"
+      ],
+      "remoteAdmin": [
+        "Device > User Interface"
+      ]
+    }
+  },
+  "deviceToastDownloads": "下载",
+  "@deviceToastDownloads": {
+    "context": "Settings:Device:User Interface",
+    "description": "Toast source: file downloads from the dashboard.",
+    "x-locations": {
+      "device": [
+        "Settings > Device > User Interface"
+      ],
+      "remoteAdmin": [
+        "Device > User Interface"
+      ]
+    }
+  },
+  "deviceToastNetwork": "网络状态",
+  "@deviceToastNetwork": {
+    "context": "Settings:Device:User Interface",
+    "description": "Toast source: the pill that says the network is gone or back.",
+    "x-locations": {
+      "device": [
+        "Settings > Device > User Interface"
+      ],
+      "remoteAdmin": [
+        "Device > User Interface"
+      ]
+    }
+  },
+  "deviceToastUpdates": "检查更新",
+  "@deviceToastUpdates": {
+    "context": "Settings:Device:User Interface",
+    "description": "Toast source: checking for updates from the kiosk menu.",
+    "x-locations": {
+      "device": [
+        "Settings > Device > User Interface"
+      ],
+      "remoteAdmin": [
+        "Device > User Interface"
+      ]
+    }
+  },
+  "deviceToastVoice": "Voice Satellite 通知",
+  "@deviceToastVoice": {
+    "context": "Settings:Device:User Interface",
+    "description": "Toast source: Voice Satellite errors, warnings and notices.",
+    "x-locations": {
+      "device": [
+        "Settings > Device > User Interface"
+      ],
+      "remoteAdmin": [
+        "Device > User Interface"
+      ]
+    }
+  },
+  "deviceToastTimers": "计时器",
+  "@deviceToastTimers": {
+    "context": "Settings:Device:User Interface",
+    "description": "Toast source: voice timer pills.",
+    "x-locations": {
+      "device": [
+        "Settings > Device > User Interface"
+      ],
+      "remoteAdmin": [
+        "Device > User Interface"
+      ]
+    }
+  },
+  "deviceToastAlarms": "闹钟",
+  "@deviceToastAlarms": {
+    "context": "Settings:Device:User Interface",
+    "description": "Toast source: the Alarms panel.",
+    "x-locations": {
+      "device": [
+        "Settings > Device > User Interface"
+      ],
+      "remoteAdmin": [
+        "Device > User Interface"
+      ]
+    }
+  },
+  "deviceToastMusicLibrary": "音乐库",
+  "@deviceToastMusicLibrary": {
+    "context": "Settings:Device:User Interface",
+    "description": "Toast source: the Music Library.",
+    "x-locations": {
+      "device": [
+        "Settings > Device > User Interface"
+      ],
+      "remoteAdmin": [
+        "Device > User Interface"
+      ]
+    }
+  },
+  "deviceToastIntercom": "对讲",
+  "@deviceToastIntercom": {
+    "context": "Settings:Device:User Interface",
+    "description": "Toast source: Intercom calls.",
+    "x-locations": {
+      "device": [
+        "Settings > Device > User Interface"
+      ],
+      "remoteAdmin": [
+        "Device > User Interface"
+      ]
+    }
+  },
+  "deviceToastAppLauncher": "应用启动器",
+  "@deviceToastAppLauncher": {
+    "context": "Settings:Device:User Interface",
+    "description": "Toast source: apps opened from the App Launcher.",
+    "x-locations": {
+      "device": [
+        "Settings > Device > User Interface"
+      ],
+      "remoteAdmin": [
+        "Device > User Interface"
+      ]
+    }
+  },
+  "deviceToastPlugins": "插件操作",
+  "@deviceToastPlugins": {
+    "context": "Settings:Device:User Interface",
+    "description": "Toast source: plugin actions in the kiosk menu.",
+    "x-locations": {
+      "device": [
+        "Settings > Device > User Interface"
+      ],
+      "remoteAdmin": [
+        "Device > User Interface"
+      ]
+    }
+  },
   "settingDlnaEnabledTitle": "启用 DLNA 渲染器",
   "@settingDlnaEnabledTitle": {
     "context": "Settings > DLNA Renderer",

@@ -299,6 +299,7 @@ class _AssistOverlayState extends State<AssistOverlay>
         : voiceText(context, notice.category);
     showToast(
       context,
+      source: 'voice',
       title: voiceText(context, switch (notice.severity) {
         VoiceSeverity.error => 'Voice Satellite error',
         VoiceSeverity.warning => 'Voice Satellite warning',

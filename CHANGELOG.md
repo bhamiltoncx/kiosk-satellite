@@ -5,6 +5,7 @@ All notable changes to Kiosk Satellite are documented here. Full release notes f
 ## Unreleased
 
 ### Added
+- **Pick which toasts show.** A new **Show system toast notifications** setting under **Device > User Interface** lists the parts of the app that show pop-up messages over the dashboard: back button hints, gesture actions, Hold mode, dashboard links, downloads, network status, update checks, Voice Satellite notices, timers, alarms, the Music Library, Intercom, the App Launcher and plugin actions. Untick the ones you do not want to see. All of them show by default. Messages in Settings always show, and blocked pages keep their own **Show blocked page notice** switch under **URL Filter**.
 - **Plugins can name the Kiosk Satellite release they need.** A plugin's manifest can set `minAppVersion`, such as `2026.10.40`. Kiosk Satellite will not install or update a plugin that needs a newer release, also through fleet sync, and the review and the error name both versions. **Browse plugins** shows **Needs Kiosk Satellite 2026.10.40 or newer** on such a plugin instead of Install or Update, and the version you have keeps running. Community Plugins now requires the field on new submissions (#1140).
 
 ### Fixed

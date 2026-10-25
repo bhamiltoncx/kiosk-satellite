@@ -7315,6 +7315,61 @@ class UiStringsEn extends UiStrings {
   String get deviceThemeSystem => 'System';
 
   @override
+  String get settingUiToastsHiddenTitle => 'Show system toast notifications';
+
+  @override
+  String get settingUiToastsHiddenDescription =>
+      'Choose the pop-up messages shown over the dashboard. Messages in Settings always show.';
+
+  @override
+  String get deviceToastsAll => 'All';
+
+  @override
+  String get deviceToastsNone => 'None';
+
+  @override
+  String get deviceToastBack => 'Back button hints';
+
+  @override
+  String get deviceToastGestures => 'Gesture actions';
+
+  @override
+  String get deviceToastHoldMode => 'Hold mode';
+
+  @override
+  String get deviceToastLinks => 'Dashboard links';
+
+  @override
+  String get deviceToastDownloads => 'Downloads';
+
+  @override
+  String get deviceToastNetwork => 'Network status';
+
+  @override
+  String get deviceToastUpdates => 'Update checks';
+
+  @override
+  String get deviceToastVoice => 'Voice Satellite notices';
+
+  @override
+  String get deviceToastTimers => 'Timers';
+
+  @override
+  String get deviceToastAlarms => 'Alarms';
+
+  @override
+  String get deviceToastMusicLibrary => 'Music Library';
+
+  @override
+  String get deviceToastIntercom => 'Intercom';
+
+  @override
+  String get deviceToastAppLauncher => 'App Launcher';
+
+  @override
+  String get deviceToastPlugins => 'Plugin actions';
+
+  @override
   String get settingDlnaEnabledTitle => 'Enable DLNA renderer';
 
   @override

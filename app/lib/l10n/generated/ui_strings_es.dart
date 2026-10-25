@@ -7439,6 +7439,62 @@ class UiStringsEs extends UiStrings {
   String get deviceThemeSystem => 'Sistema';
 
   @override
+  String get settingUiToastsHiddenTitle =>
+      'Mostrar notificaciones emergentes del sistema';
+
+  @override
+  String get settingUiToastsHiddenDescription =>
+      'Elige los mensajes emergentes que aparecen sobre el panel de control. Los mensajes de Configuración siempre aparecen.';
+
+  @override
+  String get deviceToastsAll => 'Todas';
+
+  @override
+  String get deviceToastsNone => 'Ninguna';
+
+  @override
+  String get deviceToastBack => 'Avisos del botón Atrás';
+
+  @override
+  String get deviceToastGestures => 'Acciones de gestos';
+
+  @override
+  String get deviceToastHoldMode => 'Modo de pausa';
+
+  @override
+  String get deviceToastLinks => 'Enlaces del panel de control';
+
+  @override
+  String get deviceToastDownloads => 'Descargas';
+
+  @override
+  String get deviceToastNetwork => 'Estado de la red';
+
+  @override
+  String get deviceToastUpdates => 'Búsqueda de actualizaciones';
+
+  @override
+  String get deviceToastVoice => 'Avisos de Voice Satellite';
+
+  @override
+  String get deviceToastTimers => 'Temporizadores';
+
+  @override
+  String get deviceToastAlarms => 'Alarmas';
+
+  @override
+  String get deviceToastMusicLibrary => 'Biblioteca musical';
+
+  @override
+  String get deviceToastIntercom => 'Intercomunicador';
+
+  @override
+  String get deviceToastAppLauncher => 'Lanzador de aplicaciones';
+
+  @override
+  String get deviceToastPlugins => 'Acciones de plugins';
+
+  @override
   String get settingDlnaEnabledTitle => 'Activar receptor DLNA';
 
   @override

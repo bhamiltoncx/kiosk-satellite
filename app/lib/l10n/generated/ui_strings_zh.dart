@@ -7012,6 +7012,60 @@ class UiStringsZh extends UiStrings {
   String get deviceThemeSystem => '系统';
 
   @override
+  String get settingUiToastsHiddenTitle => '显示系统提示消息';
+
+  @override
+  String get settingUiToastsHiddenDescription => '选择在仪表盘上方弹出的提示消息。设置中的消息始终显示。';
+
+  @override
+  String get deviceToastsAll => '全部';
+
+  @override
+  String get deviceToastsNone => '无';
+
+  @override
+  String get deviceToastBack => '返回键提示';
+
+  @override
+  String get deviceToastGestures => '手势操作';
+
+  @override
+  String get deviceToastHoldMode => '页面保持模式';
+
+  @override
+  String get deviceToastLinks => '仪表盘链接';
+
+  @override
+  String get deviceToastDownloads => '下载';
+
+  @override
+  String get deviceToastNetwork => '网络状态';
+
+  @override
+  String get deviceToastUpdates => '检查更新';
+
+  @override
+  String get deviceToastVoice => 'Voice Satellite 通知';
+
+  @override
+  String get deviceToastTimers => '计时器';
+
+  @override
+  String get deviceToastAlarms => '闹钟';
+
+  @override
+  String get deviceToastMusicLibrary => '音乐库';
+
+  @override
+  String get deviceToastIntercom => '对讲';
+
+  @override
+  String get deviceToastAppLauncher => '应用启动器';
+
+  @override
+  String get deviceToastPlugins => '插件操作';
+
+  @override
   String get settingDlnaEnabledTitle => '启用 DLNA 渲染器';
 
   @override
@@ -21782,6 +21836,60 @@ class UiStringsZhCn extends UiStringsZh {
 
   @override
   String get deviceThemeSystem => '系统';
+
+  @override
+  String get settingUiToastsHiddenTitle => '显示系统提示消息';
+
+  @override
+  String get settingUiToastsHiddenDescription => '选择在仪表盘上方弹出的提示消息。设置中的消息始终显示。';
+
+  @override
+  String get deviceToastsAll => '全部';
+
+  @override
+  String get deviceToastsNone => '无';
+
+  @override
+  String get deviceToastBack => '返回键提示';
+
+  @override
+  String get deviceToastGestures => '手势操作';
+
+  @override
+  String get deviceToastHoldMode => '页面保持模式';
+
+  @override
+  String get deviceToastLinks => '仪表盘链接';
+
+  @override
+  String get deviceToastDownloads => '下载';
+
+  @override
+  String get deviceToastNetwork => '网络状态';
+
+  @override
+  String get deviceToastUpdates => '检查更新';
+
+  @override
+  String get deviceToastVoice => 'Voice Satellite 通知';
+
+  @override
+  String get deviceToastTimers => '计时器';
+
+  @override
+  String get deviceToastAlarms => '闹钟';
+
+  @override
+  String get deviceToastMusicLibrary => '音乐库';
+
+  @override
+  String get deviceToastIntercom => '对讲';
+
+  @override
+  String get deviceToastAppLauncher => '应用启动器';
+
+  @override
+  String get deviceToastPlugins => '插件操作';
 
   @override
   String get settingDlnaEnabledTitle => '启用 DLNA 渲染器';

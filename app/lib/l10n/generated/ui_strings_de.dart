@@ -7483,6 +7483,61 @@ class UiStringsDe extends UiStrings {
   String get deviceThemeSystem => 'System';
 
   @override
+  String get settingUiToastsHiddenTitle => 'Systemeinblendungen anzeigen';
+
+  @override
+  String get settingUiToastsHiddenDescription =>
+      'Wähle, welche Einblendungen über dem Dashboard erscheinen. Meldungen in den Einstellungen erscheinen immer.';
+
+  @override
+  String get deviceToastsAll => 'Alle';
+
+  @override
+  String get deviceToastsNone => 'Keine';
+
+  @override
+  String get deviceToastBack => 'Hinweise zur Zurück-Taste';
+
+  @override
+  String get deviceToastGestures => 'Gestenaktionen';
+
+  @override
+  String get deviceToastHoldMode => 'Pausenmodus';
+
+  @override
+  String get deviceToastLinks => 'Dashboard-Links';
+
+  @override
+  String get deviceToastDownloads => 'Downloads';
+
+  @override
+  String get deviceToastNetwork => 'Netzwerkstatus';
+
+  @override
+  String get deviceToastUpdates => 'Updateprüfungen';
+
+  @override
+  String get deviceToastVoice => 'Voice Satellite-Hinweise';
+
+  @override
+  String get deviceToastTimers => 'Timer';
+
+  @override
+  String get deviceToastAlarms => 'Wecker';
+
+  @override
+  String get deviceToastMusicLibrary => 'Musikbibliothek';
+
+  @override
+  String get deviceToastIntercom => 'Gegensprechanlage';
+
+  @override
+  String get deviceToastAppLauncher => 'App-Launcher';
+
+  @override
+  String get deviceToastPlugins => 'Plugin-Aktionen';
+
+  @override
   String get settingDlnaEnabledTitle => 'DLNA-Empfänger aktivieren';
 
   @override

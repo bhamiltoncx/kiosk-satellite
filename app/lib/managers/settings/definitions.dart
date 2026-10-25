@@ -12530,6 +12530,77 @@ const uiScale = SettingDef<num>(
   perDevice: true,
 );
 
+// The app's own toasts outside Settings, by where they come from
+// (showToast's source). The value is a JSON list of the [toastSources]
+// turned off rather than the ones shown, so a source added later shows
+// until someone turns it off. A toast in Settings answers what was just
+// tapped there and always shows.
+const uiToastsHidden = SettingDef<String>(
+  key: 'ui.toasts_hidden',
+  type: SettingType.string,
+  defaultValue: '[]',
+  title: 'Show system toast notifications',
+  description:
+      'Choose the pop-up messages shown over the dashboard. Messages in '
+      'Settings always show.',
+  category: 'Device',
+  section: 'User Interface',
+  validator: _validateToastsHidden,
+  normalizer: _normalizeToastsHidden,
+);
+
+/// Every source Show system toast notifications can turn off, in the
+/// order both pickers list them.
+const toastSources = [
+  'back',
+  'gestures',
+  'hold_mode',
+  'links',
+  'downloads',
+  'network',
+  'updates',
+  'voice',
+  'timers',
+  'alarms',
+  'music_library',
+  'intercom',
+  'app_launcher',
+  'plugins',
+];
+
+/// The sources turned off, unknown ones and a malformed value dropped.
+Set<String> decodeToastsHidden(String value) {
+  try {
+    final decoded = json.decode(value);
+    if (decoded is List) {
+      return decoded.whereType<String>().where(toastSources.contains).toSet();
+    }
+  } catch (_) {}
+  return {};
+}
+
+/// [sources] as stored: known ones only, in [toastSources] order.
+String encodeToastsHidden(Iterable<String> sources) => jsonEncode([
+  for (final source in toastSources)
+    if (sources.contains(source)) source,
+]);
+
+String? _validateToastsHidden(Object? value) {
+  try {
+    final decoded = json.decode(value as String);
+    if (decoded is List &&
+        decoded.every(
+          (source) => source is String && toastSources.contains(source),
+        )) {
+      return null;
+    }
+  } catch (_) {}
+  return 'Choose from ${toastSources.join(', ')}.';
+}
+
+Object _normalizeToastsHidden(Object value) =>
+    value is String ? encodeToastsHidden(decodeToastsHidden(value)) : value;
+
 /// All settings, in display order.
 
 // ── LED Control ────────────────────────────────────────────────────────
@@ -13575,6 +13646,7 @@ const List<SettingDef<Object>> allSettings = [
   uiLanguage,
   uiTheme,
   uiScale,
+  uiToastsHidden,
   // The two pages, service first, close the Device page.
   serviceCpuAwake,
   remoteEnabled,
