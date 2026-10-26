@@ -2,7 +2,7 @@
 
 All notable changes to Kiosk Satellite are documented here. Full release notes for each version are available on the [releases page](https://github.com/jxlarrea/kiosk-satellite/releases).
 
-## Unreleased
+## v2026.10.41 - 2026-10-26
 
 ### Added
 - **Plugins can list hidden entities in the entity picker.** An `entity` setting with `"includeHidden": true` also lists the entities Home Assistant hides, such as a light group hidden so its members show on generated dashboards. It works on `entity` fields in a plugin's `list` setting too. Every other picker still leaves hidden entities out. Hidden entities show Home Assistant's hidden icon next to their name, on the device and in the remote admin. A setting that already points at a hidden entity no longer says the entity is gone from Home Assistant (#1157).
