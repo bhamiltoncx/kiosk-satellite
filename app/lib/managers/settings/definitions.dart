@@ -6852,7 +6852,7 @@ const voiceWakeWordEngine = SettingDef<String>(
   description: 'Which engine listens. All models ship with the app.',
   category: 'Voice Satellite',
   subpage: 'Wake Word',
-  // pryon is Amazon's engine, only on the Echo Dot image (PryonCatalog
+  // pryon is Amazon's engine, only on the Echo images (PryonCatalog
   // hides it everywhere else).
   options: ['vswakeword', 'microwakeword', 'openwakeword', 'pryon'],
   optionLabels: {
@@ -6865,7 +6865,7 @@ const voiceWakeWordEngine = SettingDef<String>(
 );
 
 /// The locale of Amazon's wake word models, under the Amazon engine. Empty
-/// follows the app's language. The options are the locales the Echo Dot
+/// follows the app's language. The options are the locales the Echo
 /// image's service lists (PryonCatalog), so SettingsManager fills them in.
 const voiceAmazonLocale = SettingDef<String>(
   key: 'voice.amazon_locale',
