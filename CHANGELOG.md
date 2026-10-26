@@ -9,6 +9,7 @@ All notable changes to Kiosk Satellite are documented here. Full release notes f
 
 ### Fixed
 - **A frozen app restarts on its own.** If the app's main thread stays stuck in one task for a full minute, Kiosk Satellite now restarts itself and comes back on screen instead of staying frozen until someone touches it. On some devices WebView can deadlock while it draws a frame. Android then shows its "isn't responding" dialog, and nothing in the app could recover because every other safeguard runs on that same thread. A slow device never triggers it, since slowness means many short tasks and not one task that never ends. The first two minutes after the app starts are left alone. Where the main thread was stuck is saved to the app log so the restart can be reported (#1166).
+- **Realtime conversations end right after the goodbye.** When the assistant ends a realtime conversation, it now closes as soon as its last reply finishes playing. Gemini could start another turn after the goodbye and never finish it, which kept the conversation open until something in the room interrupted it. That extra turn is no longer played or waited for.
 
 ### Changed
 - **Plugin actions follow the plugin's names.** A gesture that runs a plugin action now saves only the plugin and action IDs and shows the names the plugin has now, so a plugin that renames itself or its actions in an update no longer leaves the old names on the Gestures page.
