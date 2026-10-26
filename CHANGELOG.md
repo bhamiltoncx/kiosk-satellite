@@ -2,6 +2,14 @@
 
 All notable changes to Kiosk Satellite are documented here. Full release notes for each version are available on the [releases page](https://github.com/jxlarrea/kiosk-satellite/releases).
 
+## Unreleased
+
+### Added
+- **Plugins can run an action you choose in their settings.** A plugin setting of the new `action` type opens the same action chooser as Gestures, so you can pick a dashboard view, a Home Assistant script or service, another app, another plugin's action or anything else a gesture can do. The plugin runs it when you use one of its own controls, such as a button on a navigation bar plugin, with no second place to set it up. Only you choose the action. A plugin cannot change it, so it decides when the action runs and never what it does. Lockdown Mode stops these actions. Disable Gestures does not, since they come from the plugin's own controls. It works in plugin lists too, where each row can have its own action.
+
+### Changed
+- **Plugin actions follow the plugin's names.** A gesture that runs a plugin action now saves only the plugin and action IDs and shows the names the plugin has now, so a plugin that renames itself or its actions in an update no longer leaves the old names on the Gestures page.
+
 ## v2026.10.41 - 2026-10-26
 
 ### Added
