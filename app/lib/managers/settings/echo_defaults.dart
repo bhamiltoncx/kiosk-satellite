@@ -12,8 +12,10 @@ import 'settings_manager.dart';
 /// integrations already know, so the ESPHome device links with them. On
 /// an Echo Show the kiosk is also the home screen: an app in the background
 /// loses the microphone on Android 11, and the home screen is what comes
-/// back whenever something else took the screen. The Dot runs headless and
-/// has no home screen to be (HeadlessSettings pins it off).
+/// back whenever something else took the screen. Now Playing starts in the
+/// Horizontal layout there, which fits the Shows' wide screens. The Dot
+/// runs headless and has no home screen to be (HeadlessSettings pins it
+/// off).
 ///
 /// The image is told apart by its updater (SystemUpdateBridge.kt), where
 /// the Dot's BiscuitService wins over EchoService when a Dot sets both.
@@ -44,7 +46,11 @@ class EchoDefaults {
   static Map<defs.SettingDef<Object>, Object> forUpdater(String? updater) =>
       switch (updater) {
         'biscuit' => {defs.esphomeRealMac: true},
-        'echo' => {defs.esphomeRealMac: true, defs.homeLauncherEnabled: true},
+        'echo' => {
+          defs.esphomeRealMac: true,
+          defs.homeLauncherEnabled: true,
+          defs.sendspinFullscreenLayout: 'horizontal',
+        },
         _ => const {},
       };
 

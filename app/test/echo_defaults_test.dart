@@ -61,11 +61,13 @@ void main() {
   });
 
   group('each image', () {
-    test('an Echo Show gets the real address and the home screen', () async {
+    test('an Echo Show gets the real address, the home screen and the '
+        'Horizontal Now Playing', () async {
       await boot({});
       await apply('echo');
       expect(settings.get(defs.esphomeRealMac), isTrue);
       expect(settings.get(defs.homeLauncherEnabled), isTrue);
+      expect(settings.get(defs.sendspinFullscreenLayout), 'horizontal');
       expect(settings.internal(EchoDefaults.marker), 'echo');
     });
 
@@ -75,6 +77,7 @@ void main() {
       await apply('biscuit');
       expect(settings.get(defs.esphomeRealMac), isTrue);
       expect(settings.get(defs.homeLauncherEnabled), isFalse);
+      expect(settings.get(defs.sendspinFullscreenLayout), 'vertical');
       expect(settings.internal(EchoDefaults.marker), 'biscuit');
     });
 
@@ -92,6 +95,7 @@ void main() {
       await apply(null);
       expect(settings.get(defs.esphomeRealMac), isFalse);
       expect(settings.get(defs.homeLauncherEnabled), isFalse);
+      expect(settings.get(defs.sendspinFullscreenLayout), 'vertical');
       expect(settings.internal(EchoDefaults.marker), isEmpty);
     });
 
@@ -142,6 +146,7 @@ void main() {
       await apply('echo');
       expect(settings.get(defs.esphomeRealMac), isFalse);
       expect(settings.get(defs.homeLauncherEnabled), isFalse);
+      expect(settings.get(defs.sendspinFullscreenLayout), 'vertical');
     });
 
     test('a restored backup or an import keeps its own values', () async {
