@@ -14,6 +14,7 @@ All notable changes to Kiosk Satellite are documented here. Full release notes f
 - **Plugins can tell whether music is playing.** `getSendspinPlayer` and the `sendspin.player` event now include `playing`, and the event fires when music starts or stops. It follows the same player `sendspinControl` controls, so with a followed player it reports that player. A plugin can pause the music during a doorbell call and resume it afterward only if it was playing before (#1158).
 
 ### Changed
+- **An Echo Show 5 guide.** A new [Echo Show 5](https://github.com/jxlarrea/kiosk-satellite/blob/main/docs/echo-show-5.md) guide recommends the [Kiosk Satellite Edition of LineageOS for the Echo Show 5](https://github.com/jxlarrea/lineageos-echo-kiosk-satellite/blob/main/docs/echo-show-5.md), which installs Kiosk Satellite on its first boot as the device owner, makes the wake word work over music and offers Amazon's wake word engine and system updates. The guide covers setup, the wake word engines, volume, the button, system updates and moving from R0rt1z2's image.
 - **Auto-return waits during calls.** The App Launcher's **Return automatically** no longer brings the kiosk back during a call in another app, such as Zoom, even if nobody touches the screen. The switch is now called **Wait during media and calls** and holds the return for video, music and calls. Once the call ends, the full **Return after** time starts over. Calls need no extra permission.
 
 ### Fixed
