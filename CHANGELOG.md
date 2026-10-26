@@ -7,6 +7,9 @@ All notable changes to Kiosk Satellite are documented here. Full release notes f
 ### Added
 - **Plugins can run an action you choose in their settings.** A plugin setting of the new `action` type opens the same action chooser as Gestures, so you can pick a dashboard view, a Home Assistant script or service, another app, another plugin's action or anything else a gesture can do. The plugin runs it when you use one of its own controls, such as a button on a navigation bar plugin, with no second place to set it up. Only you choose the action. A plugin cannot change it, so it decides when the action runs and never what it does. Lockdown Mode stops these actions. Disable Gestures does not, since they come from the plugin's own controls. It works in plugin lists too, where each row can have its own action.
 
+### Fixed
+- **A frozen app restarts on its own.** If the app's main thread stays stuck in one task for a full minute, Kiosk Satellite now restarts itself and comes back on screen instead of staying frozen until someone touches it. On some devices WebView can deadlock while it draws a frame. Android then shows its "isn't responding" dialog, and nothing in the app could recover because every other safeguard runs on that same thread. A slow device never triggers it, since slowness means many short tasks and not one task that never ends. The first two minutes after the app starts are left alone. Where the main thread was stuck is saved to the app log so the restart can be reported (#1166).
+
 ### Changed
 - **Plugin actions follow the plugin's names.** A gesture that runs a plugin action now saves only the plugin and action IDs and shows the names the plugin has now, so a plugin that renames itself or its actions in an update no longer leaves the old names on the Gestures page.
 
