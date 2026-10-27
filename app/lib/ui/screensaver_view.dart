@@ -8,7 +8,7 @@ import 'dart:ui' as ui;
 
 import 'package:flutter/foundation.dart' show ValueListenable;
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart' show RenderProxyBox;
+import 'package:flutter/rendering.dart' show BoxHitTestResult, RenderProxyBox;
 import 'package:flutter/scheduler.dart' show SchedulerBinding;
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -344,18 +344,16 @@ class _ScreensaverOverlayState extends State<ScreensaverOverlay> {
                   'camera' => CameraScreensaver(container: container),
                   // The Home Assistant Dashboard mode: the dashboard itself
                   // shows through a clear layer that takes the tap, so a
-                  // touch dismisses rather than pressing a card. With
-                  // Double tap to dismiss there is no layer: taps reach the
-                  // cards and the kiosk screen's raw pointer reports run
-                  // the manager's double-tap chain.
-                  'dashboard'
-                      when container.settings.get(
-                        defs.screensaverDashboardDoubleTap,
-                      ) =>
-                    const SizedBox.shrink(),
-                  'dashboard' => _Dismissable(
+                  // touch dismisses rather than pressing a card — except in
+                  // the tap regions the page marked, where the layer has
+                  // holes. With Double tap to dismiss there is no layer:
+                  // taps reach the cards and the kiosk screen's raw pointer
+                  // reports run the manager's double-tap chain.
+                  'dashboard' => _DashboardTapLayer(
                     container: container,
-                    child: const SizedBox.expand(),
+                    doubleTap: container.settings.get(
+                      defs.screensaverDashboardDoubleTap,
+                    ),
                   ),
                   // 'black' and anything unexpected: the safe, opaque cover,
                   // carrying the At a Glance row when there is one — unless
@@ -748,6 +746,68 @@ class _SlideEdges extends StatelessWidget {
       );
     },
   );
+}
+
+/// The Home Assistant Dashboard screensaver's touch layer. A touch in one
+/// of the page's tap regions is marked on its way down, ahead of the kiosk
+/// screen's raw report of it, and falls through the holes to the dashboard
+/// underneath; anywhere else the clear layer takes it and dismisses (or,
+/// with Double tap to dismiss, there is no layer and the chain decides).
+/// Regions are screen pixels while this layer sits under Scale UI, so both
+/// checks compare global positions. Read at the touch, not at build: Now
+/// Playing taking the slot turns them off without rebuilding this.
+class _DashboardTapLayer extends StatelessWidget {
+  const _DashboardTapLayer({required this.container, required this.doubleTap});
+
+  final AppContainer container;
+  final bool doubleTap;
+
+  bool _inRegion(Offset global) =>
+      container.screensaver.liveTapRegions.any((r) => r.contains(global));
+
+  @override
+  Widget build(BuildContext context) => Listener(
+    behavior: HitTestBehavior.translucent,
+    onPointerDown: (e) {
+      if (_inRegion(e.position)) container.screensaver.markRegionTouch();
+    },
+    child: doubleTap
+        ? const SizedBox.expand()
+        : _TapHoles(
+            inHole: _inRegion,
+            child: _Dismissable(
+              container: container,
+              child: const SizedBox.expand(),
+            ),
+          ),
+  );
+}
+
+/// Lets a hit test through wherever [inHole] says, given the global
+/// position, so the touch reaches whatever is under the layer.
+class _TapHoles extends SingleChildRenderObjectWidget {
+  const _TapHoles({required this.inHole, required super.child});
+
+  final bool Function(Offset global) inHole;
+
+  @override
+  _RenderTapHoles createRenderObject(BuildContext context) =>
+      _RenderTapHoles(inHole);
+
+  @override
+  void updateRenderObject(BuildContext context, _RenderTapHoles renderObject) =>
+      renderObject.inHole = inHole;
+}
+
+class _RenderTapHoles extends RenderProxyBox {
+  _RenderTapHoles(this.inHole);
+
+  bool Function(Offset global) inHole;
+
+  @override
+  bool hitTest(BoxHitTestResult result, {required Offset position}) =>
+      !inHole(localToGlobal(position)) &&
+      super.hitTest(result, position: position);
 }
 
 /// Tap anywhere to wake. Used by the native views; the WebView reports its own
