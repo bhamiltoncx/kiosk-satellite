@@ -503,6 +503,30 @@ class ScreensaverManager extends Manager with WidgetsBindingObserver {
 
   bool get _touchOnSlideEdge => _within(_slideTouchAt);
 
+  /// The rects the dashboard page marked as its own (its cards, a player),
+  /// in screen logical pixels, from `kioskSatellite.setScreensaverTapRegions`.
+  /// The page's to keep current: a new document clears them, and so does
+  /// [stop], so a page sets them each time the screensaver starts.
+  final ValueNotifier<List<Rect>> tapRegions = ValueNotifier(const []);
+
+  /// [tapRegions] while they mean anything: the Home Assistant Dashboard
+  /// screensaver is up and showing the dashboard itself, not Now Playing
+  /// in its slot (beside a shared panel the dashboard is covered in black).
+  List<Rect> get liveTapRegions =>
+      _active && activeView.value == 'dashboard' && !_nowPlayingTakeover
+      ? tapRegions.value
+      : const [];
+
+  /// When a touch last landed in one of [liveTapRegions]. The dashboard
+  /// layer reports it from the pointer's way down, ahead of the kiosk
+  /// screen's own report of the same touch, which [notifyActivity] then
+  /// leaves alone: the touch belongs to the page's card, not to waking.
+  DateTime? _regionTouchAt;
+
+  void markRegionTouch() => _regionTouchAt = clock();
+
+  bool get _touchOnRegion => _within(_regionTouchAt);
+
   bool _within(DateTime? at) =>
       at != null && clock().difference(at) < const Duration(milliseconds: 150);
 
@@ -513,6 +537,9 @@ class ScreensaverManager extends Manager with WidgetsBindingObserver {
     await _migrateCameraView();
     if (Platform.isAndroid) WidgetsBinding.instance.addObserver(this);
     bus.on<ActivityDetected>().listen((e) => notifyActivity(e.source));
+    bus.on<ScreensaverTapRegionsChanged>().listen(
+      (e) => tapRegions.value = e.regions,
+    );
     // Stand down while a page interaction runs (voice turn, ringing timer
     // alert, media playback), whichever API the page signalled it through:
     // setInteractionActive, or the legacy pauseScreensaver fallback.
@@ -1240,6 +1267,13 @@ class ScreensaverManager extends Manager with WidgetsBindingObserver {
     }
     // Overlay controls consume their touch without dismissing the view.
     if (_touchOnControl &&
+        (source == 'touch' || source == 'touch_page' || source == 'tap')) {
+      return;
+    }
+    // A touch in one of the dashboard page's tap regions pressed its card.
+    // Ahead of the double-tap chain, so it never counts as a first tap.
+    if (_active &&
+        _touchOnRegion &&
         (source == 'touch' || source == 'touch_page' || source == 'tap')) {
       return;
     }
@@ -2127,6 +2161,7 @@ class ScreensaverManager extends Manager with WidgetsBindingObserver {
     renderPaused.value = false;
     _nowPlayingShared = false;
     _tapChainStart = null;
+    tapRegions.value = const [];
     _screenOffTimer?.cancel();
     _screenOffTimer = null;
     _armedScreenOffMinutes = null;
@@ -2244,6 +2279,7 @@ class ScreensaverManager extends Manager with WidgetsBindingObserver {
     _screenOffTimer?.cancel();
     _nightTimer?.cancel();
     activeView.dispose();
+    tapRegions.dispose();
     scheduleNowPlaying.dispose();
     modeOverride.dispose();
   }

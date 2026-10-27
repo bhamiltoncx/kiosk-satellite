@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:flutter_test/flutter_test.dart';
 import 'package:kiosk_satellite/core/command_registry.dart';
 import 'package:kiosk_satellite/core/event_bus.dart';
@@ -167,5 +169,80 @@ void main() {
     await pumpEventQueue();
     expect(saver.isActive, isFalse);
     expect(pathname, '/lovelace/lights');
+  });
+
+  group('tap regions', () {
+    const region = Rect.fromLTWH(100, 100, 200, 100);
+
+    Future<void> withRegion() async {
+      bus.publish(const ScreensaverTapRegionsChanged([region]));
+      await pumpEventQueue();
+    }
+
+    test('a touch in a tap region leaves it up', () async {
+      await build();
+      await saver.start();
+      await withRegion();
+      saver.markRegionTouch();
+      saver.notifyActivity('touch');
+      saver.notifyActivity('tap');
+      await pumpEventQueue();
+      expect(saver.isActive, isTrue);
+    });
+
+    test('a touch outside the regions still dismisses', () async {
+      await build();
+      await saver.start();
+      await withRegion();
+      saver.notifyActivity('touch');
+      await pumpEventQueue();
+      expect(saver.isActive, isFalse);
+    });
+
+    test('a region touch is no first tap of a double tap', () async {
+      await build({'ks.${defs.screensaverDashboardDoubleTap.key}': true});
+      var now = DateTime(2026, 10, 26, 12);
+      saver.clock = () => now;
+      await saver.start();
+      await withRegion();
+      saver.markRegionTouch();
+      saver.notifyActivity('touch');
+      now = now.add(const Duration(milliseconds: 200));
+      saver.notifyActivity('touch');
+      await pumpEventQueue();
+      expect(saver.isActive, isTrue, reason: 'only one tap off the regions');
+      now = now.add(const Duration(milliseconds: 200));
+      saver.notifyActivity('touch');
+      await pumpEventQueue();
+      expect(saver.isActive, isFalse);
+    });
+
+    test('regions apply only while the dashboard shows', () async {
+      await build();
+      await withRegion();
+      expect(saver.tapRegions.value, [region]);
+      expect(saver.liveTapRegions, isEmpty, reason: 'not started');
+      await saver.start();
+      expect(saver.liveTapRegions, [region]);
+    });
+
+    test('stop clears the regions', () async {
+      await build();
+      await saver.start();
+      await withRegion();
+      await saver.stop();
+      expect(saver.tapRegions.value, isEmpty);
+    });
+
+    test('regions are dead while Now Playing holds the slot', () async {
+      await build({'ks.sendspin.fullscreen': true});
+      await saver.start();
+      await withRegion();
+      expect(saver.liveTapRegions, [region]);
+      bus.publish(const SendspinNowPlayingChanged(active: true, playing: true));
+      await pumpEventQueue();
+      expect(saver.tapRegions.value, [region]);
+      expect(saver.liveTapRegions, isEmpty);
+    });
   });
 }
