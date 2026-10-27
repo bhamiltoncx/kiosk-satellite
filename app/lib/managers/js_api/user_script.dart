@@ -1,6 +1,7 @@
 import 'browser_microphone_script.dart';
 import 'page_ha_socket_script.dart';
 import 'remote_settings_script.dart';
+import 'tap_regions_script.dart';
 
 /// The `window.kioskSatellite` facade injected into every page at document
 /// start. Pages never touch the flutter_inappwebview transport directly.
@@ -28,6 +29,7 @@ String buildKioskSatelliteScript({
   $browserMicrophoneScript
   $remoteSettingsScript
   $pageHaSocketScript
+  $tapRegionsScript
 
   window.kioskSatellite = {
     platform: 'kiosksatellite',
@@ -73,6 +75,12 @@ String buildKioskSatelliteScript({
 
     stopScreensaver: function () { return call('stopScreensaver'); },
     pauseScreensaver: function (paused) { return call('pauseScreensaver', { paused: !!paused }); },
+
+    // Rects ({left, top, width, height}, CSS px as getBoundingClientRect()
+    // measures them) that take taps on the Home Assistant Dashboard
+    // screensaver instead of dismissing it. [] clears; false for a
+    // malformed list, which leaves the last one in place.
+    setScreensaverTapRegions: setScreensaverTapRegions,
 
     // The page is running an interaction (a voice turn, a ringing timer
     // alert, media playback): ambient features (view rotation, the

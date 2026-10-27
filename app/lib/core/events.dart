@@ -5,6 +5,7 @@
 library;
 
 import 'dart:typed_data';
+import 'dart:ui' show Rect;
 
 sealed class AppEvent {
   const AppEvent();
@@ -1189,6 +1190,16 @@ class RemoteObserversChanged extends AppEvent {
 /// The dashboard document was replaced or detached.
 class VoiceTimersCleared extends AppEvent {
   const VoiceTimersCleared();
+}
+
+/// The rects the dashboard page marked as its own on the Home Assistant
+/// Dashboard screensaver, in screen logical pixels: a touch inside one
+/// reaches the page's cards instead of dismissing. Empty clears them. No
+/// wire name: it is page geometry, of no use to the page back or to the
+/// remote feed.
+class ScreensaverTapRegionsChanged extends AppEvent {
+  const ScreensaverTapRegionsChanged(this.regions);
+  final List<Rect> regions;
 }
 
 /// An event for Home Assistant to fire on its bus, sent over the ESPHome

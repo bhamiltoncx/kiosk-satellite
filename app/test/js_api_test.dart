@@ -1,7 +1,10 @@
+import 'dart:ui';
+
 import 'package:flutter_test/flutter_test.dart';
 import 'package:kiosk_satellite/managers/audio/mic_hub.dart';
 import 'package:kiosk_satellite/core/command_registry.dart';
 import 'package:kiosk_satellite/core/event_bus.dart';
+import 'package:kiosk_satellite/core/events.dart';
 import 'package:kiosk_satellite/core/logging.dart';
 import 'package:kiosk_satellite/managers/js_api/js_api_manager.dart';
 
@@ -17,11 +20,13 @@ void main() {
   late CommandRegistry commands;
   late JsApiManager api;
   late Map<String, Object?> seen;
+  late EventBus bus;
 
   Future<void> build() async {
     final log = Logger();
     commands = CommandRegistry(log);
-    api = JsApiManager(EventBus(), commands, log, '1.0.0');
+    bus = EventBus();
+    api = JsApiManager(bus, commands, log, '1.0.0');
     await api.init();
     seen = {};
     for (final name in [
@@ -185,4 +190,63 @@ void main() {
       expect(seen['volume'], 0.5);
     },
   );
+
+  group('screensaver tap regions', () {
+    Map<String, Object?> rect(num left, num top, num width, num height) => {
+      'left': left,
+      'top': top,
+      'width': width,
+      'height': height,
+    };
+
+    Future<List<List<Rect>>> published(Future<void> Function() act) async {
+      final got = <List<Rect>>[];
+      final sub = bus.on<ScreensaverTapRegionsChanged>().listen(
+        (e) => got.add(e.regions),
+      );
+      await act();
+      await pumpEventQueue();
+      await sub.cancel();
+      return got;
+    }
+
+    test('a page sets screensaver tap regions', () async {
+      await build();
+      late Object? answer;
+      final got = await published(() async {
+        answer = await api.handleCall([
+          'setScreensaverTapRegions',
+          {
+            'rects': [rect(10, 20, 30, 40)],
+            'viewport': {'scale': 2, 'offsetLeft': 0, 'offsetTop': 0},
+          },
+        ]);
+      });
+      expect(answer, true);
+      expect(got, [
+        [const Rect.fromLTWH(20, 40, 60, 80)],
+      ]);
+    });
+
+    test('invalid tap regions resolve false and publish nothing', () async {
+      await build();
+      late Object? answer;
+      final got = await published(() async {
+        answer = await api.handleCall([
+          'setScreensaverTapRegions',
+          {
+            'rects': [for (var i = 0; i < 17; i++) rect(i, 0, 1, 1)],
+          },
+        ]);
+      });
+      expect(answer, false);
+      expect(got, isEmpty);
+    });
+
+    test('a new document clears tap regions', () async {
+      await build();
+      final got = await published(() async => api.onPageStarted());
+      expect(got, [<Rect>[]]);
+    });
+  });
 }

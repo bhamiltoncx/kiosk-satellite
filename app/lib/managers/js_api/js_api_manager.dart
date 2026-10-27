@@ -8,6 +8,7 @@ import '../../core/command_registry.dart';
 import '../../core/events.dart';
 import '../../core/manager.dart';
 import '../audio/mic_hub.dart';
+import '../screensaver/tap_regions.dart';
 import 'page_ha_socket.dart';
 import 'user_script.dart';
 
@@ -240,6 +241,9 @@ class JsApiManager extends Manager {
     // arrived: it opens it again.
     _haSockets?.closeAll('navigation', notify: true);
     bus.publish(const VoiceTimersCleared());
+    // Tap regions are the document's measurements: the next one sets its
+    // own, and until then every tap dismisses again.
+    bus.publish(const ScreensaverTapRegionsChanged([]));
     _browserMicrophones.clear();
     unawaited(MicHub.instance.setBrowserCapturing(false));
     if (_pageInteractions.isEmpty) return;
@@ -301,6 +305,16 @@ class JsApiManager extends Manager {
         _browserMicrophones.remove(id);
       }
       await MicHub.instance.setBrowserCapturing(_browserMicrophones.isNotEmpty);
+      return true;
+    }
+
+    // Page geometry, so page-only like the microphone above: a remote
+    // caller has no page to measure. Malformed input leaves the regions
+    // the page already had.
+    if (method == 'setScreensaverTapRegions') {
+      final regions = parseTapRegions(params);
+      if (regions == null) return false;
+      bus.publish(ScreensaverTapRegionsChanged(regions));
       return true;
     }
     var commandName = _exposedMethods[method];
