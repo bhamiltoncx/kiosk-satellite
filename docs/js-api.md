@@ -76,7 +76,7 @@ On the Home Assistant Dashboard screensaver a tap dismisses the screensaver with
 
 `rects` is an array of up to 16 `{left, top, width, height}` objects in CSS pixels, measured the way `getBoundingClientRect()` measures them. The app accounts for the Zoom level and pinch to zoom. An empty array clears the regions. The call answers `false` and keeps the previous regions when the list is malformed: more than 16 entries, a value that is not a finite number, or a width or height that is not above zero.
 
-Regions only take effect while the Home Assistant Dashboard screensaver is showing the dashboard, not while Now Playing has taken its place. They are cleared when the screensaver stops and when the page loads a new document, so set them each time the screensaver starts. The page is responsible for clearing them when the content they cover goes away.
+Regions only take effect while the Home Assistant Dashboard screensaver is showing the dashboard, not while Now Playing has taken its place. They are cleared when the screensaver stops and when the page loads a new document, and regions sent while the screensaver is off are ignored, so set them each time the screensaver starts. The page is responsible for clearing them when the content they cover goes away.
 
 ```js
 const ks = window.kioskSatellite;

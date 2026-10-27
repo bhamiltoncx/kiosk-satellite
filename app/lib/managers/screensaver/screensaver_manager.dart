@@ -537,9 +537,13 @@ class ScreensaverManager extends Manager with WidgetsBindingObserver {
     await _migrateCameraView();
     if (Platform.isAndroid) WidgetsBinding.instance.addObserver(this);
     bus.on<ActivityDetected>().listen((e) => notifyActivity(e.source));
-    bus.on<ScreensaverTapRegionsChanged>().listen(
-      (e) => tapRegions.value = e.regions,
-    );
+    // Only while up: the page script sends its last regions again when
+    // the visual viewport moves, screensaver or not, and those must not
+    // survive [stop] into the next session. A page sets them on each
+    // start, after the kiosk-state event says it is active.
+    bus.on<ScreensaverTapRegionsChanged>().listen((e) {
+      if (_active || e.regions.isEmpty) tapRegions.value = e.regions;
+    });
     // Stand down while a page interaction runs (voice turn, ringing timer
     // alert, media playback), whichever API the page signalled it through:
     // setInteractionActive, or the legacy pauseScreensaver fallback.

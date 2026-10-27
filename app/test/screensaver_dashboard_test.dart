@@ -219,12 +219,26 @@ void main() {
 
     test('regions apply only while the dashboard shows', () async {
       await build();
-      await withRegion();
-      expect(saver.tapRegions.value, [region]);
-      expect(saver.liveTapRegions, isEmpty, reason: 'not started');
       await saver.start();
+      await withRegion();
       expect(saver.liveTapRegions, [region]);
+      await saver.stop();
+      expect(saver.liveTapRegions, isEmpty);
     });
+
+    test(
+      'regions sent while it is off are not kept for the next start',
+      () async {
+        // The page script sends its last regions again when the visual
+        // viewport moves (a pinch, a rotation), screensaver or not: those
+        // must not wake up with the next session.
+        await build();
+        await withRegion();
+        expect(saver.tapRegions.value, isEmpty);
+        await saver.start();
+        expect(saver.liveTapRegions, isEmpty);
+      },
+    );
 
     test('stop clears the regions', () async {
       await build();
