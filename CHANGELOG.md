@@ -5,6 +5,7 @@ All notable changes to Kiosk Satellite are documented here. Full release notes f
 ## Unreleased
 
 ### Added
+- **Dashboard screensavers can keep some taps.** A custom card on the Home Assistant Dashboard screensaver can call `kioskSatellite.setScreensaverTapRegions` to mark the parts of itself that should take a tap, such as a player. Taps there press the card and leave the screensaver up, and taps anywhere else still dismiss it. See [Screensaver tap regions](docs/js-api.md#screensaver-tap-regions).
 - **Plugins can run an action you choose in their settings.** A plugin setting of the new `action` type opens the same action chooser as Gestures, so you can pick a dashboard view, a Home Assistant script or service, another app, another plugin's action or anything else a gesture can do. The plugin runs it when you use one of its own controls, such as a button on a navigation bar plugin, with no second place to set it up. Only you choose the action. A plugin cannot change it, so it decides when the action runs and never what it does. Lockdown Mode stops these actions. Disable Gestures does not, since they come from the plugin's own controls. It works in plugin lists too, where each row can have its own action.
 
 ### Fixed

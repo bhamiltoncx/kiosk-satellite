@@ -68,6 +68,32 @@ Every method returns a `Promise`. To match the defensive coding style of Voice S
 | `stopScreensaver()` | `boolean` | Performs a one shot dismiss of the screensaver (using Fully Kiosk semantics). |
 | `pauseScreensaver(paused)` | `boolean` | Suppresses (`true`) or releases (`false`) the screensaver while the page is busy (using Kiosker semantics; the app supports both styles). Legacy note: this also feeds the generic interaction signal (acting exactly like `setInteractionActive` without a specific reason) so older Voice Satellite versions continue to successfully pause rotation. |
 | `getScreensaverSuppressed()` | `boolean` | Always returns true. Because the app fully owns the screen, the web page must stand down its own internal screensaver. |
+| `setScreensaverTapRegions(rects)` | `boolean` | Marks parts of the page that take taps on the Home Assistant Dashboard screensaver instead of dismissing it. See [Screensaver tap regions](#screensaver-tap-regions). |
+
+### Screensaver tap regions
+
+On the Home Assistant Dashboard screensaver a tap dismisses the screensaver without pressing the card under the finger. A page can mark parts of itself that should be pressed instead, such as a player or a card that shows more when tapped. Taps there reach the page as real taps, so they count as a user gesture and can start audio, and the screensaver stays up. A tap anywhere else dismisses it as usual. With **Double tap to dismiss** on, a tap in a region never counts toward the double tap.
+
+`rects` is an array of up to 16 `{left, top, width, height}` objects in CSS pixels, measured the way `getBoundingClientRect()` measures them. The app accounts for the Zoom level and pinch to zoom. An empty array clears the regions. The call answers `false` and keeps the previous regions when the list is malformed: more than 16 entries, a value that is not a finite number, or a width or height that is not above zero.
+
+Regions only take effect while the Home Assistant Dashboard screensaver is showing the dashboard, not while Now Playing has taken its place. They are cleared when the screensaver stops and when the page loads a new document, so set them each time the screensaver starts. The page is responsible for clearing them when the content they cover goes away.
+
+```js
+const ks = window.kioskSatellite;
+function report(state) {
+  const saver = state && state.screensaver;
+  const showing = saver && saver.active && saver.view === 'dashboard';
+  const rects = showing
+    ? [...document.querySelectorAll('.tappable')].map((el) => {
+        const r = el.getBoundingClientRect();
+        return {left: r.left, top: r.top, width: r.width, height: r.height};
+      })
+    : [];
+  ks.setScreensaverTapRegions(rects);
+}
+window.addEventListener('kiosksatellite:kiosk-state', (e) => report(e.detail));
+ks.getKioskState().then(report);
+```
 
 ### Motion
 
